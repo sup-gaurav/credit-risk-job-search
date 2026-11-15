@@ -52,7 +52,16 @@ const S = {
 /* ---------------------------------------------------------------- time + scoring (mirrors scanner/scoring.py) */
 const HOUR = 3600e3;
 const ageOf = j => j.posted_at ? Math.max(0, (Date.now() - Date.parse(j.posted_at)) / HOUR) : null;
-const fmtAge = h => h == null ? 'Date unknown' : h < 1 ? 'Under 1h ago' : h < 48 ? `${Math.round(h)}h ago` : `${Math.round(h / 24)}d ago`;
+// Listings that only say "1 day ago" are shown in days, the way the source states them, not as an invented hour count.
+// Which searches returned a listing, by name, e.g. "found by Barclays company scan, IFRS 9 search".
+const viaText = via => {
+  if (!via || !via.length) return '';
+  const label = {};
+  (S.status?.queries || []).forEach(q => { label[q.id] = q.kind === 'company' ? `${q.label} company scan` : `${q.label} search`; });
+  const names = [...new Set(via.map(v => label[v] || (v.startsWith('ats:') ? 'employer career portal' : v === 'naukri' ? 'Naukri search' : v)))];
+  return `found by ${names.slice(0, 4).join(', ')}${names.length > 4 ? ` and ${names.length - 4} more` : ''}`;
+};
+const fmtAge = (h, precision) => h == null ? 'Date unknown' : h < 1 ? 'Under 1h ago' : (precision === 'day' && h >= 20) || h >= 48 ? `${Math.max(1, Math.floor(h / 24))}d ago` : `${Math.round(h)}h ago`;
 const IST = new Intl.DateTimeFormat('en-IN', {timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false});
 const fmtIST = iso => iso ? IST.format(new Date(iso)) + ' IST' : '—';
 const rel = iso => { if (!iso) return 'never'; const h = (Date.now() - Date.parse(iso)) / HOUR; return h < 1 ? `${Math.max(1, Math.round(h * 60))}m ago` : h < 48 ? `${Math.round(h)}h ago` : `${Math.round(h / 24)}d ago`; };
@@ -228,7 +237,7 @@ function viewShortlist() {
   <div class="head"><h2 class="h2">Top ${top.length || 10} to apply</h2><span class="sub">${f.window ? `Last ${f.window >= 168 ? '7 days' : f.window + 'h'}` : 'All dates'}, ranked by score then freshness</span></div>
   ${top.length ? `<ol class="top10">${top.map(({j, L}, i) => `<li class="pick" data-testid="pick-${i + 1}">
       <span class="rank">${i + 1}</span>
-      <div><button class="t" data-open="${esc(j.id)}" data-testid="button-open-pick-${i + 1}">${esc(j.title)}</button><div class="m"><b>${esc(j.company)}</b> · ${esc(j.city)} · ${esc(fmtAge(L.age))}${j.applicants_text ? ' · ' + esc(j.applicants_text) : ''}</div><div class="tags" style="margin-top:6px">${freshTag(L)}${j.tier ? `<span class="tag">${esc(j.tier)}</span>` : ''}</div></div>
+      <div><button class="t" data-open="${esc(j.id)}" data-testid="button-open-pick-${i + 1}">${esc(j.title)}</button><div class="m"><b>${esc(j.company)}</b> · ${esc(j.city)} · ${esc(fmtAge(L.age, j.precision))}${j.applicants_text ? ' · ' + esc(j.applicants_text) : ''}</div><div class="tags" style="margin-top:6px">${freshTag(L)}${j.tier ? `<span class="tag">${esc(j.tier)}</span>` : ''}</div></div>
       <div class="side">${scoreBox(j, L)}${ext(applyUrl(j), 'Apply ' + ico('out'), 'btn sm primary', `link-apply-pick-${i + 1}`)}</div></li>`).join('')}</ol>`
     : `<div class="panel empty" data-testid="empty-top"><h3>Nothing cleared the threshold in this window</h3><p>Widen the window, or check coverage before treating this as a quiet day.</p></div>`}
   <div class="head"><h2 class="h2">All roles</h2><div class="links"><span class="sub" data-testid="text-count">${rows.length} shown</span><button class="btn sm" data-act="csv" data-testid="button-csv">${ico('down')} CSV</button></div></div>
@@ -249,7 +258,7 @@ function viewShortlist() {
       <td>${scoreBox(j, L)}</td>
       <td class="role"><div class="t">${esc(j.title)}</div><div class="c">${esc(j.company)}${j.tier ? ` <span class="tag">${esc(j.tier)}</span>` : ''}${L.excluded ? ` <span class="tag bad">${esc(exLabel(L.excluded))}</span>` : ''}${j.score.title_only ? ' <span class="tag" title="Description not read; skills estimated from the title">Title only</span>' : ''}</div></td>
       <td>${esc(j.city)}</td>
-      <td class="nowrap">${esc(fmtAge(L.age))}<div style="margin-top:4px">${freshTag(L)}</div></td>
+      <td class="nowrap">${esc(fmtAge(L.age, j.precision))}<div style="margin-top:4px">${freshTag(L)}</div></td>
       <td class="muted">${esc(j.applicants_text || j.badge || '—')}</td>
       <td><div class="tags">${srcTags(j)}</div></td>
       <td>${markSel(j)}</td>
@@ -276,7 +285,7 @@ function openDrawer(id) {
       <dt>Posted</dt><dd>${j.posted_at ? `${esc(fmtIST(j.posted_at))} <span class="sub">(${j.precision === 'hour' ? 'to the hour' : j.precision === 'day' ? 'day-level estimate' : 'coarse estimate'}, from ${esc(pname(j.posted_source))}: “${esc(j.posted_text || '')}”)</span>` : 'Unknown'}</dd>
       <dt>First seen</dt><dd>${esc(fmtIST(j.first_seen))} by this scanner${j.in_latest_scan ? '' : ' · not returned by the latest scan'}</dd>
       ${j.reposted ? '<dt>Repost</dt><dd>The listing shows a repost or a newer date than first recorded.</dd>' : ''}
-      <dt>Sources</dt><dd>${j.sources.map(x => `${esc(pname(x.platform))} “${esc(x.posted_text || '—')}” <span class="sub">via ${esc(x.via.join(', '))}</span>`).join('<br>')}</dd>
+      <dt>Sources</dt><dd>${j.sources.map(x => `${esc(pname(x.platform))} “${esc(x.posted_text || '—')}” <span class="sub">${esc(viaText(x.via))}</span>`).join('<br>')}</dd>
       ${j.seniority_level ? `<dt>LinkedIn level</dt><dd>${esc(j.seniority_level)}${j.employment_type ? ' · ' + esc(j.employment_type) : ''}</dd>` : ''}
     </dl></div>
     ${kw.length ? `<div><h3 class="h3">Matched in the posting</h3><div class="tags" style="margin-top:12px">${kw.map(k => `<span class="tag good">${esc(k)}</span>`).join('')}</div></div>` : ''}
@@ -357,6 +366,7 @@ function viewCoverage() {
   const qTable = list => `<div class="tablewrap"><table><thead><tr><th>ID</th><th>Query</th><th>Window</th><th>State</th><th class="num">Returned</th><th class="num">Pages</th></tr></thead><tbody>${list.map(q => `<tr><td class="muted">${esc(q.id)}</td><td><b>${esc(q.label)}</b>${q.mode === 'keyword' ? ' <span class="tag warn" title="LinkedIn did not return a company id, so the employer name is matched as a keyword and other employers can appear">Keyword match</span>' : ''}<div class="mono">${q.company_names ? 'company: ' + esc(q.company_names.join(', ')) + ' · ' : ''}${esc(q.keywords)} · ${esc(q.location)}</div></td><td>${q.window_hours}h</td><td>${stateTag(q.state)}</td><td class="num">${q.returned ?? 0}${q.capped ? '+' : ''}</td><td class="num">${q.pages ?? 0}</td></tr>`).join('')}</tbody></table></div>`;
   const cq = qs.filter(q => q.kind === 'company'), sq = qs.filter(q => q.kind === 'skill');
   const gaps = l => l.filter(q => q.state !== 'ok').length;
+  const capN = l => l.filter(q => q.capped).length;
   const hist = (st.history || []).slice(-14).reverse();
   return `<section class="view">
     <div class="head"><h2 class="h2">Last scan</h2><span class="sub">${esc(fmtIST(st.started))} · ${Math.round((st.duration_seconds || 0) / 60)} min · trigger: ${esc(st.trigger || '—')}${st.run_url ? ' · ' + ext(st.run_url, 'run log') : ''}</span></div>
@@ -373,8 +383,8 @@ function viewCoverage() {
       <div class="panel pad"><h3 class="h3">Phases</h3>${(st.phases || []).map(p => `<div class="phase"><span class="n">${esc(p.id)}</span><div><b>${esc(p.name)}</b><div class="d">${esc(phaseDetail(p))}</div></div><div class="nowrap">${stateTag(p.state)} <span class="muted">${p.seconds != null ? Math.round(p.seconds) + 's' : ''}</span></div></div>`).join('')}</div>
       <div class="panel pad"><h3 class="h3">Run history</h3>${hist.length ? `<div class="scrollx"><table style="margin-top:8px"><thead><tr><th>Scan</th><th class="num">${S.cfg.scoring.windows.primary_hours}h</th><th class="num">${S.cfg.scoring.windows.secondary_hours}h</th><th class="num">LinkedIn</th><th class="num">Portals</th><th class="num">Min</th></tr></thead><tbody>${hist.map(h => `<tr><td>${esc(fmtIST(h.started))}<div class="sub">${esc(h.trigger)}</div></td><td class="num">${h.qualified_primary}</td><td class="num">${h.qualified_secondary}</td><td class="num">${h.linkedin_ok}/${h.linkedin_queries}</td><td class="num">${h.ats_ok}</td><td class="num">${Math.round(h.duration_seconds / 60)}</td></tr>`).join('')}</tbody></table></div>` : '<p class="sub">No history yet.</p>'}</div>
     </div>
-    <details class="fold" data-testid="fold-company-queries"><summary>LinkedIn company queries <span>${cq.length} run, ${gaps(cq)} with gaps</span></summary>${qTable(cq)}</details>
-    <details class="fold" data-testid="fold-skill-queries"><summary>LinkedIn skill queries <span>${sq.length} run, ${gaps(sq)} with gaps</span></summary>${qTable(sq)}</details>
+    <details class="fold" data-testid="fold-company-queries"><summary>LinkedIn company queries <span>${cq.length} run, ${gaps(cq)} with gaps${capN(cq) ? `, ${capN(cq)} reached the page limit` : ''}</span></summary>${qTable(cq)}</details>
+    <details class="fold" data-testid="fold-skill-queries"><summary>LinkedIn skill queries <span>${sq.length} run, ${gaps(sq)} with gaps${capN(sq) ? `, ${capN(sq)} reached the page limit` : ''}</span></summary>${qTable(sq)}</details>
     <details class="fold" data-testid="fold-portals"><summary>Career portal feeds <span>${at.ok ?? 0} of ${at.configured ?? 0} answered</span></summary><div class="tablewrap"><table><thead><tr><th>Employer</th><th>System</th><th>State</th><th class="num">Relevant India roles</th><th>Detail</th></tr></thead><tbody>${Object.entries(st.ats || {}).map(([id, a]) => `<tr><td><b>${esc(emp(id)?.name || id)}</b></td><td>${esc(pname(a.type))}</td><td>${stateTag(a.state)}</td><td class="num">${a.returned ?? '—'}</td><td class="sub">${esc(a.error || '')}</td></tr>`).join('')}</tbody></table></div></details>
   </section>`;
 }

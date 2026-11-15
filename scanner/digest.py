@@ -8,10 +8,12 @@ from .common import DATA, age_hours, parse_iso, save_json
 IST = timezone(timedelta(hours=5, minutes=30))
 
 
-def _age(hours):
+def _age(hours, precision=None):
     if hours is None:
         return "age unknown"
-    return f"{round(hours)}h ago" if hours < 48 else f"{round(hours / 24)}d ago"
+    if (precision == "day" and hours >= 20) or hours >= 48:
+        return f"{max(1, int(hours // 24))}d ago"  # day-level sources are quoted in days, as they state it
+    return f"{round(hours)}h ago"
 
 
 def write_digest(jobs, status, scoring, now):
@@ -37,7 +39,7 @@ def write_digest(jobs, status, scoring, now):
         listing = next((s["url"] for s in job["sources"] if s["platform"] == "linkedin"), job["sources"][0]["url"])
         lines += [
             f"{rank}. **{job['title']}** · {job['company']} · {job['city']}",
-            f"   Score {job['score']['total']} ({job['band']}) · {_age(job['_age'])} · {fresh}"
+            f"   Score {job['score']['total']} ({job['band']}) · {_age(job['_age'], job.get('precision'))} · {fresh}"
             + (f" · {job['applicants_text']}" if job.get("applicants_text") else ""),
             f"   [Apply]({link}) · [Listing]({listing})",
         ]

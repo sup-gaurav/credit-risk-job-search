@@ -88,7 +88,7 @@
    "capped": 15,
    "throttle_events": 1,
    "aborted": false,
-   "requests": 376,
+   "requests": 0,
    "state": "ok"
   },
   "ats": {
@@ -2522,5 +2522,6 @@
    "ats_ok": 39,
    "observations": 1529
   }
- ]
+ ],
+ "rescored_at": "2026-11-15T10:15:34Z"
 }

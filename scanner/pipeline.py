@@ -36,6 +36,13 @@ class Scan:
         self.archive.setdefault("sources", {})
         self.archive.setdefault("learned", {})
         self.archive.setdefault("history", [])
+        for job in self.archive["jobs"].values():
+            # First scan only: company scans matched on keywords alone, so one listing was credited to dozens of
+            # employers' queries. Those credits are wrong; drop them.
+            for src in job.get("sources", {}).values():
+                company_runs = [v for v in src.get("via", []) if v.startswith("C")]
+                if len(company_runs) > 10:
+                    src["via"] = [v for v in src["via"] if not v.startswith("C")]
         self.started = now_utc()
         self.phases, self.queries, self.ats_status = [], [], {}
         self.observations = []
@@ -207,6 +214,9 @@ class Scan:
             sid = f"{obs['platform']}:{obs['job_id']}"
             src = job["sources"].setdefault(sid, {"platform": obs["platform"], "job_id": obs["job_id"], "url": obs["url"],
                                                   "first_seen": now, "via": []})
+            if src.get("via_run") != now:
+                # the queries listed against a source are the ones that returned it in the latest scan that saw it
+                src["via"], src["via_run"] = [], now
             src["last_seen"] = now
             src["url"] = obs["url"]
             src["posted_text"] = obs.get("posted_text") or obs.get("posted_date") or obs.get("posted_iso") or ""
@@ -264,8 +274,13 @@ class Scan:
     def enrich(self, budget):
         """Read LinkedIn descriptions for the most promising unread roles."""
         candidates = []
-        for key in self.touched:
-            job = self.archive["jobs"][key]
+        # Roles seen in this run, plus recent ones from earlier runs that were published on their title alone.
+        recent = self.windows["secondary_hours"]
+        for key, job in self.archive["jobs"].items():
+            if key not in self.touched:
+                seen = self.best_posted(job)
+                if not seen or age_hours(parse_iso(seen["posted_at"]), self.started) > recent:
+                    continue
             if job.get("detail_at") or job.get("skill_hits") or len(job.get("description") or "") >= 200:
                 continue
             li = next((s for s in job["sources"].values() if s["platform"] == "linkedin"), None)
@@ -361,7 +376,7 @@ class Scan:
         qualified = [j for j in out if not j["excluded"] and not j["closed"]]
         q30, q72 = [j for j in qualified if within(j, primary)], [j for j in qualified if within(j, secondary)]
         self.funnel.update(
-            observations=len(self.observations), roles_in_archive=len(jobs), published=len(out), dropped_low_relevance=dropped,
+            observations=len(self.observations) if finished else self.funnel.get("observations", 0), roles_in_archive=len(jobs), published=len(out), dropped_low_relevance=dropped,
             qualified_total=len(qualified), qualified_primary=len(q30), qualified_secondary=len(q72),
             tier1_primary=sum(1 for j in q30 if j["band"] == "Tier 1"), tier2_primary=sum(1 for j in q30 if j["band"] == "Tier 2"),
             tier3_primary=sum(1 for j in q30 if j["band"] == "Tier 3"),

@@ -327,6 +327,25 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(status["sources"]["linkedin"]["details"]["read"], 1)
         self.assertGreater(jobs[0]["score"]["skills"], 0)
 
+    def test_rescore_keeps_the_scan_record(self):
+        avp = self.card("81", "AVP - Credit Risk Modelling", "Barclays", "Noida, Uttar Pradesh, India", "3 hours ago")
+        _, before = self.run_scan({"id:Barclays": [avp]})
+        self.assertGreater(before["funnel"]["observations"], 0)
+        sys.argv = ["pipeline", "--rescore"]
+        pipeline.main()
+        after = json.loads((Path(os.environ["CRJS_DATA_DIR"]) / "status.json").read_text())
+        self.assertEqual(after["funnel"]["observations"], before["funnel"]["observations"])
+        self.assertEqual(after["sources"]["linkedin"]["details"], before["sources"]["linkedin"]["details"])
+        self.assertEqual(len(after["queries"]), len(before["queries"]))
+
+    def test_recent_title_only_role_is_read_on_the_next_scan(self):
+        avp = self.card("91", "AVP - Credit Risk Modelling", "Barclays", "Noida, Uttar Pradesh, India", "3 hours ago")
+        jobs, _ = self.run_scan({"id:Barclays": [avp]}, argv=("--max-details", "0"))
+        self.assertTrue(jobs[0]["score"]["title_only"])
+        jobs, status = self.run_scan({})  # the listing is not returned again, but it is still recent
+        self.assertFalse(jobs[0]["score"]["title_only"])
+        self.assertEqual(status["sources"]["linkedin"]["details"]["read"], 1)
+
     def test_ats_only_role_is_flagged(self):
         jobs, _ = self.run_scan({}, ats_rows={"genpact": [{"company": "Genpact", "title": "Vice President - Credit Risk Modeling", "location": "Gurugram",
                                                          "url": "https://genpact.example/1", "job_id": "G1", "platform": "workday", "posted_text": "Posted Today", "description": RICH}]})
