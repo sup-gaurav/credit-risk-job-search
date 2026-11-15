@@ -1,0 +1,2154 @@
+{
+ "categories": {
+  "A": "Global Investment Banks",
+  "B": "Global Universal Banks",
+  "C": "Indian Banks & NBFCs",
+  "D": "Consulting & Big 4",
+  "E": "KPO / Analytics Services",
+  "F": "Credit Bureaus & Rating Agencies",
+  "G": "Fintech & Digital Lenders",
+  "H": "Asset Managers & Insurance"
+ },
+ "tiers": {
+  "A1": "Bulge bracket",
+  "A2": "European investment banks",
+  "A3": "Regional investment banks",
+  "B1": "US banks",
+  "B2": "European universal banks",
+  "B3": "Canadian banks",
+  "B4": "APAC banks",
+  "B5": "Japanese banks",
+  "C1": "Private sector banks",
+  "C2": "NBFCs & fintech banks",
+  "D1": "Big 4 risk advisory",
+  "D2": "Strategy & analytics consulting",
+  "E1": "Risk analytics specialists",
+  "F1": "Credit bureaus",
+  "F2": "Rating agencies",
+  "G1": "Payment & lending platforms",
+  "G2": "Digital lending platforms",
+  "G3": "Neobanks & embedded finance",
+  "H": "Credit / fixed income analytics only"
+ },
+ "employers": [
+  {
+   "n": 1,
+   "id": "jpmorgan-chase",
+   "name": "JPMorgan Chase",
+   "category": "A",
+   "tier": "A1",
+   "focus": "Corporate & Investment Bank Risk",
+   "conditional": false,
+   "query": "JPMorgan",
+   "aliases": [
+    "JPMorgan Chase",
+    "JPMorganChase",
+    "JPMorgan",
+    "J.P. Morgan",
+    "JP Morgan",
+    "JPMorgan Chase & Co"
+   ],
+   "careers_url": "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?location=India&locationId=300000000289360&locationLevel=country&mode=location",
+   "ats": {
+    "type": "oracle",
+    "host": "https://jpmc.fa.oraclecloud.com",
+    "site": "CX_1001",
+    "location_id": "300000000289360",
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 2,
+   "id": "goldman-sachs",
+   "name": "Goldman Sachs",
+   "category": "A",
+   "tier": "A1",
+   "focus": "Risk Engineering, Credit Risk Modeling",
+   "conditional": false,
+   "query": "Goldman Sachs",
+   "aliases": [
+    "Goldman Sachs"
+   ],
+   "careers_url": "https://higher.gs.com/results?LOCATION=India",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 3,
+   "id": "morgan-stanley",
+   "name": "Morgan Stanley",
+   "category": "A",
+   "tier": "A1",
+   "focus": "Institutional Securities Risk",
+   "conditional": false,
+   "query": "Morgan Stanley",
+   "aliases": [
+    "Morgan Stanley"
+   ],
+   "careers_url": "https://morganstanley.tal.net/vx/candidate/cms/en-IN/",
+   "ats": {
+    "type": "workday",
+    "host": "ms.wd5.myworkdayjobs.com",
+    "site": "External",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 4,
+   "id": "citi",
+   "name": "Citi",
+   "category": "A",
+   "tier": "A1",
+   "focus": "Institutional Clients Group Risk",
+   "conditional": false,
+   "query": "Citi",
+   "aliases": [
+    "Citi",
+    "Citigroup",
+    "Citibank",
+    "Citicorp"
+   ],
+   "careers_url": "https://jobs.citi.com/",
+   "ats": {
+    "type": "workday",
+    "host": "citi.wd5.myworkdayjobs.com",
+    "site": "2",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 5,
+   "id": "bank-of-america",
+   "name": "Bank of America",
+   "category": "A",
+   "tier": "A1",
+   "focus": "India presence required",
+   "conditional": true,
+   "query": "Bank of America",
+   "aliases": [
+    "Bank of America",
+    "BofA",
+    "BA Continuum",
+    "Bank of America Merrill Lynch"
+   ],
+   "careers_url": "https://careers.bankofamerica.com/en-us/job-search/india",
+   "ats": {
+    "type": "workday",
+    "host": "ghr.wd1.myworkdayjobs.com",
+    "site": "Lateral-US",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 6,
+   "id": "barclays",
+   "name": "Barclays",
+   "category": "A",
+   "tier": "A2",
+   "focus": "Investment Bank Risk",
+   "conditional": false,
+   "query": "Barclays",
+   "aliases": [
+    "Barclays"
+   ],
+   "careers_url": "https://search.jobs.barclays/india",
+   "ats": {
+    "type": "workday",
+    "host": "barclays.wd3.myworkdayjobs.com",
+    "site": "External_Career_Site_Barclays",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 7,
+   "id": "deutsche-bank",
+   "name": "Deutsche Bank",
+   "category": "A",
+   "tier": "A2",
+   "focus": "Corporate Bank Risk, IB Risk",
+   "conditional": false,
+   "query": "Deutsche Bank",
+   "aliases": [
+    "Deutsche Bank",
+    "Deutsche India",
+    "DWS Group"
+   ],
+   "careers_url": "https://careers.db.com/",
+   "ats": {
+    "type": "workday",
+    "host": "db.wd3.myworkdayjobs.com",
+    "site": "DBWebsite",
+    "india_only": false,
+    "verified": true
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 8,
+   "id": "ubs",
+   "name": "UBS",
+   "category": "A",
+   "tier": "A2",
+   "focus": "Investment Bank Risk",
+   "conditional": false,
+   "query": "UBS",
+   "aliases": [
+    "UBS"
+   ],
+   "careers_url": "https://jobs.ubs.com/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 9,
+   "id": "credit-suisse",
+   "name": "Credit Suisse",
+   "category": "A",
+   "tier": "A2",
+   "focus": "Legacy roles, now part of UBS",
+   "conditional": true,
+   "query": "Credit Suisse",
+   "aliases": [
+    "Credit Suisse"
+   ],
+   "careers_url": "https://jobs.ubs.com/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": "Merged into UBS; legacy postings only"
+  },
+  {
+   "n": 10,
+   "id": "bnp-paribas",
+   "name": "BNP Paribas",
+   "category": "A",
+   "tier": "A2",
+   "focus": "Corporate & Institutional Banking Risk",
+   "conditional": false,
+   "query": "BNP Paribas",
+   "aliases": [
+    "BNP Paribas",
+    "BNP Paribas India Solutions",
+    "BNP Paribas CIB"
+   ],
+   "careers_url": "https://group.bnpparibas/en/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 11,
+   "id": "hsbc",
+   "name": "HSBC",
+   "category": "A",
+   "tier": "A3",
+   "focus": "Global Banking & Markets Risk",
+   "conditional": false,
+   "query": "HSBC",
+   "aliases": [
+    "HSBC",
+    "HSBC Global Capability Centres",
+    "HSBC Bank"
+   ],
+   "careers_url": "https://mycareer.hsbc.com/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 12,
+   "id": "standard-chartered",
+   "name": "Standard Chartered",
+   "category": "A",
+   "tier": "A3",
+   "focus": "Wholesale Banking Risk",
+   "conditional": false,
+   "query": "Standard Chartered",
+   "aliases": [
+    "Standard Chartered",
+    "Standard Chartered Bank",
+    "Standard Chartered GBS"
+   ],
+   "careers_url": "https://www.sc.com/en/careers/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 13,
+   "id": "dbs-bank",
+   "name": "DBS Bank",
+   "category": "A",
+   "tier": "A3",
+   "focus": "Institutional Banking Risk",
+   "conditional": false,
+   "query": "DBS",
+   "aliases": [
+    "DBS Bank",
+    "DBS",
+    "DBS Bank India",
+    "DBS Tech India"
+   ],
+   "careers_url": "https://www.dbs.com/careers/",
+   "ats": {
+    "type": "workday",
+    "host": "dbs.wd3.myworkdayjobs.com",
+    "site": "DBS_Careers",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 14,
+   "id": "mufg",
+   "name": "MUFG",
+   "category": "A",
+   "tier": "A3",
+   "focus": "Corporate Banking Risk",
+   "conditional": false,
+   "query": "MUFG",
+   "aliases": [
+    "MUFG",
+    "Mitsubishi UFJ Financial Group",
+    "MUFG Bank",
+    "MUFG Global Service"
+   ],
+   "careers_url": "https://www.mufgamericas.com/careers",
+   "ats": {
+    "type": "workday",
+    "host": "mufgub.wd3.myworkdayjobs.com",
+    "site": "MUFG-Careers",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 15,
+   "id": "nomura",
+   "name": "Nomura",
+   "category": "A",
+   "tier": "A3",
+   "focus": "Wholesale Credit Risk",
+   "conditional": false,
+   "query": "Nomura",
+   "aliases": [
+    "Nomura"
+   ],
+   "careers_url": "https://careers.nomura.com/Nomura/go/Career-Opportunities-India/9050900/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 16,
+   "id": "wells-fargo",
+   "name": "Wells Fargo",
+   "category": "B",
+   "tier": "B1",
+   "focus": "Commercial Banking Risk, Model Risk",
+   "conditional": false,
+   "query": "Wells Fargo",
+   "aliases": [
+    "Wells Fargo"
+   ],
+   "careers_url": "https://www.wellsfargojobs.com/en/india-locations",
+   "ats": {
+    "type": "workday",
+    "host": "wf.wd1.myworkdayjobs.com",
+    "site": "WellsFargoJobs",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 17,
+   "id": "citigroup",
+   "name": "Citigroup",
+   "category": "B",
+   "tier": "B1",
+   "focus": "Retail and commercial divisions",
+   "conditional": false,
+   "query": "Citigroup",
+   "aliases": [
+    "Citigroup"
+   ],
+   "careers_url": "https://jobs.citi.com/",
+   "ats": null,
+   "same_as": "citi",
+   "points": null,
+   "note": "Same employer as Citi (#4); searched once"
+  },
+  {
+   "n": 18,
+   "id": "us-bank",
+   "name": "US Bank",
+   "category": "B",
+   "tier": "B1",
+   "focus": "India centers required",
+   "conditional": true,
+   "query": "U.S. Bank",
+   "aliases": [
+    "US Bank",
+    "U.S. Bank",
+    "U S Bank",
+    "US Bancorp",
+    "U.S. Bancorp"
+   ],
+   "careers_url": "https://careers.usbank.com/",
+   "ats": {
+    "type": "workday",
+    "host": "usbank.wd1.myworkdayjobs.com",
+    "site": "US_Bank_Careers",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 19,
+   "id": "pnc-financial",
+   "name": "PNC Financial",
+   "category": "B",
+   "tier": "B1",
+   "focus": "India operations required",
+   "conditional": true,
+   "query": "PNC",
+   "aliases": [
+    "PNC Financial",
+    "PNC",
+    "PNC Bank",
+    "PNC Financial Services"
+   ],
+   "careers_url": "https://careers.pnc.com/",
+   "ats": {
+    "type": "workday",
+    "host": "pnc.wd5.myworkdayjobs.com",
+    "site": "External",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 20,
+   "id": "santander",
+   "name": "Santander",
+   "category": "B",
+   "tier": "B2",
+   "focus": "Risk Analytics",
+   "conditional": false,
+   "query": "Santander",
+   "aliases": [
+    "Santander",
+    "Banco Santander",
+    "Santander Bank"
+   ],
+   "careers_url": "https://www.santander.com/en/careers",
+   "ats": {
+    "type": "workday",
+    "host": "santander.wd3.myworkdayjobs.com",
+    "site": "SantanderCareers",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 21,
+   "id": "bbva",
+   "name": "BBVA",
+   "category": "B",
+   "tier": "B2",
+   "focus": "Data & Analytics Risk",
+   "conditional": false,
+   "query": "BBVA",
+   "aliases": [
+    "BBVA"
+   ],
+   "careers_url": "https://careers.bbva.com/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 22,
+   "id": "ing-bank",
+   "name": "ING Bank",
+   "category": "B",
+   "tier": "B2",
+   "focus": "Wholesale Banking Risk",
+   "conditional": false,
+   "query": "ING",
+   "aliases": [
+    "ING Bank",
+    "ING"
+   ],
+   "careers_url": "https://www.ing.jobs/",
+   "ats": {
+    "type": "workday",
+    "host": "ing.wd3.myworkdayjobs.com",
+    "site": "ICSGBLCOR",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 23,
+   "id": "rabobank",
+   "name": "Rabobank",
+   "category": "B",
+   "tier": "B2",
+   "focus": "Corporate Clients Risk",
+   "conditional": false,
+   "query": "Rabobank",
+   "aliases": [
+    "Rabobank"
+   ],
+   "careers_url": "https://rabobank.jobs/en/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 24,
+   "id": "royal-bank-of-canada",
+   "name": "Royal Bank of Canada",
+   "category": "B",
+   "tier": "B3",
+   "focus": "Capital Markets Risk",
+   "conditional": false,
+   "query": "RBC",
+   "aliases": [
+    "Royal Bank of Canada",
+    "RBC",
+    "RBC Capital Markets"
+   ],
+   "careers_url": "https://jobs.rbc.com/",
+   "ats": {
+    "type": "workday",
+    "host": "rbc.wd3.myworkdayjobs.com",
+    "site": "RBCGLOBAL1",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 25,
+   "id": "td-bank",
+   "name": "TD Bank",
+   "category": "B",
+   "tier": "B3",
+   "focus": "Wholesale Banking Risk",
+   "conditional": false,
+   "query": "TD",
+   "aliases": [
+    "TD Bank",
+    "TD",
+    "TD Securities",
+    "TD Bank Group"
+   ],
+   "careers_url": "https://jobs.td.com/",
+   "ats": {
+    "type": "workday",
+    "host": "td.wd3.myworkdayjobs.com",
+    "site": "TD_Bank_Careers",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 26,
+   "id": "scotiabank",
+   "name": "Scotiabank",
+   "category": "B",
+   "tier": "B3",
+   "focus": "Global Banking & Markets Risk",
+   "conditional": false,
+   "query": "Scotiabank",
+   "aliases": [
+    "Scotiabank"
+   ],
+   "careers_url": "https://jobs.scotiabank.com/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 27,
+   "id": "bmo-financial",
+   "name": "BMO Financial",
+   "category": "B",
+   "tier": "B3",
+   "focus": "India presence required",
+   "conditional": true,
+   "query": "BMO",
+   "aliases": [
+    "BMO Financial",
+    "BMO",
+    "BMO Financial Group",
+    "Bank of Montreal"
+   ],
+   "careers_url": "https://jobs.bmo.com/",
+   "ats": {
+    "type": "workday",
+    "host": "bmo.wd3.myworkdayjobs.com",
+    "site": "External",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 28,
+   "id": "cibc",
+   "name": "CIBC",
+   "category": "B",
+   "tier": "B3",
+   "focus": "Capital Markets Risk",
+   "conditional": false,
+   "query": "CIBC",
+   "aliases": [
+    "CIBC"
+   ],
+   "careers_url": "https://www.cibc.com/en/about-cibc/careers.html",
+   "ats": {
+    "type": "workday",
+    "host": "cibc.wd3.myworkdayjobs.com",
+    "site": "search",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 29,
+   "id": "anz",
+   "name": "ANZ",
+   "category": "B",
+   "tier": "B4",
+   "focus": "Institutional Banking Risk",
+   "conditional": false,
+   "query": "ANZ",
+   "aliases": [
+    "ANZ",
+    "ANZ Bengaluru",
+    "Australia and New Zealand Banking Group"
+   ],
+   "careers_url": "https://careers.anz.com/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 30,
+   "id": "westpac",
+   "name": "Westpac",
+   "category": "B",
+   "tier": "B4",
+   "focus": "India centers required",
+   "conditional": true,
+   "query": "Westpac",
+   "aliases": [
+    "Westpac",
+    "Westpac Group"
+   ],
+   "careers_url": "https://www.westpac.com.au/about-westpac/careers/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 31,
+   "id": "commonwealth-bank-of-australia",
+   "name": "Commonwealth Bank of Australia",
+   "category": "B",
+   "tier": "B4",
+   "focus": "India operations required",
+   "conditional": true,
+   "query": "Commonwealth Bank",
+   "aliases": [
+    "Commonwealth Bank of Australia",
+    "Commonwealth Bank",
+    "CommBank",
+    "CBA India"
+   ],
+   "careers_url": "https://www.commbank.com.au/about-us/careers.html",
+   "ats": {
+    "type": "workday",
+    "host": "cba.wd3.myworkdayjobs.com",
+    "site": "CommBank_Careers",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 32,
+   "id": "national-australia-bank",
+   "name": "National Australia Bank",
+   "category": "B",
+   "tier": "B4",
+   "focus": "India operations required",
+   "conditional": true,
+   "query": "NAB",
+   "aliases": [
+    "National Australia Bank",
+    "NAB",
+    "NAB India",
+    "NAB Innovation Centre India"
+   ],
+   "careers_url": "https://www.nab.com.au/about-us/careers",
+   "ats": {
+    "type": "workday",
+    "host": "nab.wd3.myworkdayjobs.com",
+    "site": "nab_careers",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 33,
+   "id": "mizuho-financial-group",
+   "name": "Mizuho Financial Group",
+   "category": "B",
+   "tier": "B5",
+   "focus": "Corporate Banking Risk",
+   "conditional": false,
+   "query": "Mizuho",
+   "aliases": [
+    "Mizuho Financial Group",
+    "Mizuho",
+    "Mizuho Bank",
+    "Mizuho Global Services"
+   ],
+   "careers_url": "https://www.mizuhogroup.com/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 34,
+   "id": "sumitomo-mitsui-financial-group",
+   "name": "Sumitomo Mitsui Financial Group",
+   "category": "B",
+   "tier": "B5",
+   "focus": "Credit Risk",
+   "conditional": false,
+   "query": "SMBC",
+   "aliases": [
+    "Sumitomo Mitsui Financial Group",
+    "SMBC",
+    "SMFG",
+    "Sumitomo Mitsui Banking Corporation",
+    "SMBC Group"
+   ],
+   "careers_url": "https://www.smbcgroup.com/careers/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 35,
+   "id": "resona-bank",
+   "name": "Resona Bank",
+   "category": "B",
+   "tier": "B5",
+   "focus": "India presence required",
+   "conditional": true,
+   "query": "Resona",
+   "aliases": [
+    "Resona Bank",
+    "Resona",
+    "Resona Holdings"
+   ],
+   "careers_url": "https://www.resonabank.co.jp/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 36,
+   "id": "hdfc-bank",
+   "name": "HDFC Bank",
+   "category": "C",
+   "tier": "C1",
+   "focus": "Wholesale Banking Risk, Retail Risk",
+   "conditional": false,
+   "query": "HDFC Bank",
+   "aliases": [
+    "HDFC Bank"
+   ],
+   "careers_url": "https://www.hdfcbank.com/personal/about-us/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 37,
+   "id": "icici-bank",
+   "name": "ICICI Bank",
+   "category": "C",
+   "tier": "C1",
+   "focus": "Corporate Credit Risk, Retail Risk Analytics",
+   "conditional": false,
+   "query": "ICICI Bank",
+   "aliases": [
+    "ICICI Bank"
+   ],
+   "careers_url": "https://www.icicicareers.com/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 38,
+   "id": "axis-bank",
+   "name": "Axis Bank",
+   "category": "C",
+   "tier": "C1",
+   "focus": "Credit Risk Management",
+   "conditional": false,
+   "query": "Axis Bank",
+   "aliases": [
+    "Axis Bank"
+   ],
+   "careers_url": "https://www.axisbank.com/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 39,
+   "id": "kotak-mahindra-bank",
+   "name": "Kotak Mahindra Bank",
+   "category": "C",
+   "tier": "C1",
+   "focus": "Credit Risk, Analytics",
+   "conditional": false,
+   "query": "Kotak",
+   "aliases": [
+    "Kotak Mahindra Bank",
+    "Kotak",
+    "Kotak Mahindra"
+   ],
+   "careers_url": "https://www.kotak.com/en/careers.html",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 40,
+   "id": "indusind-bank",
+   "name": "IndusInd Bank",
+   "category": "C",
+   "tier": "C1",
+   "focus": "Risk Analytics",
+   "conditional": false,
+   "query": "IndusInd Bank",
+   "aliases": [
+    "IndusInd Bank",
+    "IndusInd"
+   ],
+   "careers_url": "https://www.indusind.com/in/en/careers.html",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 41,
+   "id": "yes-bank",
+   "name": "YES BANK",
+   "category": "C",
+   "tier": "C1",
+   "focus": "Credit Risk Management",
+   "conditional": false,
+   "query": "YES BANK",
+   "aliases": [
+    "YES BANK",
+    "Yes Bank"
+   ],
+   "careers_url": "https://www.yesbank.in/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 42,
+   "id": "idfc-first-bank",
+   "name": "IDFC First Bank",
+   "category": "C",
+   "tier": "C1",
+   "focus": "Risk Analytics",
+   "conditional": false,
+   "query": "IDFC First Bank",
+   "aliases": [
+    "IDFC First Bank",
+    "IDFC FIRST Bank",
+    "IDFC Bank"
+   ],
+   "careers_url": "https://www.idfcfirstbank.com/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 43,
+   "id": "bajaj-finserv",
+   "name": "Bajaj Finserv",
+   "category": "C",
+   "tier": "C2",
+   "focus": "Credit Risk Analytics",
+   "conditional": false,
+   "query": "Bajaj",
+   "aliases": [
+    "Bajaj Finserv",
+    "Bajaj Finance",
+    "Bajaj Finance Limited",
+    "Bajaj Housing Finance",
+    "Bajaj Finserv Limited"
+   ],
+   "careers_url": "https://bflcareers.peoplestrong.com/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 44,
+   "id": "aditya-birla-capital",
+   "name": "Aditya Birla Capital",
+   "category": "C",
+   "tier": "C2",
+   "focus": "Credit Risk",
+   "conditional": false,
+   "query": "Aditya Birla Capital",
+   "aliases": [
+    "Aditya Birla Capital",
+    "Aditya Birla Finance",
+    "Aditya Birla Housing Finance",
+    "Aditya Birla Sun Life"
+   ],
+   "careers_url": "https://careers.adityabirlacapital.com/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 45,
+   "id": "fullerton-india",
+   "name": "Fullerton India",
+   "category": "C",
+   "tier": "C2",
+   "focus": "Credit Risk, SMBC Group",
+   "conditional": false,
+   "query": "SMFG India Credit",
+   "aliases": [
+    "Fullerton India",
+    "SMFG India Credit",
+    "SMFG India",
+    "Fullerton India Credit",
+    "SMFG Grihashakti"
+   ],
+   "careers_url": "https://www.smfgindiacredit.com/careers.aspx",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": "Now SMFG India Credit"
+  },
+  {
+   "n": 46,
+   "id": "shriram-finance",
+   "name": "Shriram Finance",
+   "category": "C",
+   "tier": "C2",
+   "focus": "Credit Analytics",
+   "conditional": false,
+   "query": "Shriram Finance",
+   "aliases": [
+    "Shriram Finance",
+    "Shriram Finance Limited",
+    "Shriram Group"
+   ],
+   "careers_url": "https://www.shriramfinance.in/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 47,
+   "id": "tata-capital",
+   "name": "Tata Capital",
+   "category": "C",
+   "tier": "C2",
+   "focus": "Risk Analytics",
+   "conditional": false,
+   "query": "Tata Capital",
+   "aliases": [
+    "Tata Capital",
+    "Tata Capital Limited",
+    "Tata Capital Housing Finance"
+   ],
+   "careers_url": "https://eofh.fa.em2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_3001/jobs",
+   "ats": {
+    "type": "oracle",
+    "host": "https://eofh.fa.em2.oraclecloud.com",
+    "site": "CX_3001",
+    "india_only": true,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 48,
+   "id": "deloitte",
+   "name": "Deloitte",
+   "category": "D",
+   "tier": "D1",
+   "focus": "Risk & Financial Advisory, FSI Credit Risk",
+   "conditional": false,
+   "query": "Deloitte",
+   "aliases": [
+    "Deloitte",
+    "Deloitte India",
+    "Deloitte USI",
+    "Deloitte Touche Tohmatsu"
+   ],
+   "careers_url": "https://usijobs.deloitte.com/en_US/careersUSI",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 49,
+   "id": "ey",
+   "name": "EY",
+   "category": "D",
+   "tier": "D1",
+   "focus": "Financial Services Risk Management",
+   "conditional": false,
+   "query": "EY",
+   "aliases": [
+    "EY",
+    "Ernst & Young",
+    "Ernst and Young",
+    "EY GDS",
+    "EY India"
+   ],
+   "careers_url": "https://careers.ey.com/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 50,
+   "id": "kpmg",
+   "name": "KPMG",
+   "category": "D",
+   "tier": "D1",
+   "focus": "Financial Risk Management",
+   "conditional": false,
+   "query": "KPMG",
+   "aliases": [
+    "KPMG",
+    "KPMG India",
+    "KPMG Global Services",
+    "KPMG Assurance and Consulting"
+   ],
+   "careers_url": "https://ejgk.fa.em2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_3/jobs",
+   "ats": {
+    "type": "oracle",
+    "host": "https://ejgk.fa.em2.oraclecloud.com",
+    "site": "CX_3",
+    "india_only": true,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 51,
+   "id": "pwc",
+   "name": "PwC",
+   "category": "D",
+   "tier": "D1",
+   "focus": "Risk Assurance, Financial Services",
+   "conditional": false,
+   "query": "PwC",
+   "aliases": [
+    "PwC",
+    "PricewaterhouseCoopers",
+    "PwC India",
+    "PwC Acceleration Centers",
+    "PwC Acceleration Center India"
+   ],
+   "careers_url": "https://www.pwc.in/careers.html",
+   "ats": {
+    "type": "workday",
+    "host": "pwc.wd3.myworkdayjobs.com",
+    "site": "Global_Experienced_Careers",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 52,
+   "id": "mckinsey-company",
+   "name": "McKinsey & Company",
+   "category": "D",
+   "tier": "D2",
+   "focus": "Risk Practice, Advanced Analytics",
+   "conditional": false,
+   "query": "McKinsey",
+   "aliases": [
+    "McKinsey & Company",
+    "McKinsey",
+    "McKinsey and Company"
+   ],
+   "careers_url": "https://www.mckinsey.com/careers/search-jobs",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 53,
+   "id": "boston-consulting-group",
+   "name": "Boston Consulting Group",
+   "category": "D",
+   "tier": "D2",
+   "focus": "Risk & Compliance, Gamma",
+   "conditional": false,
+   "query": "BCG",
+   "aliases": [
+    "Boston Consulting Group",
+    "BCG",
+    "Boston Consulting Group (BCG)",
+    "BCG X"
+   ],
+   "careers_url": "https://careers.bcg.com/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 54,
+   "id": "bain-company",
+   "name": "Bain & Company",
+   "category": "D",
+   "tier": "D2",
+   "focus": "Financial Services Practice",
+   "conditional": false,
+   "query": "Bain",
+   "aliases": [
+    "Bain & Company",
+    "Bain and Company",
+    "Bain Capability Network"
+   ],
+   "careers_url": "https://www.bain.com/careers/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 55,
+   "id": "oliver-wyman",
+   "name": "Oliver Wyman",
+   "category": "D",
+   "tier": "D2",
+   "focus": "Risk & Public Policy, Credit Risk",
+   "conditional": false,
+   "query": "Oliver Wyman",
+   "aliases": [
+    "Oliver Wyman",
+    "Oliver Wyman Group"
+   ],
+   "careers_url": "https://careers.marshmclennan.com/",
+   "ats": {
+    "type": "workday",
+    "host": "mmc.wd1.myworkdayjobs.com",
+    "site": "MMC",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 56,
+   "id": "accenture",
+   "name": "Accenture",
+   "category": "D",
+   "tier": "D2",
+   "focus": "Risk Management Services",
+   "conditional": false,
+   "query": "Accenture",
+   "aliases": [
+    "Accenture",
+    "Accenture in India",
+    "Accenture India"
+   ],
+   "careers_url": "https://www.accenture.com/in-en/careers",
+   "ats": null,
+   "same_as": null,
+   "points": 12,
+   "note": ""
+  },
+  {
+   "n": 57,
+   "id": "capgemini",
+   "name": "Capgemini",
+   "category": "D",
+   "tier": "D2",
+   "focus": "Financial Services Risk",
+   "conditional": false,
+   "query": "Capgemini",
+   "aliases": [
+    "Capgemini",
+    "Capgemini Invent",
+    "Capgemini Financial Services"
+   ],
+   "careers_url": "https://www.capgemini.com/in-en/careers/",
+   "ats": null,
+   "same_as": null,
+   "points": 12,
+   "note": ""
+  },
+  {
+   "n": 58,
+   "id": "genpact",
+   "name": "Genpact",
+   "category": "E",
+   "tier": "E1",
+   "focus": "Risk Analytics & Decisioning",
+   "conditional": false,
+   "query": "Genpact",
+   "aliases": [
+    "Genpact"
+   ],
+   "careers_url": "https://genpact.wd108.myworkdayjobs.com/External_Careers",
+   "ats": {
+    "type": "workday",
+    "host": "genpact.wd108.myworkdayjobs.com",
+    "site": "External_Careers",
+    "india_only": false,
+    "verified": true
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 59,
+   "id": "exl-service",
+   "name": "EXL Service",
+   "category": "E",
+   "tier": "E1",
+   "focus": "Risk & Analytics, Banking",
+   "conditional": false,
+   "query": "EXL",
+   "aliases": [
+    "EXL Service",
+    "EXL",
+    "EXL Services",
+    "EXLService"
+   ],
+   "careers_url": "https://www.exlservice.com/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": "Current employer; shown for market context"
+  },
+  {
+   "n": 60,
+   "id": "evalueserve",
+   "name": "Evalueserve",
+   "category": "E",
+   "tier": "E1",
+   "focus": "Credit Risk Analytics",
+   "conditional": false,
+   "query": "Evalueserve",
+   "aliases": [
+    "Evalueserve"
+   ],
+   "careers_url": "https://www.evalueserve.com/in-en/jobs/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 61,
+   "id": "mu-sigma",
+   "name": "Mu Sigma",
+   "category": "E",
+   "tier": "E1",
+   "focus": "Decision Sciences, Banking",
+   "conditional": true,
+   "query": "Mu Sigma",
+   "aliases": [
+    "Mu Sigma",
+    "Mu Sigma Inc",
+    "Mu Sigma Business Solutions"
+   ],
+   "careers_url": "https://www.mu-sigma.com/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 62,
+   "id": "fractal-analytics",
+   "name": "Fractal Analytics",
+   "category": "E",
+   "tier": "E1",
+   "focus": "Financial Services Analytics",
+   "conditional": false,
+   "query": "Fractal",
+   "aliases": [
+    "Fractal Analytics",
+    "Fractal"
+   ],
+   "careers_url": "https://fractal.wd1.myworkdayjobs.com/Careers",
+   "ats": {
+    "type": "workday",
+    "host": "fractal.wd1.myworkdayjobs.com",
+    "site": "Careers",
+    "india_only": false,
+    "verified": true
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 63,
+   "id": "tiger-analytics",
+   "name": "Tiger Analytics",
+   "category": "E",
+   "tier": "E1",
+   "focus": "Banking & Financial Services",
+   "conditional": false,
+   "query": "Tiger Analytics",
+   "aliases": [
+    "Tiger Analytics"
+   ],
+   "careers_url": "https://careers.tigeranalytics.com/tigeranalytics/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 64,
+   "id": "latentview-analytics",
+   "name": "LatentView Analytics",
+   "category": "E",
+   "tier": "E1",
+   "focus": "BFSI Analytics",
+   "conditional": false,
+   "query": "LatentView",
+   "aliases": [
+    "LatentView Analytics",
+    "LatentView"
+   ],
+   "careers_url": "https://www.latentview.com/careers/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 65,
+   "id": "acuity-knowledge-partners",
+   "name": "Acuity Knowledge Partners",
+   "category": "E",
+   "tier": "E1",
+   "focus": "Credit Research & Analytics",
+   "conditional": false,
+   "query": "Acuity",
+   "aliases": [
+    "Acuity Knowledge Partners",
+    "Acuity Analytics",
+    "Acuity"
+   ],
+   "careers_url": "https://www.acuityanalytics.com/working-here/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": "Now Acuity Analytics"
+  },
+  {
+   "n": 66,
+   "id": "transunion-cibil",
+   "name": "TransUnion CIBIL",
+   "category": "F",
+   "tier": "F1",
+   "focus": "Analytics, Modeling",
+   "conditional": false,
+   "query": "TransUnion",
+   "aliases": [
+    "TransUnion CIBIL",
+    "TransUnion",
+    "CIBIL"
+   ],
+   "careers_url": "https://transunion.wd5.myworkdayjobs.com/transunion",
+   "ats": {
+    "type": "workday",
+    "host": "transunion.wd5.myworkdayjobs.com",
+    "site": "transunion",
+    "india_only": false,
+    "verified": true
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 67,
+   "id": "experian",
+   "name": "Experian",
+   "category": "F",
+   "tier": "F1",
+   "focus": "Decision Analytics, Credit Risk Solutions",
+   "conditional": false,
+   "query": "Experian",
+   "aliases": [
+    "Experian",
+    "Experian India"
+   ],
+   "careers_url": "https://www.experian.in/careers",
+   "ats": {
+    "type": "smartrecruiters",
+    "company": "Experian",
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 68,
+   "id": "equifax",
+   "name": "Equifax",
+   "category": "F",
+   "tier": "F1",
+   "focus": "Risk Analytics",
+   "conditional": false,
+   "query": "Equifax",
+   "aliases": [
+    "Equifax",
+    "Equifax India"
+   ],
+   "careers_url": "https://careers.equifax.com/en/jobs/",
+   "ats": {
+    "type": "workday",
+    "host": "equifax.wd5.myworkdayjobs.com",
+    "site": "External",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 69,
+   "id": "crif-high-mark",
+   "name": "CRIF High Mark",
+   "category": "F",
+   "tier": "F1",
+   "focus": "Credit Analytics",
+   "conditional": false,
+   "query": "CRIF",
+   "aliases": [
+    "CRIF High Mark",
+    "CRIF",
+    "CRIF India",
+    "CRIF Solutions"
+   ],
+   "careers_url": "https://www.crifhighmark.com/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 70,
+   "id": "crisil",
+   "name": "CRISIL",
+   "category": "F",
+   "tier": "F2",
+   "focus": "Ratings, Risk Solutions, S&P Global",
+   "conditional": false,
+   "query": "CRISIL",
+   "aliases": [
+    "CRISIL",
+    "Crisil",
+    "CRISIL Limited",
+    "Crisil Integral IQ"
+   ],
+   "careers_url": "https://career.crisil.com/crisil/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 71,
+   "id": "icra",
+   "name": "ICRA",
+   "category": "F",
+   "tier": "F2",
+   "focus": "Ratings & Research",
+   "conditional": false,
+   "query": "ICRA",
+   "aliases": [
+    "ICRA",
+    "ICRA Limited",
+    "ICRA Analytics"
+   ],
+   "careers_url": "https://www.icra.in/Home/Careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 72,
+   "id": "care-ratings",
+   "name": "CARE Ratings",
+   "category": "F",
+   "tier": "F2",
+   "focus": "Analyst roles if available",
+   "conditional": true,
+   "query": "CARE Ratings",
+   "aliases": [
+    "CARE Ratings",
+    "CareEdge",
+    "CARE Ratings Limited",
+    "CareEdge Ratings"
+   ],
+   "careers_url": "https://www.careratings.com/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 73,
+   "id": "india-ratings",
+   "name": "India Ratings",
+   "category": "F",
+   "tier": "F2",
+   "focus": "Credit Analytics, Fitch Group",
+   "conditional": false,
+   "query": "India Ratings",
+   "aliases": [
+    "India Ratings",
+    "India Ratings & Research",
+    "India Ratings and Research",
+    "Fitch Ratings",
+    "Fitch Group"
+   ],
+   "careers_url": "https://www.indiaratings.co.in/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 74,
+   "id": "moody-s-analytics",
+   "name": "Moody's Analytics",
+   "category": "F",
+   "tier": "F2",
+   "focus": "Credit Risk Solutions",
+   "conditional": false,
+   "query": "Moody's",
+   "aliases": [
+    "Moody's Analytics",
+    "Moody's",
+    "Moody's Corporation",
+    "Moodys"
+   ],
+   "careers_url": "https://careers.moodys.com/en/location/india-jobs/49841/1269750/2",
+   "ats": {
+    "type": "workday",
+    "host": "moodys.wd5.myworkdayjobs.com",
+    "site": "Moodys",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 75,
+   "id": "s-p-global-market-intelligence",
+   "name": "S&P Global Market Intelligence",
+   "category": "F",
+   "tier": "F2",
+   "focus": "Credit Analytics",
+   "conditional": false,
+   "query": "S&P Global",
+   "aliases": [
+    "S&P Global Market Intelligence",
+    "S&P Global",
+    "S&P Global Ratings"
+   ],
+   "careers_url": "https://careers.spglobal.com/",
+   "ats": {
+    "type": "workday",
+    "host": "spgi.wd5.myworkdayjobs.com",
+    "site": "SPGI_Careers",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 76,
+   "id": "paytm",
+   "name": "Paytm",
+   "category": "G",
+   "tier": "G1",
+   "focus": "Credit & Risk",
+   "conditional": false,
+   "query": "Paytm",
+   "aliases": [
+    "Paytm",
+    "One97 Communications",
+    "Paytm Payments",
+    "Paytm Money"
+   ],
+   "careers_url": "https://jobs.lever.co/paytm/",
+   "ats": {
+    "type": "lever",
+    "company": "paytm",
+    "verified": true
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 77,
+   "id": "phonepe",
+   "name": "PhonePe",
+   "category": "G",
+   "tier": "G1",
+   "focus": "Credit Risk",
+   "conditional": false,
+   "query": "PhonePe",
+   "aliases": [
+    "PhonePe"
+   ],
+   "careers_url": "https://www.phonepe.com/careers/job-openings/",
+   "ats": {
+    "type": "greenhouse",
+    "board": "phonepe",
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 78,
+   "id": "bharatpe",
+   "name": "BharatPe",
+   "category": "G",
+   "tier": "G1",
+   "focus": "Credit Risk Analytics",
+   "conditional": false,
+   "query": "BharatPe",
+   "aliases": [
+    "BharatPe"
+   ],
+   "careers_url": "https://bharatpe.com/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 79,
+   "id": "razorpay",
+   "name": "Razorpay",
+   "category": "G",
+   "tier": "G1",
+   "focus": "Risk Management",
+   "conditional": false,
+   "query": "Razorpay",
+   "aliases": [
+    "Razorpay"
+   ],
+   "careers_url": "https://razorpay.com/jobs/",
+   "ats": {
+    "type": "greenhouse",
+    "board": "razorpaysoftwareprivatelimited",
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 80,
+   "id": "cred",
+   "name": "CRED",
+   "category": "G",
+   "tier": "G1",
+   "focus": "Credit Risk",
+   "conditional": false,
+   "query": "CRED",
+   "aliases": [
+    "CRED"
+   ],
+   "careers_url": "https://jobs.lever.co/cred",
+   "ats": {
+    "type": "lever",
+    "company": "cred",
+    "verified": true
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 81,
+   "id": "payu",
+   "name": "PayU",
+   "category": "G",
+   "tier": "G1",
+   "focus": "Risk Analytics, Prosus",
+   "conditional": false,
+   "query": "PayU",
+   "aliases": [
+    "PayU",
+    "PayU India",
+    "PayU Finance",
+    "LazyPay"
+   ],
+   "careers_url": "https://careers.payu.in/jobs",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 82,
+   "id": "credit-saison-india",
+   "name": "Credit Saison India",
+   "category": "G",
+   "tier": "G2",
+   "focus": "Credit Risk Modeling",
+   "conditional": false,
+   "query": "Credit Saison India",
+   "aliases": [
+    "Credit Saison India",
+    "Kisetsu Saison Finance",
+    "Credit Saison",
+    "Saison Omni"
+   ],
+   "careers_url": "https://saison.wd102.myworkdayjobs.com/Credit_Saison_India",
+   "ats": {
+    "type": "workday",
+    "host": "saison.wd102.myworkdayjobs.com",
+    "site": "Credit_Saison_India",
+    "india_only": true,
+    "verified": true
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 83,
+   "id": "lendingkart",
+   "name": "Lendingkart",
+   "category": "G",
+   "tier": "G2",
+   "focus": "Credit Analytics",
+   "conditional": false,
+   "query": "Lendingkart",
+   "aliases": [
+    "Lendingkart"
+   ],
+   "careers_url": "https://careers.smartrecruiters.com/Lendingkart/",
+   "ats": {
+    "type": "smartrecruiters",
+    "company": "Lendingkart",
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 84,
+   "id": "capital-float",
+   "name": "Capital Float",
+   "category": "G",
+   "tier": "G2",
+   "focus": "Risk Management",
+   "conditional": false,
+   "query": "axio",
+   "aliases": [
+    "Capital Float",
+    "axio",
+    "Axio Digital",
+    "CapFloat"
+   ],
+   "careers_url": "https://www.axio.co.in/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": "Now axio"
+  },
+  {
+   "n": 85,
+   "id": "moneytap",
+   "name": "MoneyTap",
+   "category": "G",
+   "tier": "G2",
+   "focus": "Credit Risk",
+   "conditional": false,
+   "query": "MoneyTap",
+   "aliases": [
+    "MoneyTap",
+    "Freo",
+    "MWYN Tech"
+   ],
+   "careers_url": "https://www.moneytap.com/careers.html",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": "Group brand Freo"
+  },
+  {
+   "n": 86,
+   "id": "earlysalary",
+   "name": "EarlySalary",
+   "category": "G",
+   "tier": "G2",
+   "focus": "Credit Risk Analytics",
+   "conditional": false,
+   "query": "Fibe",
+   "aliases": [
+    "EarlySalary",
+    "Fibe",
+    "Fibe India",
+    "Social Worth Technologies"
+   ],
+   "careers_url": "https://www.fibe.in/careers/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": "Now Fibe"
+  },
+  {
+   "n": 87,
+   "id": "kreditbee",
+   "name": "KreditBee",
+   "category": "G",
+   "tier": "G2",
+   "focus": "Risk Analytics",
+   "conditional": false,
+   "query": "KreditBee",
+   "aliases": [
+    "KreditBee",
+    "Finnovation Tech Solutions",
+    "KrazyBee"
+   ],
+   "careers_url": "https://www.kreditbee.in/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 88,
+   "id": "jupiter",
+   "name": "Jupiter",
+   "category": "G",
+   "tier": "G3",
+   "focus": "Amica Financial Technologies",
+   "conditional": false,
+   "query": "Jupiter Money",
+   "aliases": [
+    "Jupiter Money",
+    "Amica Financial Technologies",
+    "Jupiter.Money"
+   ],
+   "careers_url": "https://jupiter.money/careers/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 89,
+   "id": "fi-money",
+   "name": "Fi Money",
+   "category": "G",
+   "tier": "G3",
+   "focus": "If growing",
+   "conditional": true,
+   "query": "Fi Money",
+   "aliases": [
+    "Fi Money",
+    "epiFi",
+    "Fi.Money",
+    "EpiFi Technologies"
+   ],
+   "careers_url": "https://fi.money/careers",
+   "ats": {
+    "type": "lever",
+    "company": "epifi",
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 90,
+   "id": "niyo",
+   "name": "NiYO",
+   "category": "G",
+   "tier": "G3",
+   "focus": "If hiring",
+   "conditional": true,
+   "query": "NiYO",
+   "aliases": [
+    "NiYO",
+    "Niyo Solutions",
+    "Niyo"
+   ],
+   "careers_url": "https://www.goniyo.com/careers/",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 91,
+   "id": "blackrock",
+   "name": "BlackRock",
+   "category": "H",
+   "tier": "H",
+   "focus": "Portfolio Risk Analytics, Fixed Income/Credit",
+   "conditional": false,
+   "query": "BlackRock",
+   "aliases": [
+    "BlackRock"
+   ],
+   "careers_url": "https://careers.blackrock.com/location/india-jobs/45831/1269750/2/1",
+   "ats": {
+    "type": "workday",
+    "host": "blackrock.wd1.myworkdayjobs.com",
+    "site": "BlackRock_Professional",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 92,
+   "id": "fidelity-investments",
+   "name": "Fidelity Investments",
+   "category": "H",
+   "tier": "H",
+   "focus": "Credit Research & Analytics",
+   "conditional": false,
+   "query": "Fidelity Investments",
+   "aliases": [
+    "Fidelity Investments",
+    "Fidelity Investments India",
+    "Fidelity International",
+    "FMR India"
+   ],
+   "careers_url": "https://jobs.fidelity.com/",
+   "ats": {
+    "type": "workday",
+    "host": "fmr.wd1.myworkdayjobs.com",
+    "site": "FidelityCareers",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 93,
+   "id": "state-street",
+   "name": "State Street",
+   "category": "H",
+   "tier": "H",
+   "focus": "Risk Analytics",
+   "conditional": false,
+   "query": "State Street",
+   "aliases": [
+    "State Street",
+    "State Street Corporation",
+    "State Street Global Advisors"
+   ],
+   "careers_url": "https://careers.statestreet.com/india",
+   "ats": {
+    "type": "workday",
+    "host": "statestreet.wd1.myworkdayjobs.com",
+    "site": "Global",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 94,
+   "id": "northern-trust",
+   "name": "Northern Trust",
+   "category": "H",
+   "tier": "H",
+   "focus": "Credit Risk Analytics",
+   "conditional": false,
+   "query": "Northern Trust",
+   "aliases": [
+    "Northern Trust",
+    "Northern Trust Corporation",
+    "Northern Trust Asset Management"
+   ],
+   "careers_url": "https://www.northerntrust.com/about-us/careers",
+   "ats": {
+    "type": "workday",
+    "host": "ntrs.wd1.myworkdayjobs.com",
+    "site": "northerntrust",
+    "india_only": false,
+    "verified": false
+   },
+   "same_as": null,
+   "points": null,
+   "note": ""
+  },
+  {
+   "n": 95,
+   "id": "icici-prudential",
+   "name": "ICICI Prudential",
+   "category": "H",
+   "tier": "H",
+   "focus": "Asset Management Risk, credit ALM",
+   "conditional": true,
+   "query": "ICICI Prudential",
+   "aliases": [
+    "ICICI Prudential",
+    "ICICI Prudential AMC",
+    "ICICI Prudential Asset Management",
+    "ICICI Prudential Life Insurance"
+   ],
+   "careers_url": "https://www.icicipruamc.com/careers",
+   "ats": null,
+   "same_as": null,
+   "points": null,
+   "note": ""
+  }
+ ]
+}

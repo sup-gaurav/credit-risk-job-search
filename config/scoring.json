@@ -1,0 +1,411 @@
+{
+ "version": "1.0",
+ "note": "The master prompt's Section 3.4 formula was cut off after 'FINA'. These weights implement the tiers, exclusions, geography and freshness rules stated in Sections 1-3. Edit this file to change them; the scanner and dashboard both read it.",
+ "weights": {
+  "role": 35,
+  "skills": 25,
+  "employer": 15,
+  "seniority": 10,
+  "location": 5,
+  "freshness": 10
+ },
+ "bands": [
+  {
+   "label": "Tier 1",
+   "min": 90,
+   "range": "90-100",
+   "meaning": "Apply first"
+  },
+  {
+   "label": "Tier 2",
+   "min": 75,
+   "range": "75-89",
+   "meaning": "Strong match"
+  },
+  {
+   "label": "Tier 3",
+   "min": 60,
+   "range": "60-74",
+   "meaning": "Consider selectively"
+  }
+ ],
+ "threshold": 60,
+ "windows": {
+  "primary_hours": 30,
+  "secondary_hours": 72,
+  "secondary_trigger_below": 10,
+  "verified_single_platform_hours": 12,
+  "retain_days": 14
+ },
+ "role": {
+  "core": {
+   "points": 35,
+   "label": "Core credit-risk modeling title",
+   "patterns": [
+    "credit risk model",
+    "credit risk analytic",
+    "credit risk strateg",
+    "credit risk method",
+    "credit risk quant",
+    "credit risk data scien",
+    "credit model",
+    "credit scor",
+    "scorecard",
+    "ifrs ?9",
+    "ifrs9",
+    "\\becl\\b",
+    "expected credit loss",
+    "\\bcecl\\b",
+    "\\bccar\\b",
+    "\\bpd\\b.{0,12}\\blgd\\b",
+    "\\blgd\\b",
+    "\\bead\\b",
+    "\\bbasel\\b",
+    "\\birb\\b",
+    "regulatory capital",
+    "\\brwa\\b",
+    "capital model",
+    "stress test",
+    "scenario analysis",
+    "model development",
+    "model validation",
+    "model risk",
+    "\\bmrm\\b",
+    "model monitoring",
+    "model governance",
+    "wholesale credit risk",
+    "retail credit risk",
+    "portfolio risk",
+    "credit portfolio analytic",
+    "risk model",
+    "impairment model",
+    "loss forecast",
+    "early warning"
+   ],
+   "cap": 100
+  },
+  "strong": {
+   "points": 30,
+   "label": "Credit risk / risk analytics title",
+   "patterns": [
+    "credit risk",
+    "risk analytic",
+    "risk strateg",
+    "quantitative risk",
+    "risk quant",
+    "risk data scien",
+    "credit analytic",
+    "credit strateg",
+    "credit polic",
+    "credit portfolio",
+    "decision scien",
+    "risk decision",
+    "counterparty credit",
+    "risk method"
+   ],
+   "cap": 100
+  },
+  "adjacent": {
+   "points": 20,
+   "label": "Adjacent analytical title",
+   "boost_points": 27,
+   "boost_core_hits": 3,
+   "patterns": [
+    "data scien",
+    "quantitative analy",
+    "\\bquant\\b",
+    "risk consult",
+    "risk manage",
+    "risk advis",
+    "risk & compliance",
+    "risk and compliance",
+    "financial risk",
+    "enterprise risk",
+    "\\banalytics\\b",
+    "statistical model",
+    "machine learning",
+    "predictive model",
+    "modell?ing",
+    "credit research",
+    "credit analyst",
+    "fixed income",
+    "\\brisk\\b"
+   ],
+   "cap": 74,
+   "boost_cap": 89
+  },
+  "weak": {
+   "points": 8,
+   "label": "Loosely related title",
+   "patterns": [
+    "\\bcredit\\b",
+    "\\blending\\b",
+    "\\bunderwrit"
+   ],
+   "cap": 74
+  }
+ },
+ "skills": {
+  "core": {
+   "each": 3,
+   "cap": 15,
+   "terms": {
+    "IFRS 9": "ifrs ?9|ifrs9",
+    "ECL": "\\becl\\b|expected credit loss",
+    "PD": "\\bpd\\b|probability of default",
+    "LGD": "\\blgd\\b|loss given default",
+    "EAD": "\\bead\\b|exposure at default",
+    "Basel": "\\bbasel\\b",
+    "CCAR": "\\bccar\\b|\\bdfast\\b",
+    "CECL": "\\bcecl\\b",
+    "IRB": "\\birb\\b|internal ratings?.based",
+    "Stress testing": "stress test",
+    "Scenario analysis": "scenario analys",
+    "Model validation": "model validation|independent validation",
+    "Model risk": "model risk|\\bmrm\\b|sr ?11.?7",
+    "Model development": "model development|model build|develop\\w* (credit |risk |statistical )?models?",
+    "Scorecards": "scorecard|credit scor",
+    "Early warning": "early warning|\\bews\\b",
+    "Portfolio monitoring": "portfolio (risk|monitor|analy|manage)",
+    "Regulatory capital": "regulatory capital|\\brwa\\b|capital adequacy",
+    "Wholesale credit": "wholesale|corporate (credit|lending|banking)|commercial (credit|lending)",
+    "Retail credit": "retail (credit|lending|risk|banking)|credit cards?|mortgage|consumer (credit|lending|loans?)|unsecured",
+    "COREP/FINREP": "\\bcorep\\b|\\bfinrep\\b",
+    "Ind AS": "ind ?as\\b",
+    "Credit risk": "credit risk"
+   }
+  },
+  "techniques": {
+   "each": 2,
+   "cap": 6,
+   "terms": {
+    "Logistic regression": "logistic regression|logistic",
+    "Survival analysis": "survival analys|hazard model",
+    "Gradient boosting": "xgboost|lightgbm|gradient boost|\\bgbm\\b",
+    "Time series": "time.series|arima|forecast",
+    "Vintage / cohort": "vintage|cohort|roll.rate",
+    "Backtesting": "back.?test",
+    "Champion-challenger": "champion.{0,3}challenger",
+    "Machine learning": "machine learning|\\bml\\b",
+    "Statistics": "statistic|econometric"
+   }
+  },
+  "stack": {
+   "each": 1,
+   "cap": 4,
+   "terms": {
+    "Python": "\\bpython\\b",
+    "SAS": "\\bsas\\b",
+    "SQL": "\\bsql\\b",
+    "R": "\\br\\b(?=[ ,/)]| programming)",
+    "Spark": "\\bspark\\b|pyspark|hadoop",
+    "Tableau": "tableau",
+    "Power BI": "power ?bi",
+    "AWS": "\\baws\\b",
+    "Azure": "azure"
+   }
+  },
+  "title_only_scale": 0.6
+ },
+ "employer": {
+  "tier_points": {
+   "A1": 15,
+   "A2": 14,
+   "A3": 14,
+   "B1": 13,
+   "B2": 11,
+   "B3": 12,
+   "B4": 11,
+   "B5": 11,
+   "C1": 13,
+   "C2": 12,
+   "D1": 13,
+   "D2": 15,
+   "E1": 11,
+   "F1": 13,
+   "F2": 13,
+   "G1": 11,
+   "G2": 10,
+   "G3": 8,
+   "H": 10
+  },
+  "non_target_financial": 7,
+  "non_target_other": 4,
+  "financial_hint": "bank|financ|capital|credit|lending|nbfc|insur|securit|invest|asset|wealth|fintech|payments?|loans?|ratings?|bureau|analytics|consult|advisory",
+  "top_tier_ids": [
+   "jpmorgan-chase",
+   "goldman-sachs",
+   "morgan-stanley",
+   "mckinsey-company",
+   "boston-consulting-group",
+   "bain-company"
+  ],
+  "tier1_firm_tiers": [
+   "A1",
+   "A2",
+   "A3"
+  ]
+ },
+ "seniority": {
+  "levels": [
+   {
+    "label": "VP / AVP / Director",
+    "points": 10,
+    "pattern": "\\bsvp\\b|\\bevp\\b|\\bavp\\b|\\bvp\\b|vice president|\\bdirector\\b|\\bhead\\b|\\bprincipal\\b|\\bpartner\\b|\\bchief\\b|managing director|\\bmd\\b",
+    "cap": 100
+   },
+   {
+    "label": "Senior Manager / Lead",
+    "points": 9,
+    "pattern": "senior manager|sr\\.? manager|\\blead\\b|associate director|deputy general manager|\\bdgm\\b|\\bagm\\b|chief manager|deputy vice president|\\bdvp\\b|senior principal|engagement manager|staff data scien",
+    "cap": 89
+   },
+   {
+    "label": "Manager / Senior Consultant",
+    "points": 7,
+    "pattern": "\\bmanager\\b|senior consultant|sr\\.? consultant|senior data scien|sr\\.? data scien|senior quant|\\bspecialist\\b|\\bexpert\\b|team lead",
+    "cap": 89
+   },
+   {
+    "label": "Senior Analyst / Consultant",
+    "points": 4,
+    "tier1_points": 6,
+    "pattern": "senior analyst|sr\\.? analyst|senior associate|sr\\.? associate|\\bconsultant\\b|assistant manager|deputy manager|data scien|\\bquant",
+    "cap": 74,
+    "tier1_cap": 89
+   },
+   {
+    "label": "Analyst / Associate",
+    "points": 1,
+    "top_tier_points": 5,
+    "junior": true,
+    "pattern": "\\banalyst\\b|\\bassociate\\b|\\bexecutive\\b|\\bofficer\\b",
+    "cap": 74
+   }
+  ],
+  "unknown_points": 5,
+  "unknown_cap": 89,
+  "overrides": [
+   {
+    "pattern": "assistant manager|deputy manager|associate manager",
+    "level": 3
+   },
+   {
+    "pattern": "associate director|deputy vice president|\\bdvp\\b",
+    "level": 1
+   }
+  ]
+ },
+ "location": {
+  "primary": {
+   "points": 5,
+   "cities": {
+    "Mumbai": "mumbai|navi mumbai|thane|bombay|powai|bkc",
+    "Bengaluru": "bengaluru|bangalore",
+    "Pune": "\\bpune\\b",
+    "Delhi NCR": "gurugram|gurgaon|delhi|noida|\\bncr\\b|faridabad|ghaziabad"
+   }
+  },
+  "secondary": {
+   "points": 4,
+   "cities": {
+    "Hyderabad": "hyderabad|secunderabad",
+    "Chennai": "chennai|madras",
+    "Kolkata": "kolkata|calcutta"
+   }
+  },
+  "remote": {
+   "points": 4,
+   "pattern": "remote|work from home|\\bwfh\\b|anywhere in india|pan india|hybrid"
+  },
+  "other_india": {
+   "points": 2,
+   "pattern": "india|ahmedabad|gift city|gandhinagar|jaipur|kochi|coimbatore|indore|chandigarh|mohali|vadodara|nagpur|lucknow|bhubaneswar|thiruvananthapuram|trivandrum|mysuru|mysore|surat|goa|visakhapatnam|maharashtra|karnataka|tamil nadu|telangana|haryana|uttar pradesh|west bengal|gujarat|rajasthan|kerala"
+  }
+ },
+ "freshness": {
+  "age_points": [
+   {
+    "max_hours": 12,
+    "points": 7
+   },
+   {
+    "max_hours": 30,
+    "points": 6
+   },
+   {
+    "max_hours": 48,
+    "points": 4
+   },
+   {
+    "max_hours": 72,
+    "points": 2
+   },
+   {
+    "max_hours": 168,
+    "points": 1
+   }
+  ],
+  "unknown_age_points": 1,
+  "applicant_points": [
+   {
+    "max": 25,
+    "points": 3
+   },
+   {
+    "max": 100,
+    "points": 2
+   },
+   {
+    "max": 200,
+    "points": 1
+   }
+  ],
+  "unknown_applicant_points": 1
+ },
+ "exclusions": [
+  {
+   "id": "junior",
+   "label": "Intern, trainee, graduate or fresher role",
+   "title": "\\bintern(ship)?\\b|\\btrainee\\b|\\bgraduate\\b|\\bfresher|apprentice|campus|\\bentry.level\\b|\\bjunior\\b|\\bjr\\b",
+   "unless_title": "\\bvp\\b|vice president",
+   "unless_top_tier_only": true,
+   "kept_when": "A “Junior VP” title is kept at GS, JPM, MS and MBB, capped at Tier 3."
+  },
+  {
+   "id": "other_risk",
+   "label": "Operational, market, fraud or other non-credit risk",
+   "title": "operational risk|\\bop ?risk\\b|market risk|fraud|\\baml\\b|anti.money|financial crime|\\bkyc\\b|cyber|information security|\\bit risk\\b|technology risk|liquidity risk|compliance|internal audit|\\baudit\\b|third.party risk|vendor risk|climate risk|insurance risk|actuar|conduct risk|treasury risk|\\balm\\b|non.financial risk|business continuity|\\besg\\b|traded risk|trading risk",
+   "unless_title": "credit|ifrs|\\becl\\b|basel|model risk|model validation|model development|scorecard|\\bcecl\\b|\\bccar\\b|stress test",
+   "kept_when": "Kept when the title also names credit, IFRS 9, Basel, model risk or stress testing."
+  },
+  {
+   "id": "engineering",
+   "label": "Software engineering or delivery role without a modeling component",
+   "title": "software engineer|\\bdeveloper\\b|devops|full.?stack|\\bjava\\b|\\b\\.net\\b|\\bsre\\b|\\bqa\\b|test engineer|automation engineer|data engineer|platform engineer|cloud engineer|\\barchitect\\b|business analyst|product manager|product owner|project manager|program manager|scrum|\\bpmo\\b",
+   "unless_title": "model|quant|analytics|data scien|strateg|scorecard",
+   "kept_when": "Kept when the title also names modeling, quant, analytics or strategy work."
+  },
+  {
+   "id": "operations",
+   "label": "Collections, recovery, underwriting or credit operations",
+   "title": "collection|recover|underwrit|credit manager|credit officer|credit operations|credit ops|credit admin|relationship manager|\\bsales\\b|branch|loan officer|credit processing|credit appraisal|credit control|accounts receivable|customer service|call cent|back office|\\bkyc\\b|documentation|disbursement|credit monitoring officer|field",
+   "unless_title": "analytics|model|strateg|data scien|quant|scorecard|portfolio risk",
+   "kept_when": "Kept when the title also names analytics, modeling, strategy or portfolio risk."
+  },
+  {
+   "id": "non_india",
+   "label": "Location outside India"
+  },
+  {
+   "id": "junior_grade",
+   "label": "Analyst or Associate grade below a top-tier firm",
+   "kept_when": "Kept at GS, JPM, MS, McKinsey, BCG and Bain, capped at Tier 3."
+  },
+  {
+   "id": "below_threshold",
+   "label": "Score below 60"
+  }
+ ],
+ "junior_title_cap": 74
+}

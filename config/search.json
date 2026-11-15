@@ -1,0 +1,52 @@
+{
+  "linkedin": {
+    "company_terms": ["credit risk", "risk analytics", "risk modeling", "risk modelling", "IFRS 9", "Basel", "model risk", "model validation"],
+    "max_pages_company": 3,
+    "max_pages_skill": 8,
+    "skill_queries": [
+      {"id": "S01", "set": "Core credit risk", "label": "Credit Risk + AVP", "keywords": "\"credit risk\" AND AVP"},
+      {"id": "S02", "set": "Core credit risk", "label": "Credit Risk + Director", "keywords": "\"credit risk\" AND Director", "locations": ["Mumbai, Maharashtra, India", "Bengaluru, Karnataka, India"]},
+      {"id": "S03", "set": "Core credit risk", "label": "Credit Risk Modeling + VP", "keywords": "(\"credit risk modeling\" OR \"credit risk modelling\") AND (VP OR \"Vice President\")"},
+      {"id": "S04", "set": "Core credit risk", "label": "Risk Analytics + VP / AVP / Director", "keywords": "\"risk analytics\" AND (VP OR AVP OR Director)"},
+      {"id": "S05", "set": "Core credit risk", "label": "Model Development + Credit", "keywords": "\"model development\" AND credit"},
+      {"id": "S06", "set": "Technical skills", "label": "IFRS 9", "keywords": "\"IFRS 9\" OR IFRS9"},
+      {"id": "S07", "set": "Technical skills", "label": "Basel III / Basel IV", "keywords": "\"Basel III\" OR \"Basel IV\" OR \"Basel 3\" OR \"Basel 4\""},
+      {"id": "S08", "set": "Technical skills", "label": "PD LGD EAD", "keywords": "PD AND LGD AND EAD"},
+      {"id": "S09", "set": "Technical skills", "label": "CECL", "keywords": "CECL"},
+      {"id": "S10", "set": "Technical skills", "label": "Stress Testing + Credit", "keywords": "\"stress testing\" AND credit"},
+      {"id": "S11", "set": "Technical skills", "label": "CCAR", "keywords": "CCAR"},
+      {"id": "S12", "set": "Technical skills", "label": "Expected Credit Loss", "keywords": "\"expected credit loss\" OR ECL"},
+      {"id": "S13", "set": "Functional areas", "label": "Model Risk Management", "keywords": "\"model risk management\" OR \"model risk\""},
+      {"id": "S14", "set": "Functional areas", "label": "Portfolio Risk + Credit", "keywords": "\"portfolio risk\" AND credit"},
+      {"id": "S15", "set": "Functional areas", "label": "Model Validation + Credit", "keywords": "\"model validation\" AND credit"}
+    ]
+  },
+  "ats": {"search_terms": ["credit risk", "risk model", "risk analytics", "model validation", "IFRS 9"], "max_pages": 2, "max_details_per_employer": 12},
+  "naukri": {
+    "skill_searches": [
+      {"label": "Credit Risk AVP, Mumbai, 10-15 yrs, 25-50 LPA", "k": "credit risk avp", "l": "mumbai", "experience": 10, "ctc": ["25to50"]},
+      {"label": "IFRS 9", "k": "ifrs 9"},
+      {"label": "Basel III", "k": "basel iii"},
+      {"label": "Credit Risk Modeling", "k": "credit risk modeling"},
+      {"label": "PD LGD", "k": "pd lgd"},
+      {"label": "ECL", "k": "ecl expected credit loss"},
+      {"label": "Stress Testing", "k": "stress testing credit risk"},
+      {"label": "Model Risk Management", "k": "model risk management"},
+      {"label": "Model Validation", "k": "model validation credit risk"},
+      {"label": "Risk Analytics VP / Director", "k": "risk analytics vice president director", "experience": 10}
+    ]
+  },
+  "manual_platforms": [
+    {"id": "iimjobs", "name": "iimjobs.com", "cadence": "Weekly, Monday 9 AM", "cadence_days": 7, "why": "Premium VP, Director and Head roles; 5-8% coverage", "params": "Credit Risk, Risk Analytics, IFRS, Basel, Model Risk · VP/AVP/Director/Head · 10+ yrs · 30 LPA+", "links": [
+      {"label": "Credit risk", "url": "https://www.iimjobs.com/k/credit-risk-jobs"}, {"label": "Risk analytics", "url": "https://www.iimjobs.com/k/risk-analytics-jobs"}, {"label": "IFRS 9", "url": "https://www.iimjobs.com/k/ifrs-9-jobs"}, {"label": "Basel", "url": "https://www.iimjobs.com/k/basel-jobs"}, {"label": "Model risk", "url": "https://www.iimjobs.com/k/model-risk-jobs"}]},
+    {"id": "efc", "name": "eFinancialCareers", "cadence": "Weekly", "cadence_days": 7, "why": "Investment banking and trading risk roles", "params": "Credit Risk India · Senior · Last 7 days", "links": [
+      {"label": "Credit risk, India", "url": "https://www.efinancialcareers.com/jobs/credit-risk/in/india"}]},
+    {"id": "instahyre", "name": "Instahyre", "cadence": "Weekly", "cadence_days": 7, "why": "Fintech and analytics firms", "params": "Credit Risk Data Science · India", "links": [
+      {"label": "Credit risk", "url": "https://www.instahyre.com/search-jobs/?q=credit%20risk"}]},
+    {"id": "wellfound", "name": "Wellfound (AngelList)", "cadence": "Weekly", "cadence_days": 7, "why": "Fintech startups and neobanks", "params": "Credit Risk · India · Remote OK", "links": [
+      {"label": "Risk roles, India", "url": "https://wellfound.com/jobs?q=credit%20risk&location=india"}]},
+    {"id": "cutshort", "name": "Cutshort", "cadence": "Monthly", "cadence_days": 30, "why": "Risk analytics and data science in finance", "params": "Credit risk analytics", "links": [
+      {"label": "Credit risk", "url": "https://cutshort.io/jobs/credit-risk-jobs"}]}
+  ],
+  "schedule": {"cron_utc": "30 3 * * *", "label": "Daily 9:00 AM IST", "hour_ist": 9, "minute_ist": 0}
+}
