@@ -37,7 +37,7 @@ Failed, capped, rate-limited or blocked sources are recorded as coverage gaps an
 | Dashboard, one click | Refresh → paste a fine-grained personal access token limited to this repository with **Actions: Read and write**. It is stored only in that browser. |
 | GitHub | Actions → Credit risk job scan → Run workflow. |
 
-A scan takes roughly 30 to 60 minutes. The dashboard shows "Scan running" and reloads itself when the run completes.
+A scan takes roughly 15 to 40 minutes. The dashboard shows "Scan running" and reloads itself when the run completes.
 
 After each scheduled scan the workflow opens a GitHub issue with the top 10 and direct apply links, which GitHub emails to the repository owner. Set the repository variable `DIGEST_ISSUE` to `off` to stop it.
 

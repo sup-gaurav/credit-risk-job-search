@@ -206,7 +206,7 @@ const markSel = j => `<select class="mark" data-mark="${esc(j.id)}" data-testid=
 function viewShortlist() {
   const st = S.status, sc = S.cfg.scoring, w = sc.windows;
   if (st.state === 'never_run') {
-    return `<section class="view"><div class="panel empty" data-testid="empty-never-run"><h3>No scan has run yet</h3><p>The first scan runs at 9:00 AM IST, or start one now. It takes about 30 to 60 minutes.</p><button class="btn primary" data-act="refresh" data-testid="button-first-scan">${ico('refresh')} Run first scan</button></div></section>`;
+    return `<section class="view"><div class="panel empty" data-testid="empty-never-run"><h3>No scan has run yet</h3><p>The first scan runs at 9:00 AM IST, or start one now. It takes about 15 to 40 minutes.</p><button class="btn primary" data-act="refresh" data-testid="button-first-scan">${ico('refresh')} Run first scan</button></div></section>`;
   }
   const base = shortlistBase().filter(x => !x.L.excluded);
   const in30 = base.filter(x => x.L.age != null && x.L.age <= w.primary_hours), in72 = base.filter(x => x.L.age != null && x.L.age <= w.secondary_hours);
@@ -371,7 +371,7 @@ function viewCoverage() {
   return `<section class="view">
     <div class="head"><h2 class="h2">Last scan</h2><span class="sub">${esc(fmtIST(st.started))} · ${Math.round((st.duration_seconds || 0) / 60)} min · trigger: ${esc(st.trigger || '—')}${st.run_url ? ' · ' + ext(st.run_url, 'run log') : ''}</span></div>
     <div class="kpis">
-      <div class="kpi"><div class="v">${li.ok ?? 0}/${li.queries ?? 0}</div><div class="l">LinkedIn queries</div><div class="d">${li.throttle_events || 0} rate-limit events${li.aborted ? ', stopped early' : ''}</div></div>
+      <div class="kpi"><div class="v">${li.ok ?? 0}/${li.queries ?? 0}</div><div class="l">LinkedIn queries</div><div class="d">${li.throttle_events || 0} rate-limit event${li.throttle_events === 1 ? '' : 's'}${li.aborted ? ', stopped early' : ''}</div></div>
       <div class="kpi"><div class="v">${d.read ?? 0}</div><div class="l">Descriptions read</div><div class="d">${d.unread ?? 0} promising roles unread</div></div>
       <div class="kpi"><div class="v">${at.ok ?? 0}/${at.configured ?? 0}</div><div class="l">Career portals</div><div class="d">Public job feeds answering</div></div>
       <div class="kpi"><div class="v">${nk.state === 'ok' ? nk.returned : 'Manual'}</div><div class="l">Naukri.com</div><div class="d">${nk.state === 'ok' ? 'Listings read' : 'Interactive check required'}</div></div>
@@ -463,7 +463,7 @@ function openRefresh() {
   const running = S.run && S.run.status !== 'completed', token = store.get('token', '');
   const m = $('#modal');
   m.innerHTML = `<div class="in" data-testid="modal-refresh">
-    <div class="dhead"><div><h2 class="h2">Refresh the scan</h2><p class="sub">A scan takes 30 to 60 minutes on GitHub Actions. This page updates itself when it finishes.</p></div><button class="btn ghost icon x" data-act="close-modal" data-testid="button-close-modal" aria-label="Close">${ico('x')}</button></div>
+    <div class="dhead"><div><h2 class="h2">Refresh the scan</h2><p class="sub">A scan takes 15 to 40 minutes on GitHub Actions. This page updates itself when it finishes.</p></div><button class="btn ghost icon x" data-act="close-modal" data-testid="button-close-modal" aria-label="Close">${ico('x')}</button></div>
     ${running ? `<div class="note">${ico('info')}<span>A scan is already running. ${ext(S.run.html_url, 'Watch it on GitHub')}</span></div>` : ''}
     <div class="steps">
       ${token ? `<div class="step"><h3>Start now</h3><p>Uses the access token saved in this browser.</p><div class="row"><button class="btn primary" data-act="dispatch" data-testid="button-dispatch"${running ? ' disabled' : ''}>${ico('refresh')} Start scan</button><button class="btn" data-act="forget-token" data-testid="button-forget-token">Forget token</button></div></div>` : ''}
