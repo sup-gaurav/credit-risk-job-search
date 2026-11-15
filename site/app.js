@@ -90,8 +90,8 @@ const exLabel = id => id === 'irrelevant' ? 'Not relevant' : ((S.cfg.scoring.exc
 const emp = id => S.cfg.employers.find(e => e.id === id);
 
 /* ---------------------------------------------------------------- deep links (Section 3.2) */
-const liUrl = (keywords, seconds = 86400, location = 'India', levels = '4,5') =>
-  'https://www.linkedin.com/jobs/search/?' + new URLSearchParams({keywords, location, f_TPR: 'r' + seconds, sortBy: 'DD', ...(levels ? {f_E: levels} : {})}).toString();
+const liUrl = (keywords, seconds = 86400, location = 'India', levels = '4,5', ids = null) =>
+  'https://www.linkedin.com/jobs/search/?' + new URLSearchParams({keywords, location, ...(ids && ids.length ? {f_C: ids.join(',')} : {}), f_TPR: 'r' + seconds, sortBy: 'DD', ...(levels ? {f_E: levels} : {})}).toString();
 const liCompanyJobs = slug => `https://www.linkedin.com/company/${encodeURIComponent(slug)}/jobs/`;
 function nkUrl({k, l, experience, ctc}) {
   let slug = k.toLowerCase().replace(/&/g, 'and').replace(/'/g, '').trim().split(/\s+/).join('-') + '-jobs';
@@ -310,7 +310,7 @@ function viewEmployers() {
         <td><span class="tag" title="${esc(S.cfg.tiers[e.tier])}">${esc(e.tier)}</span></td>
         <td class="num">${never ? '—' : a ? `<b>${a}</b>` : '<span class="muted">0</span>'}</td><td class="num">${never ? '—' : b ? `<b>${b}</b>` : '<span class="muted">0</span>'}</td>
         <td>${e.same_as ? '<span class="muted">See Citi</span>' : portal(e)}</td>
-        <td><div class="links">${ext(liUrl(e.linkedin_keywords), 'LinkedIn 24h', 'btn sm', `link-li-${esc(e.id)}`)}${e.linkedin_slug ? ext(liCompanyJobs(e.linkedin_slug), 'Company jobs', 'btn sm') : ''}${ext(nkUrl({k: `${e.query} credit risk`}), 'Naukri today', 'btn sm', `link-nk-${esc(e.id)}`)}${ext(e.careers_url, 'Careers', 'btn sm')}</div></td></tr>`;
+        <td><div class="links">${ext(liUrl(e.linkedin_keywords, 86400, 'India', '4,5', e.linkedin_ids), 'LinkedIn 24h', 'btn sm', `link-li-${esc(e.id)}`)}${e.linkedin_slug ? ext(liCompanyJobs(e.linkedin_slug), 'Company jobs', 'btn sm') : ''}${ext(nkUrl({k: `${e.query} credit risk`}), 'Naukri today', 'btn sm', `link-nk-${esc(e.id)}`)}${ext(e.careers_url, 'Careers', 'btn sm')}</div></td></tr>`;
     }).join('');
   }
   return `<section class="view">
@@ -354,7 +354,7 @@ function viewCoverage() {
   const li = st.sources?.linkedin || {}, at = st.sources?.ats || {}, nk = st.sources?.naukri || {}, d = li.details || {}, fn = st.funnel || {};
   const phaseDetail = p => { const skip = new Set(['id', 'name', 'state', 'started', 'seconds']); return Object.entries(p).filter(([k]) => !skip.has(k)).map(([k, v]) => `${k.replace(/_/g, ' ')}: ${typeof v === 'object' ? Object.entries(v).map(([a, b]) => `${a} ${b}`).join(', ') : v}`).join(' · '); };
   const qs = st.queries || [];
-  const qTable = list => `<div class="tablewrap"><table><thead><tr><th>ID</th><th>Query</th><th>Window</th><th>State</th><th class="num">Returned</th><th class="num">Pages</th></tr></thead><tbody>${list.map(q => `<tr><td class="muted">${esc(q.id)}</td><td><b>${esc(q.label)}</b><div class="mono">${esc(q.keywords)} · ${esc(q.location)}</div></td><td>${q.window_hours}h</td><td>${stateTag(q.state)}</td><td class="num">${q.returned ?? 0}${q.capped ? '+' : ''}</td><td class="num">${q.pages ?? 0}</td></tr>`).join('')}</tbody></table></div>`;
+  const qTable = list => `<div class="tablewrap"><table><thead><tr><th>ID</th><th>Query</th><th>Window</th><th>State</th><th class="num">Returned</th><th class="num">Pages</th></tr></thead><tbody>${list.map(q => `<tr><td class="muted">${esc(q.id)}</td><td><b>${esc(q.label)}</b>${q.mode === 'keyword' ? ' <span class="tag warn" title="LinkedIn did not return a company id, so the employer name is matched as a keyword and other employers can appear">Keyword match</span>' : ''}<div class="mono">${q.company_names ? 'company: ' + esc(q.company_names.join(', ')) + ' · ' : ''}${esc(q.keywords)} · ${esc(q.location)}</div></td><td>${q.window_hours}h</td><td>${stateTag(q.state)}</td><td class="num">${q.returned ?? 0}${q.capped ? '+' : ''}</td><td class="num">${q.pages ?? 0}</td></tr>`).join('')}</tbody></table></div>`;
   const cq = qs.filter(q => q.kind === 'company'), sq = qs.filter(q => q.kind === 'skill');
   const gaps = l => l.filter(q => q.state !== 'ok').length;
   const hist = (st.history || []).slice(-14).reverse();
@@ -392,7 +392,7 @@ function viewLogic() {
     <h2 class="h2">How the search runs</h2>
     <p>One scan runs every day at <b>${esc(se.schedule.label)}</b> on GitHub Actions, and on demand from the Refresh button. It follows the six phases of the master prompt and publishes this page when it finishes.</p>
     <ol>
-      <li><b>LinkedIn company scans.</b> One query per employer: the company name AND any of ${se.linkedin.company_terms.map(t => `“${esc(t)}”`).join(', ')}. Location India, most recent first, up to ${se.linkedin.max_pages_company} pages.</li>
+      <li><b>LinkedIn company scans.</b> One query per employer, restricted to that employer with LinkedIn’s company filter, for any of ${se.linkedin.company_terms.map(t => `“${esc(t)}”`).join(', ')}. Location India, most recent first, up to ${se.linkedin.max_pages_company} pages. An employer LinkedIn cannot identify falls back to a keyword match and is flagged under Coverage.</li>
       <li><b>LinkedIn skill searches.</b> The 15 aggregated queries in three sets, up to ${se.linkedin.max_pages_skill} pages each.</li>
       <li><b>Naukri.com.</b> One probe per scan. Naukri requires an interactive check, so its searches open from the Search launcher instead.</li>
       <li><b>Career portals.</b> Public job feeds on Workday, Oracle, Greenhouse, Lever and SmartRecruiters for employers that expose one, searched for ${se.ats.search_terms.map(t => `“${esc(t)}”`).join(', ')}.</li>
@@ -427,7 +427,7 @@ function viewLogic() {
     <div class="tablewrap"><table><thead><tr><th>Band</th><th>Score</th><th>Meaning</th></tr></thead><tbody>${sc.bands.map(b => `<tr><td><span class="score ${bandCls(b.label)}" style="width:auto;height:auto;padding:4px 8px;display:inline-block">${esc(b.label)}</span></td><td>${esc(b.range)}</td><td>${esc(b.meaning)}</td></tr>`).join('')}<tr><td class="muted">Below</td><td>Under ${sc.threshold}</td><td>Filtered out</td></tr></tbody></table></div>
     <h3>Role fit, from the title</h3>
     <div class="tablewrap"><table><thead><tr><th>Class</th><th class="num">Points</th><th class="num">Cap</th><th>Matches</th></tr></thead><tbody>${roleRows}</tbody></table></div>
-    <p>An adjacent title rises to ${sc.role.adjacent.boost_points} points when the description names ${sc.role.adjacent.boost_core_hits} or more core credit-risk terms.</p>
+    <p>An adjacent title rises to ${sc.role.adjacent.boost_points} points when the description names ${sc.role.adjacent.boost_core_hits} or more core credit-risk terms. A bare grade title such as “Manager” or “Assistant Vice President” from a target employer’s credit-risk search scores ${sc.role.generic.points} when its description names “credit risk” and at least ${sc.role.generic.min_core_hits} core terms.</p>
     <h3>Skills match, from the description</h3>
     <div class="tablewrap"><table><thead><tr><th>Group</th><th class="num">Each</th><th class="num">Max</th><th>Terms</th></tr></thead><tbody>${skillRows}</tbody></table></div>
     <p>When a description has not been read, skills are estimated at ${Math.round(sc.skills.title_only_scale * 100)}% of the role-fit share and the role is tagged “Title only”.</p>

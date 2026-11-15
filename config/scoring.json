@@ -132,7 +132,9 @@
     "\\brisk\\b"
    ],
    "cap": 74,
-   "boost_cap": 89
+   "boost_cap": 89,
+   "context_core_hits": 2,
+   "context_title": "risk|credit|quant|lending|loan"
   },
   "weak": {
    "points": 8,
@@ -143,6 +145,14 @@
     "\\bunderwrit"
    ],
    "cap": 74
+  },
+  "generic": {
+   "label": "Generic grade title, classified from the description",
+   "points": 30,
+   "cap": 100,
+   "min_core_hits": 4,
+   "require": "Credit risk",
+   "max_words": 5
   }
  },
  "skills": {
@@ -270,7 +280,7 @@
     "label": "Senior Analyst / Consultant",
     "points": 4,
     "tier1_points": 6,
-    "pattern": "senior analyst|sr\\.? analyst|senior associate|sr\\.? associate|\\bconsultant\\b|assistant manager|deputy manager|data scien|\\bquant",
+    "pattern": "senior (\\w+ ){0,3}analyst|sr\\.? (\\w+ ){0,3}analyst|senior (\\w+ ){0,3}associate|sr\\.? (\\w+ ){0,3}associate|\\bconsultant\\b|assistant manager|deputy manager|data scien|\\bquant",
     "cap": 74,
     "tier1_cap": 89
    },
@@ -375,16 +385,16 @@
   {
    "id": "other_risk",
    "label": "Operational, market, fraud or other non-credit risk",
-   "title": "operational risk|\\bop ?risk\\b|market risk|fraud|\\baml\\b|anti.money|financial crime|\\bkyc\\b|cyber|information security|\\bit risk\\b|technology risk|liquidity risk|compliance|internal audit|\\baudit\\b|third.party risk|vendor risk|climate risk|insurance risk|actuar|conduct risk|treasury risk|\\balm\\b|non.financial risk|business continuity|\\besg\\b|traded risk|trading risk",
-   "unless_title": "credit|ifrs|\\becl\\b|basel|model risk|model validation|model development|scorecard|\\bcecl\\b|\\bccar\\b|stress test",
-   "kept_when": "Kept when the title also names credit, IFRS 9, Basel, model risk or stress testing."
+   "title": "operational risk|\\bop ?risk\\b|market risk|fraud|\\baml\\b|anti.money|financial crime|\\bkyc\\b|cyber|information security|\\bit risk\\b|technology risk|liquidity risk|compliance|internal audit|\\baudit\\b|third.party risk|vendor risk|climate risk|insurance risk|actuar|conduct risk|treasury risk|\\balm\\b|non.financial risk|business continuity|\\besg\\b|traded risk|trading risk|asset.{0,6}liabilit|pricing model|liquidity",
+   "unless_title": "credit|ifrs|\\becl\\b|basel|scorecard|\\bcecl\\b|\\bccar\\b|\\bpd\\b|\\blgd\\b|impairment",
+   "kept_when": "Kept when the title also names credit, IFRS 9, ECL, Basel, CCAR or impairment."
   },
   {
    "id": "engineering",
    "label": "Software engineering or delivery role without a modeling component",
    "title": "software engineer|\\bdeveloper\\b|devops|full.?stack|\\bjava\\b|\\b\\.net\\b|\\bsre\\b|\\bqa\\b|test engineer|automation engineer|data engineer|platform engineer|cloud engineer|\\barchitect\\b|business analyst|product manager|product owner|project manager|program manager|scrum|\\bpmo\\b",
-   "unless_title": "model|quant|analytics|data scien|strateg|scorecard",
-   "kept_when": "Kept when the title also names modeling, quant, analytics or strategy work."
+   "unless_title": "model|quant|data scien|strateg|scorecard",
+   "kept_when": "Kept when the title also names modeling, quant, data science or strategy work."
   },
   {
    "id": "operations",
@@ -396,6 +406,11 @@
   {
    "id": "non_india",
    "label": "Location outside India"
+  },
+  {
+   "id": "no_credit_context",
+   "label": "Adjacent title with no credit-risk content in the description",
+   "kept_when": "Applies to titles such as Data Scientist or Analytics Manager once the description has been read."
   },
   {
    "id": "junior_grade",

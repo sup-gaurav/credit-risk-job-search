@@ -141,6 +141,8 @@ class Scorer:
             tier=emp["tier"] if emp else None, city=place["city"], cities=place["cities"], city_group=place["group"],
         )
         cls, role_cfg = self.role_fit(title)
+        if not cls and job.get("generic_candidate"):
+            cls, role_cfg = "generic", cfg["role"]["generic"]
         if not cls:
             job["score"] = None
             job["excluded"] = "irrelevant"
@@ -153,6 +155,14 @@ class Scorer:
         else:
             skill_pts, matched = self.skills(title + "\n" + desc)
         core_hits = len(matched.get("core", []))
+        read = bool(stored) or len(desc) >= 200
+        if cls == "generic":
+            # e.g. "Manager" or "Assistant Vice President" at a target employer: only the description can classify it
+            enough = core_hits >= role_cfg["min_core_hits"] and role_cfg["require"] in matched.get("core", [])
+            if not read or not enough:
+                job["score"] = None
+                job["excluded"] = "pending_description" if not read else "irrelevant"
+                return job
         role_pts, cap = role_cfg["points"], role_cfg.get("cap", 100)
         if cls == "adjacent" and core_hits >= role_cfg["boost_core_hits"]:
             role_pts, cap = role_cfg["boost_points"], role_cfg["boost_cap"]
@@ -190,6 +200,9 @@ class Scorer:
             excluded = "non_india"
         if not excluded:
             excluded = self.title_exclusion(title, emp)
+        if (not excluded and cls == "adjacent" and read and core_hits < role_cfg["context_core_hits"]
+                and not re.search(role_cfg["context_title"], title.lower())):
+            excluded = "no_credit_context"
         if not excluded and level and level.get("junior") and not top_tier:
             excluded = "junior_grade"
         if not excluded and total < cfg["threshold"]:
@@ -205,6 +218,11 @@ class Scorer:
         job["excluded"] = excluded
         job["band"] = self.band(total) if not excluded else None
         return job
+
+    def is_generic_title(self, title: str) -> bool:
+        """A bare grade such as '3562971-Manager' or 'Assistant Vice President'."""
+        words = re.sub(r"[^a-z ]+", " ", (title or "").lower()).split()
+        return 0 < len(words) <= self.cfg["role"]["generic"]["max_words"] and self.seniority(title) is not None and not self.role_fit(title)[0]
 
     def band(self, total):
         for band in self.cfg["bands"]:

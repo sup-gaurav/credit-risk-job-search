@@ -12,6 +12,37 @@ from .common import Budget, Http, Throttled, clean_text, relative_bounds
 SEARCH_API = "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search"
 DETAIL_API = "https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/"
 PUBLIC_SEARCH = "https://www.linkedin.com/jobs/search/"
+TYPEAHEAD_API = "https://www.linkedin.com/jobs-guest/api/typeaheadHits"
+
+
+def or_terms(skill_terms: list[str]) -> str:
+    return " OR ".join(f'"{t}"' for t in skill_terms)
+
+
+def resolve_company_ids(http: Http, names: list[str], accept) -> list[dict]:
+    """Look up LinkedIn company ids so a search can be restricted to one employer.
+
+    LinkedIn's logged-out search treats a company name inside the keywords loosely
+    and returns other employers; the company filter (f_C) is exact. `accept(name)`
+    decides whether a suggested company really is this employer.
+    """
+    found, seen = [], set()
+    for name in names:
+        resp = http.get(TYPEAHEAD_API, params={"typeaheadType": "COMPANY", "query": name})
+        if resp.status_code != 200:
+            continue
+        try:
+            hits = resp.json()
+        except ValueError:
+            continue
+        for hit in hits if isinstance(hits, list) else []:
+            cid, label = str(hit.get("id") or ""), hit.get("displayName") or ""
+            if cid.isdigit() and cid not in seen and accept(label):
+                seen.add(cid)
+                found.append({"id": cid, "name": label})
+        if found:
+            break
+    return found[:5]
 
 
 def company_keywords(term: str, skill_terms: list[str]) -> str:
@@ -20,8 +51,10 @@ def company_keywords(term: str, skill_terms: list[str]) -> str:
     return f'"{term}" AND ({ors})'
 
 
-def public_search_url(keywords: str, location: str = "India", seconds: int = 86400, levels: str = "4,5") -> str:
+def public_search_url(keywords: str, location: str = "India", seconds: int = 86400, levels: str = "4,5", company_ids=None) -> str:
     params = {"keywords": keywords, "location": location, "f_TPR": f"r{seconds}", "sortBy": "DD"}
+    if company_ids:
+        params["f_C"] = ",".join(company_ids)
     if levels:
         params["f_E"] = levels
     return PUBLIC_SEARCH + "?" + urlencode(params, quote_via=quote)
@@ -67,7 +100,7 @@ def looks_blocked(markup: str) -> bool:
     return "authwall" in low or "sign in to linkedin" in low or "captcha" in low
 
 
-def search(http: Http, keywords: str, location: str, seconds: int, max_pages: int, budget: Budget):
+def search(http: Http, keywords: str, location: str, seconds: int, max_pages: int, budget: Budget, company_ids=None):
     """Run one query. Returns (cards, status) where status records coverage honestly."""
     cards, seen, pages = [], set(), 0
     status = {"state": "ok", "pages": 0, "returned": 0, "capped": False}
@@ -77,6 +110,8 @@ def search(http: Http, keywords: str, location: str, seconds: int, max_pages: in
             status["state"] = "budget_exhausted"
             break
         params = {"keywords": keywords, "location": location, "f_TPR": f"r{seconds}", "sortBy": "DD", "start": start}
+        if company_ids:
+            params["f_C"] = ",".join(company_ids)
         resp = http.get(SEARCH_API, params=params)
         pages += 1
         if resp.status_code == 400 and start > 0:

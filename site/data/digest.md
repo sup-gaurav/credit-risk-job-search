@@ -1,6 +1,6 @@
 # Top 10 credit risk roles
 
-Scan finished 15 Nov 2026, 14:49 IST. Window: last 72 hours. 8 roles cleared the threshold in the last 30 hours.
+Scan finished 15 Nov 2026, 14:58 IST. Window: last 72 hours. 6 roles cleared the threshold in the last 30 hours.
 
 1. **AVP-FS P&L CCAR** · BNP Paribas · Mumbai
    Score 95 (Tier 1) · 22h ago · fresh, single source · 66 applicants
@@ -26,11 +26,11 @@ Scan finished 15 Nov 2026, 14:49 IST. Window: last 72 hours. 8 roles cleared the
 8. **Data Scientist** · Ganit Inc. · Mumbai
    Score 72 (Tier 3) · 23h ago · fresh, single source · Over 200 applicants
    [Apply](https://www.linkedin.com/jobs/view/4491066363) · [Listing](https://www.linkedin.com/jobs/view/4491066363)
-9. **Lead Data Scientist** · Accenture · Other India
-   Score 63 (Tier 3) · 21h ago · fresh, single source · 176 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4448345079) · [Listing](https://www.linkedin.com/jobs/view/4448345079)
-10. **Manager-Business Analytics-Risk Analytics** · EXL Service · Delhi NCR
+9. **Manager-Business Analytics-Risk Analytics** · EXL Service · Delhi NCR
    Score 62 (Tier 3) · 22h ago · fresh, single source · Be among the first 25 applicants
    [Apply](https://www.linkedin.com/jobs/view/4446738303) · [Listing](https://www.linkedin.com/jobs/view/4446738303)
+10. **Manager - Credit Risk** · StoneX Group Inc. · Bengaluru
+   Score 60 (Tier 3) · 27h ago · fresh, single source · Over 200 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4472946386) · [Listing](https://www.linkedin.com/jobs/view/4472946386)
 
 Coverage: LinkedIn 110/110 queries answered, career portals 39/41, Naukri interaction_required.

@@ -20,7 +20,7 @@ FIX = ROOT / "tests" / "fixtures"
 SCORER = Scorer(json.loads((ROOT / "config/scoring.json").read_text()), json.loads((ROOT / "config/employers.json").read_text()))
 T0 = datetime(2026, 11, 15, 7, 30, tzinfo=timezone.utc)
 
-RICH = ("Develop IFRS 9 ECL models covering PD, LGD and EAD for retail and wholesale credit portfolios. Basel IRB model "
+RICH = ("Develop IFRS 9 ECL credit risk models covering PD, LGD and EAD for retail and wholesale credit portfolios. Basel IRB model "
         "development and model validation, stress testing and scenario analysis for CCAR. Python, SAS, SQL, logistic "
         "regression, survival analysis, XGBoost, backtesting. " * 2)
 
@@ -112,6 +112,20 @@ class ScoringTests(unittest.TestCase):
         self.assertEqual(score("VP Credit Risk", "Citi", "London, United Kingdom")["excluded"], "non_india")
         self.assertEqual(score("Collections Executive", "Bajaj Finance Limited")["excluded"], "irrelevant")
 
+    def test_market_risk_model_roles_are_not_credit_roles(self):
+        self.assertEqual(score("Model validation - Market Risk", "MUFG")["excluded"], "other_risk")
+        self.assertEqual(score("Lead Model Validation_Pricing Models", "MUFG")["excluded"], "other_risk")
+        self.assertIsNone(score("Vice President, Model Risk Management", "Barclays", description=RICH)["excluded"])
+        self.assertEqual(score("Head of APAC Asset & Liability Management Risk", "JPMorganChase")["excluded"], "other_risk")
+
+    def test_adjacent_title_needs_credit_context_once_read(self):
+        plain = "Build dashboards for the sales team and track pipeline conversion across regions. " * 5
+        self.assertEqual(score("Director, Sales Analytics", "Barclays", description=plain)["excluded"], "no_credit_context")
+        self.assertIsNone(score("Director, Analytics", "Barclays", description=RICH)["excluded"])
+
+    def test_senior_risk_analyst_is_not_junior(self):
+        self.assertEqual(score("Senior Risk Analyst - Model Validation", "Deutsche Bank")["score"]["seniority_label"], "Senior Analyst / Consultant")
+
     def test_junior_grades_only_at_top_tier_firms(self):
         self.assertEqual(score("Credit Risk Analyst", "Some Finance Pvt Ltd")["excluded"], "junior_grade")
         top = score("Credit Risk Analyst", "Goldman Sachs", "Bengaluru", description=RICH)
@@ -198,7 +212,7 @@ class PipelineTests(unittest.TestCase):
     """End-to-end with every network call replaced."""
 
     def setUp(self):
-        self.orig = (linkedin.search, linkedin.fetch_detail, ats.scan_employer, naukri.canary, pipeline.now_utc)
+        self.orig = (linkedin.search, linkedin.fetch_detail, ats.scan_employer, naukri.canary, pipeline.now_utc, linkedin.resolve_company_ids)
         for name in ("data", "state"):
             folder = Path(_tmp) / name
             if folder.exists():
@@ -206,12 +220,13 @@ class PipelineTests(unittest.TestCase):
                     f.unlink()
 
     def tearDown(self):
-        linkedin.search, linkedin.fetch_detail, ats.scan_employer, naukri.canary, pipeline.now_utc = self.orig
+        (linkedin.search, linkedin.fetch_detail, ats.scan_employer, naukri.canary, pipeline.now_utc, linkedin.resolve_company_ids) = self.orig
 
     def run_scan(self, cards_by_query, ats_rows=None, argv=("--max-details", "20")):
-        def fake_search(http, keywords, location, seconds, max_pages, budget):
+        def fake_search(http, keywords, location, seconds, max_pages, budget, company_ids=None):
+            haystack = keywords + " | " + " ".join(company_ids or [])
             for needle, cards in cards_by_query.items():
-                if needle in keywords:
+                if needle in haystack:
                     return [dict(c) for c in cards if c.get("_max_window", 0) <= 0 or seconds >= c["_max_window"] * 3600], {"state": "ok", "pages": 1, "returned": len(cards), "capped": False}
             return [], {"state": "ok", "pages": 1, "returned": 0, "capped": False}
 
@@ -224,6 +239,8 @@ class PipelineTests(unittest.TestCase):
             return [], {"state": "error", "error": "offline"}
 
         linkedin.search, linkedin.fetch_detail, ats.scan_employer = fake_search, fake_detail, fake_ats
+        # every employer resolves to a fake company id equal to its query term, except UBS (keyword fallback)
+        linkedin.resolve_company_ids = lambda http, names, accept: [] if names[0] == "UBS" else [{"id": "id:" + names[0], "name": names[0]}]
         naukri.canary = lambda http: ([], {"state": "interaction_required"})
         sys.argv = ["pipeline", *argv]
         import argparse  # noqa: F401
@@ -238,7 +255,7 @@ class PipelineTests(unittest.TestCase):
     def test_dedup_across_queries_and_platforms(self):
         avp = self.card("1", "AVP - Credit Risk Modelling", "Barclays", "Noida, Uttar Pradesh, India", "3 hours ago")
         jobs, status = self.run_scan(
-            {'"Barclays"': [avp], "IFRS9": [avp], '"JPMorgan"': [self.card("2", "Vice President, Model Validation", "JPMorganChase", "Mumbai Metropolitan Region", "14 hours ago")]},
+            {"id:Barclays": [avp], "IFRS9": [avp], "id:JPMorgan": [self.card("2", "Vice President, Model Validation", "JPMorganChase", "Mumbai Metropolitan Region", "14 hours ago")]},
             ats_rows={"barclays": [{"company": "Barclays", "title": "AVP – Credit Risk Modelling", "location": "Noida", "url": "https://search.jobs.barclays/x", "job_id": "R9", "platform": "workday", "posted_text": "Posted Today"}]},
         )
         by_title = {j["title"]: j for j in jobs}
@@ -258,16 +275,36 @@ class PipelineTests(unittest.TestCase):
 
     def test_secondary_window_only_when_primary_is_thin(self):
         many = [self.card(str(100 + i), f"AVP Credit Risk Modelling {i}", "Barclays", "Pune, Maharashtra, India", "2 hours ago") for i in range(12)]
-        jobs, status = self.run_scan({'"Barclays"': many})
+        jobs, status = self.run_scan({"id:Barclays": many})
         self.assertFalse(status["secondary_window_used"])
         self.assertEqual(status["funnel"]["qualified_primary"], 12)
 
     def test_rescan_keeps_first_reading_and_first_seen(self):
         card = self.card("7", "Director, IFRS 9 ECL", "KPMG India", "Mumbai, Maharashtra, India", "5 hours ago")
-        first, _ = self.run_scan({'"KPMG"': [card]})
-        second, _ = self.run_scan({'"KPMG"': [dict(card, posted_text="5 hours ago")]})
+        first, _ = self.run_scan({"id:KPMG": [card]})
+        second, _ = self.run_scan({"id:KPMG": [dict(card, posted_text="5 hours ago")]})
         self.assertEqual(first[0]["first_seen"], second[0]["first_seen"])
         self.assertEqual(len(second), 1)
+
+    def test_company_filter_and_keyword_fallback(self):
+        _, status = self.run_scan({})
+        modes = {q["label"]: q["mode"] for q in status["queries"] if q["kind"] == "company" and q["window_hours"] == 30}
+        self.assertEqual(modes["Barclays"], "company_filter")
+        self.assertEqual(modes["UBS"], "keyword")
+        barclays = next(q for q in status["queries"] if q["label"] == "Barclays")
+        self.assertNotIn("Barclays", barclays["keywords"])  # the employer is constrained by id, not by keyword
+        self.assertTrue(status["secondary_window_used"])
+
+    def test_generic_grade_title_is_classified_from_description(self):
+        generic = self.card("55", "3562971-Manager", "EXL", "Gurugram, Haryana, India", "4 hours ago")
+        offtopic = self.card("56", "Receptionist", "EXL", "Gurugram, Haryana, India", "4 hours ago")
+        jobs, _ = self.run_scan({"id:EXL": [generic, offtopic]})
+        self.assertEqual([j["title"] for j in jobs], ["3562971-Manager"])
+        self.assertEqual(jobs[0]["score"]["role"], 30)
+        self.assertIn("Generic grade title", jobs[0]["score"]["role_class"])
+        # the same bare title from an untargeted skill search is not kept
+        jobs, _ = self.run_scan({"IFRS9": [self.card("57", "Manager", "Unknown Co", "Pune", "2 hours ago")]})
+        self.assertFalse([j for j in jobs if j["title"] == "Manager"])
 
     def test_ats_only_role_is_flagged(self):
         jobs, _ = self.run_scan({}, ats_rows={"genpact": [{"company": "Genpact", "title": "Vice President - Credit Risk Modeling", "location": "Gurugram",

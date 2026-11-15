@@ -16,7 +16,7 @@ sys.path.insert(0, str(ROOT))
 from scanner import ats, linkedin, naukri, pipeline  # noqa: E402
 
 random.seed(7)
-RICH = ("Develop IFRS 9 ECL models covering PD, LGD and EAD for retail and wholesale credit portfolios. Basel IRB model "
+RICH = ("Develop IFRS 9 ECL credit risk models covering PD, LGD and EAD for retail and wholesale credit portfolios. Basel IRB model "
         "development and model validation, stress testing and scenario analysis for CCAR. Python, SAS, SQL, logistic "
         "regression, survival analysis, XGBoost, backtesting, champion-challenger frameworks.\n" * 3)
 THIN = "Work with the risk team on portfolio reporting. Python and SQL required. Credit risk exposure preferred."
@@ -54,11 +54,11 @@ CARDS = [card(i, r) for i, r in enumerate(ROLES)]
 DESC = {c["job_id"]: ROLES[i][4] for i, c in enumerate(CARDS)}
 
 
-def fake_search(http, keywords, location, seconds, max_pages, budget):
+def fake_search(http, keywords, location, seconds, max_pages, budget, company_ids=None):
     if "IFRS9" in keywords or '"credit risk" AND AVP' in keywords:
         cards = [c for c in CARDS if "day" not in c["posted_text"] or seconds > 108000 or c["posted_text"].startswith("1 day")]
         return [dict(c) for c in cards], {"state": "ok", "pages": 2, "returned": len(cards), "capped": False}
-    if '"UBS"' in keywords:
+    if company_ids == ["id:UBS"]:
         raise linkedin.Throttled("HTTP 429")
     return [], {"state": "ok", "pages": 1, "returned": 0, "capped": False}
 
@@ -81,6 +81,7 @@ def fake_ats(http, emp, terms, settings, budget):
 
 
 linkedin.search, linkedin.fetch_detail, ats.scan_employer = fake_search, fake_detail, fake_ats
+linkedin.resolve_company_ids = lambda http, names, accept: [] if names[0] in ("Resona", "NiYO") else [{"id": "id:" + names[0], "name": names[0]}]
 linkedin.ThrottleGuard.__init__.__defaults__ = ((0, 0), 0, 3)
 naukri.canary = lambda http: ([], {"state": "interaction_required", "http": 406})
 os.environ["SCAN_TRIGGER"] = "demo"

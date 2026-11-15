@@ -10,9 +10,9 @@ Each scan follows the six phases of the master prompt.
 
 | Phase | What runs | Source |
 | --- | --- | --- |
-| 1 | One query per target employer: `"<Company>" AND ("credit risk" OR "risk analytics" OR "risk modeling" OR "IFRS 9" OR "Basel" OR "model risk" OR "model validation")`, India, last 30 hours, up to 3 pages | LinkedIn public job search |
+| 1 | One query per target employer, restricted to that employer with LinkedIn's company filter: `"credit risk" OR "risk analytics" OR "risk modeling" OR "IFRS 9" OR "Basel" OR "model risk" OR "model validation"`, India, last 30 hours, up to 3 pages. Company ids are looked up once and cached for 30 days; an employer LinkedIn cannot identify falls back to `"<Company>" AND (...)` as a keyword match | LinkedIn public job search |
 | 2 | The 15 skill queries (core credit risk, technical skills, functional areas), India, last 30 hours, up to 8 pages | LinkedIn public job search |
-| 2b | Phases 1 and 2 again over 72 hours, only when fewer than 10 roles cleared the threshold in 30 hours | LinkedIn public job search |
+| 2b | Phases 1 and 2 again over 72 hours, only when fewer than 10 roles cleared the threshold in 30 hours after their descriptions were read | LinkedIn public job search |
 | 3 | One probe. Naukri asks automated clients for an interactive check, so the scanner records that and stops; the dashboard provides one-click "posted today" searches instead | Naukri.com |
 | 4 | Public job feeds for employers that expose one, searched for credit risk terms and filtered to India | Workday, Oracle HCM, Greenhouse, Lever, SmartRecruiters |
 | 5 | Cross-platform deduplication on employer + normalised title + city; LinkedIn is the source of truth for posting time. Descriptions, applicant counts and apply links are read for the most promising unread roles | LinkedIn job pages |
@@ -57,6 +57,7 @@ FINAL_SCORE = min(cap, role fit (0-35) + skills match (0-25) + employer tier (0-
 
 - **Role fit** comes from the title: core credit-risk modeling titles 35, credit risk and risk analytics titles 30, adjacent analytical titles 20 (27 when the description names three or more core credit-risk terms).
 - **Skills match** counts core terms (IFRS 9, ECL, PD, LGD, EAD, Basel, CCAR, CECL, IRB, stress testing, model validation and others), techniques and stack in the description.
+- **Generic titles**: some employers post bare grades ("Manager", "Assistant Vice President"). When one comes back from an employer-restricted credit-risk search, its description is read and it is kept only if it names "credit risk" and at least four core terms.
 - **Seniority** also sets a cap so grades land in the bands the master prompt assigns: only VP, AVP and Director titles can reach Tier 1; Senior Manager and Manager cap at Tier 2; Senior Analyst caps at Tier 3 outside tier-1 banks.
 - **Freshness** is recalculated in the browser, so a score drifts down as a listing ages.
 - **Exclusions**: interns and trainees; operational, market, fraud and other non-credit risk; software engineering and delivery roles without modeling; collections, recovery and underwriting operations; locations outside India; Analyst and Associate grades below the top-tier firms.
@@ -105,7 +106,8 @@ python -m http.server --directory site      # view the dashboard
 ## Limits
 
 - Sources are read logged-out with polite pacing. LinkedIn rate-limits shared runner addresses at times; the scanner backs off, then stops and reports the gap rather than retrying aggressively. No login, proxy or CAPTCHA bypass is used.
-- Career-portal adapters marked `"verified": false` in `config/employers.json` are candidate endpoints; the Coverage tab shows which ones answer.
+- LinkedIn's logged-out search matches keywords loosely, so skill searches return many unrelated listings; titles with no credit, risk or analytics signal are discarded before scoring.
+- Career-portal feeds are configured for the employers whose public job feed answered the first scan. Others (for example Goldman Sachs, HSBC, UBS, the Indian private banks) are reached through LinkedIn and the careers links only.
 - Naukri, iimjobs, eFinancialCareers, Instahyre, Wellfound and Cutshort are launch links, not automated sources.
 - Scores are rule-based points, not a résumé match, and a listing may close after it is scanned.
 - The repository and its job data are public, which GitHub Pages requires on the free plan. It holds no résumé, credentials or application history.

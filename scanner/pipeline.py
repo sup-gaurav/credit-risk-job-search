@@ -42,6 +42,8 @@ class Scan:
         self.li_http = Http(min_gap=float(os.environ.get("LI_MIN_GAP", 1.6)), max_gap=float(os.environ.get("LI_MAX_GAP", 3.2)))
         self.guard = linkedin.ThrottleGuard()
         self.secondary_used = False
+        self.details = {"read": 0, "failed": 0, "unread": 0}
+        self.touched = set()
 
     # ------------------------------------------------------------ helpers
     def phase(self, number, name):
@@ -57,8 +59,34 @@ class Scan:
         entry.update(detail)
         print(f"   -> {state} in {entry['seconds']}s {detail}", flush=True)
 
-    def observe(self, row, seen_at, estimate, via, window=None, assume_india=False):
-        self.observations.append({**row, "seen_at": seen_at, "estimate": estimate, "via": via, "window": window, "assume_india": assume_india})
+    def observe(self, row, seen_at, estimate, via, window=None, assume_india=False, targeted=False):
+        self.observations.append({**row, "seen_at": seen_at, "estimate": estimate, "via": via, "window": window,
+                                  "assume_india": assume_india, "targeted": targeted})
+
+    def resolve_companies(self, queries, budget):
+        """Attach LinkedIn company ids so each company query is restricted to its employer."""
+        learned, terms = self.archive["learned"], self.search["linkedin"]["company_terms"]
+        employers = {e["id"]: e for e in self.employers["employers"]}
+        stale = self.started - timedelta(days=30)
+        resolved = 0
+        for q in queries:
+            emp = employers[q["employer_id"]]
+            entry = learned.setdefault(emp["id"], {})
+            checked = parse_iso(entry.get("ids_at"))
+            if (not checked or checked < stale) and not self.guard.aborted and not budget.spent:
+                names = list(dict.fromkeys([emp["query"], emp["name"]]))
+                accept = lambda label, emp=emp: (self.scorer.match_employer(label) or {}).get("id") == emp["id"]  # noqa: E731
+                hits = self.guard.run(lambda: linkedin.resolve_company_ids(self.li_http, names, accept), budget)
+                if hits is not None:
+                    entry["linkedin_ids"], entry["ids_at"] = hits, iso(self.started)
+            ids = [h["id"] for h in entry.get("linkedin_ids") or []]
+            if ids:
+                q.update(company_ids=ids, keywords=linkedin.or_terms(terms), mode="company_filter",
+                         company_names=[h["name"] for h in entry["linkedin_ids"]])
+                resolved += 1
+            else:
+                q["mode"] = "keyword"
+        return resolved
 
     # ------------------------------------------------------------ LinkedIn
     def linkedin_queries(self):
@@ -81,14 +109,14 @@ class Scan:
     def run_linkedin(self, queries, hours, budget):
         seconds, done = int(hours * 3600), 0
         for q in queries:
-            record = {k: q[k] for k in ("id", "kind", "label", "keywords", "location") if k in q}
+            record = {k: q[k] for k in ("id", "kind", "label", "keywords", "location", "mode", "company_names") if k in q}
             record.update(employer_id=q.get("employer_id"), set=q.get("set"), window_hours=hours)
             if self.guard.aborted or budget.spent:
                 record.update(state="skipped_throttled" if self.guard.aborted else "skipped_budget", returned=0)
                 self.queries.append(record)
                 continue
             seen_at = now_utc()
-            result = self.guard.run(lambda q=q: linkedin.search(self.li_http, q["keywords"], q["location"], seconds, q["max_pages"], budget), budget)
+            result = self.guard.run(lambda q=q: linkedin.search(self.li_http, q["keywords"], q["location"], seconds, q["max_pages"], budget, q.get("company_ids")), budget)
             if result is None:
                 record.update(state="throttled", returned=0)
             else:
@@ -96,25 +124,25 @@ class Scan:
                 record.update(status)
                 for card in cards:
                     estimate = posted_estimate(seen_at, linkedin.card_bounds(card), hours)
-                    self.observe({**card, "platform": "linkedin"}, seen_at, estimate, q["id"], window=hours, assume_india=True)
+                    self.observe({**card, "platform": "linkedin"}, seen_at, estimate, q["id"], window=hours, assume_india=True,
+                                 targeted=q.get("mode") == "company_filter")
                 done += 1
             self.queries.append(record)
             print(f"   {record['id']} {record['label'][:34]:34} {hours}h -> {record.get('state')} {record.get('returned', 0)}", flush=True)
         return done
 
     def qualified_in_window(self, hours):
-        """Distinct roles from this run that clear the threshold on title evidence."""
-        seen = set()
-        for obs in self.observations:
-            est = obs["estimate"]
-            age = age_hours(est[0], obs["seen_at"]) if est else None
+        """Roles from this run that clear the threshold inside the window, after descriptions were read."""
+        count = 0
+        for key in self.touched:
+            job = self.archive["jobs"][key]
+            best = self.best_posted(job)
+            age = age_hours(parse_iso(best["posted_at"]), self.started) if best else None
             if age is None or age > hours:
                 continue
-            probe = self.scorer.score({"title": obs["title"], "company": obs["company"], "location": obs["location"],
-                                        "assume_india": obs["assume_india"]}, age)
-            if probe["score"] and not probe["excluded"]:
-                seen.add((norm_company(obs["company"]), norm_title(obs["title"]), probe["city"]))
-        return len(seen)
+            probe = self.scorer.score(dict(job), age)
+            count += bool(probe["score"] and not probe["excluded"])
+        return count
 
     # ------------------------------------------------------------ ATS
     def run_ats(self, budget):
@@ -149,18 +177,25 @@ class Scan:
         touched = set()
         skipped = 0
         for obs in self.observations:
-            if not self.scorer.role_fit(obs["title"])[0]:
-                skipped += 1  # no credit, risk or analytics signal in the title: never archived
-                continue
             emp = self.scorer.match_employer(obs["company"])
+            generic = False
+            if not self.scorer.role_fit(obs["title"])[0]:
+                # A bare grade title from an employer-restricted credit-risk search is kept for a description read;
+                # anything else with no credit, risk or analytics signal in the title is never archived.
+                generic = bool(obs.get("targeted") and emp and self.scorer.is_generic_title(obs["title"]))
+                if not generic:
+                    skipped += 1
+                    continue
             place = self.scorer.locate(obs["location"], obs["assume_india"])
             company_key = emp["id"] if emp else norm_company(obs["company"])
-            key = stable_id(company_key, norm_title(obs["title"]), place["city"])
+            key = stable_id(company_key, "generic", obs["job_id"]) if generic else stable_id(company_key, norm_title(obs["title"]), place["city"])
             job = jobs.get(key)
             if not job:
                 job = jobs[key] = {"id": key, "title": obs["title"], "company": emp["name"] if emp else obs["company"],
                                    "company_raw": obs["company"], "location": obs["location"], "first_seen": now, "sources": {}}
             touched.add(key)
+            if generic:
+                job["generic_candidate"] = True
             job["last_seen"] = now
             job["assume_india"] = job.get("assume_india") or obs["assume_india"]
             sid = f"{obs['platform']}:{obs['job_id']}"
@@ -233,13 +268,17 @@ class Scan:
             best = self.best_posted(job)
             age = age_hours(parse_iso(best["posted_at"]), self.started) if best else None
             probe = self.scorer.score(dict(job), age)
+            stale = age is None or age > self.windows["primary_hours"]
+            if probe["excluded"] == "pending_description":
+                candidates.append((stale, -40, key, li["job_id"]))
+                continue
             if not probe["score"] or probe["excluded"] in ("non_india", "junior", "other_risk", "engineering", "operations", "junior_grade", "irrelevant"):
                 continue
             if probe["score"]["role"] < 20:
                 continue
-            candidates.append((age is None or age > self.windows["primary_hours"], -probe["score"]["base"], key, li["job_id"]))
+            candidates.append((stale, -probe["score"]["base"], key, li["job_id"]))
         candidates.sort()
-        limit = self.args.max_details
+        limit = max(0, self.args.max_details - self.details["read"])
         read = failed = 0
         for _, _, key, job_id in candidates[:limit]:
             if budget.spent or self.guard.aborted:
@@ -257,7 +296,10 @@ class Scan:
             if detail.get("reposted"):
                 job["reposted"] = True
             read += 1
-        return {"candidates": len(candidates), "read": read, "failed": failed, "unread": max(0, len(candidates) - read)}
+        self.details["read"] += read
+        self.details["failed"] += failed
+        self.details["unread"] = max(0, len(candidates) - read)
+        return dict(self.details)
 
     # ------------------------------------------------------------ publish
     def publish(self, finished=True):
@@ -359,8 +401,11 @@ class Scan:
         for emp in self.employers["employers"]:
             entry = {k: emp[k] for k in ("n", "id", "name", "category", "tier", "focus", "conditional", "query", "careers_url", "same_as", "note")}
             entry["ats_type"] = (emp.get("ats") or {}).get("type")
-            entry["linkedin_slug"] = learned.get(emp["id"], {}).get("linkedin_slug")
-            entry["linkedin_keywords"] = linkedin.company_keywords(emp["query"], self.search["linkedin"]["company_terms"])
+            known = learned.get(emp.get("same_as") or emp["id"], {})
+            entry["linkedin_slug"] = known.get("linkedin_slug")
+            entry["linkedin_ids"] = [h["id"] for h in known.get("linkedin_ids") or []]
+            terms = self.search["linkedin"]["company_terms"]
+            entry["linkedin_keywords"] = linkedin.or_terms(terms) if entry["linkedin_ids"] else linkedin.company_keywords(emp["query"], terms)
             employers.append(entry)
         return {"categories": self.employers["categories"], "tiers": self.employers["tiers"], "employers": employers,
                 "scoring": self.scoring, "search": self.search}
@@ -390,14 +435,21 @@ class Scan:
         primary, secondary = self.windows["primary_hours"], self.windows["secondary_hours"]
         li_budget = Budget(args.linkedin_minutes * 60)
 
+        detail_budget = Budget(args.detail_minutes * 60)
+
         p1 = self.phase(1, "LinkedIn company scans")
+        resolved = self.resolve_companies(company, li_budget)
         done = self.run_linkedin(company, primary, li_budget)
-        self.close(p1, "ok" if done == len(company) else "partial" if done else "failed", queries=len(company), completed=done, window_hours=primary)
+        self.close(p1, "ok" if done == len(company) else "partial" if done else "failed", queries=len(company), completed=done,
+                   window_hours=primary, company_filter=resolved, keyword_fallback=len(company) - resolved)
 
         p2 = self.phase(2, "LinkedIn skill searches")
         done = self.run_linkedin(skill, primary, li_budget)
         self.close(p2, "ok" if done == len(skill) else "partial" if done else "failed", queries=len(skill), completed=done, window_hours=primary)
 
+        # Read descriptions before deciding on the supplement: a title alone cannot show whether a role clears the threshold.
+        self.merge()
+        self.enrich(detail_budget)
         found = self.qualified_in_window(primary)
         self.funnel["qualified_primary_before_supplement"] = found
         if found < self.windows["secondary_trigger_below"] and not args.no_secondary:
@@ -423,7 +475,7 @@ class Scan:
 
         p5 = self.phase(5, "Deduplication, enrichment and ranking")
         touched = self.merge()
-        detail = self.enrich(Budget(args.detail_minutes * 60))
+        detail = self.enrich(detail_budget)
         self.sources["linkedin"] = {"details": detail}
         self.close(p5, "ok" if not detail["failed"] and not detail["unread"] else "partial", unique_roles=len(touched), descriptions=detail)
 
