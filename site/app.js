@@ -271,7 +271,7 @@ function viewShortlist() {
 function openDrawer(id) {
   const j = S.jobs.find(x => x.id === id); if (!j) return;
   const L = live(j), w = S.cfg.scoring.weights, s = j.score, e = j.employer_id && emp(j.employer_id);
-  const parts = [['Role fit', s.role, w.role, s.role_class], ['Skills match', s.skills, w.skills, s.title_only ? 'Estimated from title; description not read' : ''], ['Employer', s.employer, w.employer, e ? `${S.cfg.categories[e.category]} · ${S.cfg.tiers[e.tier]}` : 'Outside the target list'], ['Seniority', s.seniority, w.seniority, s.seniority_label], ['Location', s.location, w.location, j.city], ['Freshness', L.fresh, w.freshness, `${fmtAge(L.age)}${j.applicants_text ? ', ' + j.applicants_text : ''}`]];
+  const parts = [['Role fit', s.role, w.role, s.role_class], ['Skills match', s.skills, w.skills, s.title_only ? 'Estimated from title; description not read' : ''], ['Employer', s.employer, w.employer, e ? `${S.cfg.categories[e.category]} · ${S.cfg.tiers[e.tier]}` : 'Outside the target list'], ['Seniority', s.seniority, w.seniority, s.seniority_label], ['Location', s.location, w.location, j.city], ['Freshness', L.fresh, w.freshness, `${fmtAge(L.age, j.precision)}${j.applicants_text ? ', ' + j.applicants_text : ''}`]];
   const kw = [...(j.matched?.core || []), ...(j.matched?.techniques || []), ...(j.matched?.stack || [])];
   const d = $('#drawer');
   d.innerHTML = `<div class="in" data-testid="drawer-role">
