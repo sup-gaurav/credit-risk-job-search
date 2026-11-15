@@ -306,6 +306,27 @@ class PipelineTests(unittest.TestCase):
         jobs, _ = self.run_scan({"IFRS9": [self.card("57", "Manager", "Unknown Co", "Pune", "2 hours ago")]})
         self.assertFalse([j for j in jobs if j["title"] == "Manager"])
 
+    def test_slow_search_phases_do_not_use_up_the_description_allowance(self):
+        import time
+        real_clock, real_main, clock = time.monotonic, pipeline.main, [0.0]
+
+        def main():
+            fake = linkedin.search
+
+            def costly(*a, **k):  # every search costs 20 minutes of clock time, far beyond the description allowance
+                clock[0] += 1200
+                return fake(*a, **k)
+            linkedin.search = costly
+            return real_main()
+        time.monotonic, pipeline.main = (lambda: clock[0]), main
+        try:
+            avp = self.card("71", "AVP - Credit Risk Modelling", "Barclays", "Noida, Uttar Pradesh, India", "3 hours ago")
+            jobs, status = self.run_scan({"id:Barclays": [avp]}, argv=("--max-details", "20", "--linkedin-minutes", "1000000"))
+        finally:
+            time.monotonic, pipeline.main = real_clock, real_main
+        self.assertEqual(status["sources"]["linkedin"]["details"]["read"], 1)
+        self.assertGreater(jobs[0]["score"]["skills"], 0)
+
     def test_ats_only_role_is_flagged(self):
         jobs, _ = self.run_scan({}, ats_rows={"genpact": [{"company": "Genpact", "title": "Vice President - Credit Risk Modeling", "location": "Gurugram",
                                                          "url": "https://genpact.example/1", "job_id": "G1", "platform": "workday", "posted_text": "Posted Today", "description": RICH}]})

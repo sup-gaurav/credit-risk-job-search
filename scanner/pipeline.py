@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import time
 from concurrent.futures import ThreadPoolExecutor
 from datetime import timedelta
@@ -20,6 +21,8 @@ from .scoring import Scorer
 PRECISION_RANK = {"hour": 3, "day": 2, "coarse": 1, "updated": 0, None: -1}
 ARCHIVE = STATE / "archive.json"
 
+
+IDS_RULE = 2  # bump to re-resolve LinkedIn company ids after the matching rule changes
 
 class Scan:
     def __init__(self, args):
@@ -68,17 +71,20 @@ class Scan:
         learned, terms = self.archive["learned"], self.search["linkedin"]["company_terms"]
         employers = {e["id"]: e for e in self.employers["employers"]}
         stale = self.started - timedelta(days=30)
+        # pages that share an employer's name but are not the employer (stadiums, fan pages, foreign branches)
+        reject = re.compile(self.search["linkedin"].get("company_name_reject") or r"(?!)", re.I)
         resolved = 0
         for q in queries:
             emp = employers[q["employer_id"]]
             entry = learned.setdefault(emp["id"], {})
-            checked = parse_iso(entry.get("ids_at"))
+            checked = parse_iso(entry.get("ids_at")) if entry.get("ids_rule") == IDS_RULE else None
             if (not checked or checked < stale) and not self.guard.aborted and not budget.spent:
                 names = list(dict.fromkeys([emp["query"], emp["name"]]))
-                accept = lambda label, emp=emp: (self.scorer.match_employer(label) or {}).get("id") == emp["id"]  # noqa: E731
+                accept = lambda label, emp=emp: (not reject.search(label or "")  # noqa: E731
+                                                 and (self.scorer.match_employer(label) or {}).get("id") == emp["id"])
                 hits = self.guard.run(lambda: linkedin.resolve_company_ids(self.li_http, names, accept), budget)
                 if hits is not None:
-                    entry["linkedin_ids"], entry["ids_at"] = hits, iso(self.started)
+                    entry["linkedin_ids"], entry["ids_at"], entry["ids_rule"] = hits, iso(self.started), IDS_RULE
             ids = [h["id"] for h in entry.get("linkedin_ids") or []]
             if ids:
                 q.update(company_ids=ids, keywords=linkedin.or_terms(terms), mode="company_filter",
@@ -438,24 +444,28 @@ class Scan:
         detail_budget = Budget(args.detail_minutes * 60)
 
         p1 = self.phase(1, "LinkedIn company scans")
-        resolved = self.resolve_companies(company, li_budget)
-        done = self.run_linkedin(company, primary, li_budget)
+        with li_budget:
+            resolved = self.resolve_companies(company, li_budget)
+            done = self.run_linkedin(company, primary, li_budget)
         self.close(p1, "ok" if done == len(company) else "partial" if done else "failed", queries=len(company), completed=done,
                    window_hours=primary, company_filter=resolved, keyword_fallback=len(company) - resolved)
 
         p2 = self.phase(2, "LinkedIn skill searches")
-        done = self.run_linkedin(skill, primary, li_budget)
+        with li_budget:
+            done = self.run_linkedin(skill, primary, li_budget)
         self.close(p2, "ok" if done == len(skill) else "partial" if done else "failed", queries=len(skill), completed=done, window_hours=primary)
 
         # Read descriptions before deciding on the supplement: a title alone cannot show whether a role clears the threshold.
         self.merge()
-        self.enrich(detail_budget)
+        with detail_budget:
+            self.enrich(detail_budget)
         found = self.qualified_in_window(primary)
         self.funnel["qualified_primary_before_supplement"] = found
         if found < self.windows["secondary_trigger_below"] and not args.no_secondary:
             self.secondary_used = True
             p2b = self.phase("2b", f"Secondary window ({secondary}h) volume supplement")
-            done = self.run_linkedin(skill + company, secondary, li_budget)
+            with li_budget:
+                done = self.run_linkedin(skill + company, secondary, li_budget)
             self.close(p2b, "ok" if done == len(skill) + len(company) else "partial" if done else "failed",
                        reason=f"only {found} roles cleared the threshold in {primary}h", queries=len(skill) + len(company), completed=done)
 
@@ -469,13 +479,15 @@ class Scan:
         self.close(p3, "ok" if nk["state"] == "ok" else "manual", **{("source_state" if k == "state" else k): v for k, v in nk.items()})
 
         p4 = self.phase(4, "Career-portal (ATS) checks")
-        self.run_ats(Budget(args.ats_minutes * 60))
+        with Budget(args.ats_minutes * 60) as ats_budget:
+            self.run_ats(ats_budget)
         ok = sum(1 for s in self.ats_status.values() if s["state"] == "ok")
         self.close(p4, "ok" if ok == len(self.ats_status) else "partial" if ok else "failed", portals=len(self.ats_status), responded=ok)
 
         p5 = self.phase(5, "Deduplication, enrichment and ranking")
         touched = self.merge()
-        detail = self.enrich(detail_budget)
+        with detail_budget:
+            detail = self.enrich(detail_budget)
         self.sources["linkedin"] = {"details": detail}
         self.close(p5, "ok" if not detail["failed"] and not detail["unread"] else "partial", unique_roles=len(touched), descriptions=detail)
 
@@ -497,10 +509,10 @@ def main():
     parser.add_argument("--init", action="store_true", help="write site config and an empty state without scanning")
     parser.add_argument("--rescore", action="store_true", help="re-apply scoring to the archive without any network calls")
     parser.add_argument("--max-queries", type=int, default=0, help="limit queries per phase (smoke test)")
-    parser.add_argument("--max-details", type=int, default=int(os.environ.get("MAX_DETAILS", 150)))
+    parser.add_argument("--max-details", type=int, default=int(os.environ.get("MAX_DETAILS", 220)))
     parser.add_argument("--no-secondary", action="store_true")
-    parser.add_argument("--linkedin-minutes", type=float, default=float(os.environ.get("LINKEDIN_MINUTES", 32)))
-    parser.add_argument("--detail-minutes", type=float, default=float(os.environ.get("DETAIL_MINUTES", 12)))
+    parser.add_argument("--linkedin-minutes", type=float, default=float(os.environ.get("LINKEDIN_MINUTES", 40)))
+    parser.add_argument("--detail-minutes", type=float, default=float(os.environ.get("DETAIL_MINUTES", 15)))
     parser.add_argument("--ats-minutes", type=float, default=float(os.environ.get("ATS_MINUTES", 8)))
     Scan(parser.parse_args()).run()
 

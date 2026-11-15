@@ -1,7 +1,8 @@
 {
   "linkedin": {
     "company_terms": ["credit risk", "risk analytics", "risk modeling", "risk modelling", "IFRS 9", "Basel", "model risk", "model validation"],
-    "max_pages_company": 3,
+    "max_pages_company": 5,
+    "company_name_reject": "stadium|plaza|foundation|chapter|lambda|hospital|changers|personal loan|\\bcares\\b|credit cards|\\batm\\b|charitable|university|small businesses|incubator|simpli|wi-?fi|insurance broker|first commonwealth|west state street|bahamas|indonesia|viet ?nam|polska|italia|brasil|france|philippines|sri lanka|canada|\\busa\\b|mobility|acuity, inc|ayco|\\bpage\\b|fort ?,",
     "max_pages_skill": 8,
     "skill_queries": [
       {"id": "S01", "set": "Core credit risk", "label": "Credit Risk + AVP", "keywords": "\"credit risk\" AND AVP"},

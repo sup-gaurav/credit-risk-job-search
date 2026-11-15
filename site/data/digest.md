@@ -1,6 +1,6 @@
 # Top 10 credit risk roles
 
-Scan finished 15 Nov 2026, 15:23 IST. Window: last 72 hours. 6 roles cleared the threshold in the last 30 hours.
+Scan finished 15 Nov 2026, 15:27 IST. Window: last 72 hours. 6 roles cleared the threshold in the last 30 hours.
 
 1. **AVP-FS P&L CCAR** · BNP Paribas · Mumbai
    Score 95 (Tier 1) · 22h ago · fresh, single source · 66 applicants

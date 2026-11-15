@@ -98,7 +98,7 @@
    "capped": 31,
    "throttle_events": 0,
    "aborted": false,
-   "requests": 581,
+   "requests": 0,
    "state": "ok"
   },
   "ats": {
@@ -110,7 +110,7 @@
  "funnel": {
   "irrelevant_titles": 1626,
   "qualified_primary_before_supplement": 6,
-  "observations": 2910,
+  "observations": 0,
   "roles_in_archive": 555,
   "published": 101,
   "dropped_low_relevance": 454,
@@ -4627,5 +4627,6 @@
    "ats_ok": 39,
    "observations": 2910
   }
- ]
+ ],
+ "rescored_at": "2026-11-15T09:57:25Z"
 }

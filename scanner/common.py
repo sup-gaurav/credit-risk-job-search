@@ -66,14 +66,38 @@ class Throttled(Exception):
 
 
 class Budget:
-    """Wall-clock budget for one phase."""
+    """Time allowance for one kind of work.
+
+    The clock only runs while the work is active: it starts on first use and can be
+    paused, so an allowance created early is not used up by other phases.
+    """
 
     def __init__(self, seconds: float):
-        self.deadline = time.monotonic() + seconds
+        self.seconds = float(seconds)
+        self.used = 0.0
+        self.since = None
+
+    def start(self):
+        if self.since is None:
+            self.since = time.monotonic()
+        return self
+
+    def pause(self):
+        if self.since is not None:
+            self.used += time.monotonic() - self.since
+            self.since = None
+
+    def __enter__(self):
+        return self.start()
+
+    def __exit__(self, *exc):
+        self.pause()
+        return False
 
     @property
     def left(self) -> float:
-        return self.deadline - time.monotonic()
+        running = time.monotonic() - self.since if self.since is not None else 0.0
+        return self.seconds - self.used - running
 
     @property
     def spent(self) -> bool:
