@@ -1,19 +1,19 @@
 {
  "schema": 1,
  "state": "complete",
- "started": "2026-11-15T10:16:25Z",
- "finished": "2026-11-15T10:31:13Z",
- "duration_seconds": 888,
+ "started": "2026-11-15T10:38:51Z",
+ "finished": "2026-11-15T10:48:39Z",
+ "duration_seconds": 588,
  "trigger": "manual",
- "run_id": "43703252221",
- "run_url": "https://github.com/sup-gaurav/credit-risk-job-search/actions/runs/43703252221",
+ "run_id": "43705062939",
+ "run_url": "https://github.com/sup-gaurav/credit-risk-job-search/actions/runs/43705062939",
  "secondary_window_used": false,
  "phases": [
   {
    "id": 1,
    "name": "LinkedIn company scans",
    "state": "ok",
-   "started": "2026-11-15T10:16:25Z",
+   "started": "2026-11-15T10:38:51Z",
    "seconds": 279.6,
    "queries": 94,
    "completed": 94,
@@ -25,8 +25,8 @@
    "id": 2,
    "name": "LinkedIn skill searches",
    "state": "ok",
-   "started": "2026-11-15T10:21:04Z",
-   "seconds": 266.4,
+   "started": "2026-11-15T10:43:30Z",
+   "seconds": 265.0,
    "queries": 16,
    "completed": 16,
    "window_hours": 30
@@ -35,8 +35,8 @@
    "id": 3,
    "name": "Naukri.com",
    "state": "manual",
-   "started": "2026-11-15T10:30:27Z",
-   "seconds": 0.6,
+   "started": "2026-11-15T10:47:56Z",
+   "seconds": 0.4,
    "source_state": "interaction_required",
    "http": 406,
    "note": "Naukri requires an interactive check for automated search; use the launcher links"
@@ -45,8 +45,8 @@
    "id": 4,
    "name": "Career-portal (ATS) checks",
    "state": "ok",
-   "started": "2026-11-15T10:30:28Z",
-   "seconds": 45.3,
+   "started": "2026-11-15T10:47:56Z",
+   "seconds": 42.5,
    "portals": 39,
    "responded": 39
   },
@@ -54,11 +54,11 @@
    "id": 5,
    "name": "Deduplication, enrichment and ranking",
    "state": "ok",
-   "started": "2026-11-15T10:31:13Z",
+   "started": "2026-11-15T10:48:38Z",
    "seconds": 0.1,
    "unique_roles": 355,
    "descriptions": {
-    "read": 128,
+    "read": 0,
     "failed": 0,
     "unread": 0
    }
@@ -67,7 +67,7 @@
    "id": 6,
    "name": "Scoring, top-10 digest and publication",
    "state": "ok",
-   "started": "2026-11-15T10:31:13Z",
+   "started": "2026-11-15T10:48:39Z",
    "seconds": 0.0
   }
  ],
@@ -79,7 +79,7 @@
   },
   "linkedin": {
    "details": {
-    "read": 128,
+    "read": 0,
     "failed": 0,
     "unread": 0
    },
@@ -88,7 +88,7 @@
    "capped": 15,
    "throttle_events": 0,
    "aborted": false,
-   "requests": 360,
+   "requests": 232,
    "state": "ok"
   },
   "ats": {
@@ -98,9 +98,9 @@
   }
  },
  "funnel": {
-  "irrelevant_titles": 921,
+  "irrelevant_titles": 922,
   "qualified_primary_before_supplement": 10,
-  "observations": 1534,
+  "observations": 1535,
   "roles_in_archive": 557,
   "published": 112,
   "dropped_low_relevance": 445,
@@ -1987,7 +1987,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 9,
+   "returned": 10,
    "capped": false
   },
   {
@@ -2177,7 +2177,7 @@
   "jpmorgan-chase": {
    "state": "ok",
    "returned": 26,
-   "seconds": 3.2,
+   "seconds": 4.1,
    "type": "oracle",
    "requests": 5,
    "previously_verified": true
@@ -2185,7 +2185,7 @@
   "morgan-stanley": {
    "state": "ok",
    "returned": 2,
-   "seconds": 11.1,
+   "seconds": 9.8,
    "type": "workday",
    "requests": 12,
    "previously_verified": true
@@ -2193,7 +2193,7 @@
   "citi": {
    "state": "ok",
    "returned": 37,
-   "seconds": 23.7,
+   "seconds": 22.4,
    "type": "workday",
    "requests": 22,
    "previously_verified": true
@@ -2201,7 +2201,7 @@
   "bank-of-america": {
    "state": "ok",
    "returned": 0,
-   "seconds": 6.5,
+   "seconds": 7.1,
    "type": "workday",
    "requests": 9,
    "previously_verified": true
@@ -2209,7 +2209,7 @@
   "barclays": {
    "state": "ok",
    "returned": 14,
-   "seconds": 17.0,
+   "seconds": 15.9,
    "type": "workday",
    "requests": 21,
    "previously_verified": true
@@ -2217,7 +2217,7 @@
   "deutsche-bank": {
    "state": "ok",
    "returned": 28,
-   "seconds": 19.9,
+   "seconds": 19.4,
    "type": "workday",
    "requests": 22,
    "previously_verified": true
@@ -2225,7 +2225,7 @@
   "dbs-bank": {
    "state": "ok",
    "returned": 7,
-   "seconds": 10.2,
+   "seconds": 10.0,
    "type": "workday",
    "requests": 13,
    "previously_verified": true
@@ -2233,7 +2233,7 @@
   "mufg": {
    "state": "ok",
    "returned": 15,
-   "seconds": 20.6,
+   "seconds": 19.6,
    "type": "workday",
    "requests": 22,
    "previously_verified": true
@@ -2241,7 +2241,7 @@
   "wells-fargo": {
    "state": "ok",
    "returned": 6,
-   "seconds": 10.6,
+   "seconds": 10.2,
    "type": "workday",
    "requests": 13,
    "previously_verified": true
@@ -2249,7 +2249,7 @@
   "us-bank": {
    "state": "ok",
    "returned": 6,
-   "seconds": 9.2,
+   "seconds": 8.8,
    "type": "workday",
    "requests": 11,
    "previously_verified": true
@@ -2257,7 +2257,7 @@
   "pnc-financial": {
    "state": "ok",
    "returned": 0,
-   "seconds": 11.9,
+   "seconds": 12.0,
    "type": "workday",
    "requests": 10,
    "previously_verified": true
@@ -2265,7 +2265,7 @@
   "santander": {
    "state": "ok",
    "returned": 0,
-   "seconds": 5.6,
+   "seconds": 5.2,
    "type": "workday",
    "requests": 5,
    "previously_verified": true
@@ -2273,7 +2273,7 @@
   "ing-bank": {
    "state": "ok",
    "returned": 0,
-   "seconds": 6.3,
+   "seconds": 7.0,
    "type": "workday",
    "requests": 9,
    "previously_verified": true
@@ -2281,7 +2281,7 @@
   "royal-bank-of-canada": {
    "state": "ok",
    "returned": 0,
-   "seconds": 7.1,
+   "seconds": 7.3,
    "type": "workday",
    "requests": 9,
    "previously_verified": true
@@ -2289,7 +2289,7 @@
   "td-bank": {
    "state": "ok",
    "returned": 0,
-   "seconds": 4.6,
+   "seconds": 4.5,
    "type": "workday",
    "requests": 5,
    "previously_verified": true
@@ -2297,7 +2297,7 @@
   "bmo-financial": {
    "state": "ok",
    "returned": 0,
-   "seconds": 13.3,
+   "seconds": 10.5,
    "type": "workday",
    "requests": 10,
    "previously_verified": true
@@ -2305,7 +2305,7 @@
   "cibc": {
    "state": "ok",
    "returned": 0,
-   "seconds": 8.3,
+   "seconds": 8.5,
    "type": "workday",
    "requests": 9,
    "previously_verified": true
@@ -2313,7 +2313,7 @@
   "commonwealth-bank-of-australia": {
    "state": "ok",
    "returned": 1,
-   "seconds": 5.1,
+   "seconds": 5.3,
    "type": "workday",
    "requests": 7,
    "previously_verified": true
@@ -2329,7 +2329,7 @@
   "tata-capital": {
    "state": "ok",
    "returned": 21,
-   "seconds": 6.6,
+   "seconds": 3.7,
    "type": "oracle",
    "requests": 5,
    "previously_verified": true
@@ -2337,7 +2337,7 @@
   "kpmg": {
    "state": "ok",
    "returned": 2,
-   "seconds": 8.3,
+   "seconds": 4.2,
    "type": "oracle",
    "requests": 5,
    "previously_verified": true
@@ -2345,7 +2345,7 @@
   "pwc": {
    "state": "ok",
    "returned": 1,
-   "seconds": 9.7,
+   "seconds": 9.0,
    "type": "workday",
    "requests": 11,
    "previously_verified": true
@@ -2353,7 +2353,7 @@
   "oliver-wyman": {
    "state": "ok",
    "returned": 11,
-   "seconds": 19.5,
+   "seconds": 18.2,
    "type": "workday",
    "requests": 21,
    "previously_verified": true
@@ -2361,7 +2361,7 @@
   "genpact": {
    "state": "ok",
    "returned": 13,
-   "seconds": 17.8,
+   "seconds": 16.0,
    "type": "workday",
    "requests": 22,
    "previously_verified": true
@@ -2369,7 +2369,7 @@
   "fractal-analytics": {
    "state": "ok",
    "returned": 6,
-   "seconds": 11.0,
+   "seconds": 11.2,
    "type": "workday",
    "requests": 14,
    "previously_verified": true
@@ -2377,7 +2377,7 @@
   "transunion-cibil": {
    "state": "ok",
    "returned": 1,
-   "seconds": 4.1,
+   "seconds": 3.9,
    "type": "workday",
    "requests": 6,
    "previously_verified": true
@@ -2385,7 +2385,7 @@
   "experian": {
    "state": "ok",
    "returned": 4,
-   "seconds": 1.8,
+   "seconds": 1.7,
    "type": "smartrecruiters",
    "requests": 3,
    "previously_verified": true
@@ -2393,7 +2393,7 @@
   "equifax": {
    "state": "ok",
    "returned": 1,
-   "seconds": 5.2,
+   "seconds": 4.6,
    "type": "workday",
    "requests": 6,
    "previously_verified": true
@@ -2401,7 +2401,7 @@
   "s-p-global-market-intelligence": {
    "state": "ok",
    "returned": 1,
-   "seconds": 10.4,
+   "seconds": 9.8,
    "type": "workday",
    "requests": 11,
    "previously_verified": true
@@ -2409,7 +2409,7 @@
   "paytm": {
    "state": "ok",
    "returned": 10,
-   "seconds": 14.4,
+   "seconds": 0.2,
    "type": "lever",
    "requests": 1,
    "previously_verified": true
@@ -2417,7 +2417,7 @@
   "razorpay": {
    "state": "ok",
    "returned": 0,
-   "seconds": 0.2,
+   "seconds": 0.1,
    "type": "greenhouse",
    "requests": 1,
    "previously_verified": true
@@ -2425,7 +2425,7 @@
   "cred": {
    "state": "ok",
    "returned": 1,
-   "seconds": 0.4,
+   "seconds": 0.0,
    "type": "lever",
    "requests": 1,
    "previously_verified": true
@@ -2433,7 +2433,7 @@
   "credit-saison-india": {
    "state": "ok",
    "returned": 17,
-   "seconds": 14.3,
+   "seconds": 14.7,
    "type": "workday",
    "requests": 18,
    "previously_verified": true
@@ -2441,7 +2441,7 @@
   "lendingkart": {
    "state": "ok",
    "returned": 0,
-   "seconds": 2.3,
+   "seconds": 2.0,
    "type": "smartrecruiters",
    "requests": 3,
    "previously_verified": true
@@ -2449,7 +2449,7 @@
   "fi-money": {
    "state": "ok",
    "returned": 0,
-   "seconds": 0.2,
+   "seconds": 0.0,
    "type": "lever",
    "requests": 1,
    "previously_verified": true
@@ -2457,7 +2457,7 @@
   "blackrock": {
    "state": "ok",
    "returned": 10,
-   "seconds": 17.4,
+   "seconds": 14.3,
    "type": "workday",
    "requests": 19,
    "previously_verified": true
@@ -2465,7 +2465,7 @@
   "fidelity-investments": {
    "state": "ok",
    "returned": 2,
-   "seconds": 5.5,
+   "seconds": 4.6,
    "type": "workday",
    "requests": 7,
    "previously_verified": true
@@ -2473,7 +2473,7 @@
   "state-street": {
    "state": "ok",
    "returned": 13,
-   "seconds": 18.0,
+   "seconds": 18.9,
    "type": "workday",
    "requests": 22,
    "previously_verified": true
@@ -2481,7 +2481,7 @@
   "northern-trust": {
    "state": "ok",
    "returned": 10,
-   "seconds": 13.3,
+   "seconds": 13.4,
    "type": "workday",
    "requests": 16,
    "previously_verified": true
@@ -2532,6 +2532,17 @@
    "linkedin_queries": 110,
    "ats_ok": 39,
    "observations": 1534
+  },
+  {
+   "started": "2026-11-15T10:38:51Z",
+   "duration_seconds": 588,
+   "trigger": "manual",
+   "qualified_primary": 10,
+   "qualified_secondary": 37,
+   "linkedin_ok": 110,
+   "linkedin_queries": 110,
+   "ats_ok": 39,
+   "observations": 1535
   }
  ]
 }

@@ -1,18 +1,18 @@
 # Top 10 credit risk roles
 
-Scan finished 15 Nov 2026, 16:01 IST. Window: last 30 hours. 10 roles cleared the threshold in the last 30 hours.
+Scan finished 15 Nov 2026, 16:18 IST. Window: last 30 hours. 10 roles cleared the threshold in the last 30 hours.
 
 1. **AVP-FS P&L CCAR** · BNP Paribas · Mumbai
    Score 95 (Tier 1) · 23h ago · fresh, single source · 66 applicants
    [Apply](https://www.linkedin.com/jobs/view/4482880603) · [Listing](https://www.linkedin.com/jobs/view/4482880603)
 2. **Senior Manager** · Bank of America · Delhi NCR
-   Score 78 (Tier 2) · 24h ago · fresh, single source · 153 applicants
+   Score 78 (Tier 2) · 25h ago · fresh, single source · 153 applicants
    [Apply](https://www.linkedin.com/jobs/view/4474338495) · [Listing](https://www.linkedin.com/jobs/view/4474338495)
 3. **Senior Manager** · Bank of America · Mumbai
    Score 78 (Tier 2) · 1d ago · fresh, single source · 110 applicants
    [Apply](https://www.linkedin.com/jobs/view/4474346298) · [Listing](https://www.linkedin.com/jobs/view/4474346298)
 4. **C1 - Credit Risk Modeler** · EXL Service · Delhi NCR
-   Score 74 (Tier 3) · 22h ago · fresh, single source · Over 200 applicants
+   Score 74 (Tier 3) · 23h ago · fresh, single source · Over 200 applicants
    [Apply](https://www.linkedin.com/jobs/view/4446579522) · [Listing](https://www.linkedin.com/jobs/view/4446579522)
 5. **Quantitative Risk & Credit Analytics – Associate / Senior Associate** · ALP (Computational Finance, AI and Data Engineering) · Bengaluru
    Score 74 (Tier 3) · 1d ago · fresh, single source · 112 applicants
@@ -21,10 +21,10 @@ Scan finished 15 Nov 2026, 16:01 IST. Window: last 30 hours. 10 roles cleared th
    Score 72 (Tier 3) · 24h ago · fresh, single source · Over 200 applicants
    [Apply](https://www.linkedin.com/jobs/view/4491066363) · [Listing](https://www.linkedin.com/jobs/view/4491066363)
 7. **Senior Data Analyst** · EXL Service · Pune
-   Score 71 (Tier 3) · 22h ago · fresh, single source · Over 200 applicants
+   Score 71 (Tier 3) · 23h ago · fresh, single source · Over 200 applicants
    [Apply](https://www.linkedin.com/jobs/view/4446729226) · [Listing](https://www.linkedin.com/jobs/view/4446729226)
 8. **Manager-Business Analytics-Risk Analytics** · EXL Service · Delhi NCR
-   Score 62 (Tier 3) · 23h ago · fresh, single source · Be among the first 25 applicants
+   Score 62 (Tier 3) · 24h ago · fresh, single source · Be among the first 25 applicants
    [Apply](https://www.linkedin.com/jobs/view/4446738303) · [Listing](https://www.linkedin.com/jobs/view/4446738303)
 9. **Risk Operations - Strategy, Data & Business Transformation Lead, Vice President** · JPMorgan Chase · Bengaluru
    Score 61 (Tier 3) · 1h ago · verified fresh · Over 200 applicants
