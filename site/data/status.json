@@ -1,22 +1,22 @@
 {
  "schema": 1,
  "state": "complete",
- "started": "2026-11-15T14:07:51Z",
- "finished": "2026-11-15T14:18:12Z",
- "duration_seconds": 621,
- "trigger": "manual",
- "run_id": "43722620368",
- "run_url": "https://github.com/sup-gaurav/credit-risk-job-search/actions/runs/43722620368",
+ "started": "2026-11-16T11:53:11Z",
+ "finished": "2026-11-16T12:37:00Z",
+ "duration_seconds": 2630,
+ "trigger": "schedule",
+ "run_id": "43861607653",
+ "run_url": "https://github.com/sup-gaurav/credit-risk-job-search/actions/runs/43861607653",
  "secondary_window_used": false,
  "phases": [
   {
    "id": 1,
    "name": "LinkedIn company scans",
-   "state": "ok",
-   "started": "2026-11-15T14:07:51Z",
-   "seconds": 286.0,
+   "state": "partial",
+   "started": "2026-11-16T11:53:11Z",
+   "seconds": 948.9,
    "queries": 94,
-   "completed": 94,
+   "completed": 93,
    "window_hours": 30,
    "company_filter": 92,
    "keyword_fallback": 2
@@ -24,19 +24,19 @@
   {
    "id": 2,
    "name": "LinkedIn skill searches",
-   "state": "ok",
-   "started": "2026-11-15T14:12:37Z",
-   "seconds": 265.5,
+   "state": "partial",
+   "started": "2026-11-16T12:09:00Z",
+   "seconds": 1029.5,
    "queries": 16,
-   "completed": 16,
+   "completed": 13,
    "window_hours": 30
   },
   {
    "id": 3,
    "name": "Naukri.com",
    "state": "manual",
-   "started": "2026-11-15T14:17:27Z",
-   "seconds": 0.3,
+   "started": "2026-11-16T12:36:45Z",
+   "seconds": 0.5,
    "source_state": "interaction_required",
    "http": 406,
    "note": "Naukri requires an interactive check for automated search; use the launcher links"
@@ -44,21 +44,21 @@
   {
    "id": 4,
    "name": "Career-portal (ATS) checks",
-   "state": "ok",
-   "started": "2026-11-15T14:17:27Z",
-   "seconds": 44.5,
+   "state": "partial",
+   "started": "2026-11-16T12:36:45Z",
+   "seconds": 14.7,
    "portals": 39,
-   "responded": 39
+   "responded": 10
   },
   {
    "id": 5,
    "name": "Deduplication, enrichment and ranking",
    "state": "ok",
-   "started": "2026-11-15T14:18:12Z",
-   "seconds": 0.1,
-   "unique_roles": 351,
+   "started": "2026-11-16T12:37:00Z",
+   "seconds": 0.2,
+   "unique_roles": 187,
    "descriptions": {
-    "read": 10,
+    "read": 53,
     "failed": 0,
     "unread": 0
    }
@@ -67,7 +67,7 @@
    "id": 6,
    "name": "Scoring, top-10 digest and publication",
    "state": "ok",
-   "started": "2026-11-15T14:18:12Z",
+   "started": "2026-11-16T12:37:00Z",
    "seconds": 0.0
   }
  ],
@@ -79,37 +79,37 @@
   },
   "linkedin": {
    "details": {
-    "read": 10,
+    "read": 53,
     "failed": 0,
     "unread": 0
    },
    "queries": 110,
-   "ok": 110,
-   "capped": 15,
-   "throttle_events": 0,
+   "ok": 106,
+   "capped": 12,
+   "throttle_events": 51,
    "aborted": false,
-   "requests": 242,
-   "state": "ok"
+   "requests": 349,
+   "state": "partial"
   },
   "ats": {
    "configured": 39,
-   "ok": 39,
-   "state": "ok"
+   "ok": 10,
+   "state": "partial"
   }
  },
  "funnel": {
-  "irrelevant_titles": 899,
-  "qualified_primary_before_supplement": 10,
-  "observations": 1518,
-  "roles_in_archive": 577,
-  "published": 113,
-  "dropped_low_relevance": 464,
-  "qualified_total": 79,
-  "qualified_primary": 10,
-  "qualified_secondary": 37,
-  "tier1_primary": 1,
-  "tier2_primary": 2,
-  "tier3_primary": 7
+  "irrelevant_titles": 627,
+  "qualified_primary_before_supplement": 12,
+  "observations": 1137,
+  "roles_in_archive": 674,
+  "published": 127,
+  "dropped_low_relevance": 547,
+  "qualified_total": 88,
+  "qualified_primary": 13,
+  "qualified_secondary": 28,
+  "tier1_primary": 0,
+  "tier2_primary": 4,
+  "tier3_primary": 9
  },
  "queries": [
   {
@@ -131,7 +131,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 2,
+   "returned": 3,
    "capped": false
   },
   {
@@ -152,8 +152,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 3,
    "capped": false
   },
   {
@@ -174,8 +174,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 2,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -194,8 +194,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 1,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -217,7 +217,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 4,
+   "returned": 1,
    "capped": false
   },
   {
@@ -335,8 +335,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 2,
    "capped": false
   },
   {
@@ -397,8 +397,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 1,
    "capped": false
   },
   {
@@ -457,8 +457,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 1,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -884,8 +884,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 1,
    "capped": false
   },
   {
@@ -902,8 +902,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 2,
    "capped": false
   },
   {
@@ -920,8 +920,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 1,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -957,10 +957,8 @@
    "employer_id": "aditya-birla-capital",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 2,
-   "returned": 2,
-   "capped": false
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C45",
@@ -1035,7 +1033,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 9,
+   "returned": 6,
    "capped": false
   },
   {
@@ -1053,8 +1051,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 2,
+   "pages": 5,
+   "returned": 39,
    "capped": false
   },
   {
@@ -1092,8 +1090,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 3,
-   "returned": 13,
+   "pages": 2,
+   "returned": 5,
    "capped": false
   },
   {
@@ -1248,8 +1246,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 4,
-   "returned": 26,
+   "pages": 2,
+   "returned": 4,
    "capped": false
   },
   {
@@ -1543,8 +1541,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 1,
    "capped": false
   },
   {
@@ -1565,8 +1563,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 1,
    "capped": false
   },
   {
@@ -1858,8 +1856,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 1,
    "capped": false
   },
   {
@@ -1973,7 +1971,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 3,
-   "returned": 12,
+   "returned": 18,
    "capped": false
   },
   {
@@ -1986,8 +1984,8 @@
    "set": "Core credit risk",
    "window_hours": 30,
    "state": "ok",
-   "pages": 3,
-   "returned": 12,
+   "pages": 4,
+   "returned": 27,
    "capped": false
   },
   {
@@ -2000,8 +1998,8 @@
    "set": "Core credit risk",
    "window_hours": 30,
    "state": "ok",
-   "pages": 4,
-   "returned": 25,
+   "pages": 5,
+   "returned": 37,
    "capped": false
   },
   {
@@ -2069,10 +2067,8 @@
    "employer_id": null,
    "set": "Technical skills",
    "window_hours": 30,
-   "state": "ok",
-   "pages": 8,
-   "returned": 80,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "S09",
@@ -2097,10 +2093,8 @@
    "employer_id": null,
    "set": "Technical skills",
    "window_hours": 30,
-   "state": "ok",
-   "pages": 8,
-   "returned": 80,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "S11",
@@ -2139,10 +2133,8 @@
    "employer_id": null,
    "set": "Functional areas",
    "window_hours": 30,
-   "state": "ok",
-   "pages": 8,
-   "returned": 80,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "S14",
@@ -2155,7 +2147,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 8,
-   "returned": 78,
+   "returned": 80,
    "capped": true
   },
   {
@@ -2177,209 +2169,186 @@
   "jpmorgan-chase": {
    "state": "ok",
    "returned": 26,
-   "seconds": 4.0,
+   "seconds": 3.4,
    "type": "oracle",
    "requests": 5,
    "previously_verified": true
   },
   "morgan-stanley": {
-   "state": "ok",
-   "returned": 2,
-   "seconds": 10.5,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 12,
+   "requests": 1,
    "previously_verified": true
   },
   "citi": {
-   "state": "ok",
-   "returned": 37,
-   "seconds": 24.2,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 22,
+   "requests": 1,
    "previously_verified": true
   },
   "bank-of-america": {
-   "state": "ok",
-   "returned": 0,
-   "seconds": 7.1,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 9,
+   "requests": 1,
    "previously_verified": true
   },
   "barclays": {
-   "state": "ok",
-   "returned": 14,
-   "seconds": 17.0,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 21,
+   "requests": 1,
    "previously_verified": true
   },
   "deutsche-bank": {
-   "state": "ok",
-   "returned": 28,
-   "seconds": 19.9,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 22,
+   "requests": 1,
    "previously_verified": true
   },
   "dbs-bank": {
-   "state": "ok",
-   "returned": 7,
-   "seconds": 9.8,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 13,
+   "requests": 1,
    "previously_verified": true
   },
   "mufg": {
-   "state": "ok",
-   "returned": 15,
-   "seconds": 20.8,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 22,
+   "requests": 1,
    "previously_verified": true
   },
   "wells-fargo": {
-   "state": "ok",
-   "returned": 6,
-   "seconds": 10.5,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 13,
+   "requests": 1,
    "previously_verified": true
   },
   "us-bank": {
-   "state": "ok",
-   "returned": 6,
-   "seconds": 8.4,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 11,
+   "requests": 1,
    "previously_verified": true
   },
   "pnc-financial": {
-   "state": "ok",
-   "returned": 0,
-   "seconds": 12.3,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 10,
+   "requests": 1,
    "previously_verified": true
   },
   "santander": {
-   "state": "ok",
-   "returned": 0,
-   "seconds": 5.2,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 5,
+   "requests": 1,
    "previously_verified": true
   },
   "ing-bank": {
-   "state": "ok",
-   "returned": 0,
-   "seconds": 6.9,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 9,
+   "requests": 1,
    "previously_verified": true
   },
   "royal-bank-of-canada": {
-   "state": "ok",
-   "returned": 0,
-   "seconds": 6.1,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 9,
+   "requests": 1,
    "previously_verified": true
   },
   "td-bank": {
-   "state": "ok",
-   "returned": 0,
-   "seconds": 4.4,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 5,
+   "requests": 1,
    "previously_verified": true
   },
   "bmo-financial": {
-   "state": "ok",
-   "returned": 0,
-   "seconds": 10.5,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 10,
+   "requests": 1,
    "previously_verified": true
   },
   "cibc": {
-   "state": "ok",
-   "returned": 0,
-   "seconds": 9.2,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 9,
+   "requests": 1,
    "previously_verified": true
   },
   "commonwealth-bank-of-australia": {
-   "state": "ok",
-   "returned": 1,
-   "seconds": 6.2,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 7,
+   "requests": 1,
    "previously_verified": true
   },
   "national-australia-bank": {
-   "state": "ok",
-   "returned": 0,
-   "seconds": 4.1,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 5,
+   "requests": 1,
    "previously_verified": true
   },
   "tata-capital": {
    "state": "ok",
-   "returned": 21,
-   "seconds": 3.7,
+   "returned": 25,
+   "seconds": 4.0,
    "type": "oracle",
    "requests": 5,
    "previously_verified": true
   },
   "kpmg": {
    "state": "ok",
-   "returned": 2,
-   "seconds": 4.1,
+   "returned": 1,
+   "seconds": 3.8,
    "type": "oracle",
    "requests": 5,
    "previously_verified": true
   },
   "pwc": {
-   "state": "ok",
-   "returned": 1,
-   "seconds": 9.2,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 11,
+   "requests": 1,
    "previously_verified": true
   },
   "oliver-wyman": {
-   "state": "ok",
-   "returned": 11,
-   "seconds": 18.8,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 21,
+   "requests": 1,
    "previously_verified": true
   },
   "genpact": {
-   "state": "ok",
-   "returned": 13,
-   "seconds": 19.2,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 22,
+   "requests": 6,
    "previously_verified": true
   },
   "fractal-analytics": {
-   "state": "ok",
-   "returned": 6,
-   "seconds": 15.0,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 14,
+   "requests": 1,
    "previously_verified": true
   },
   "transunion-cibil": {
-   "state": "ok",
-   "returned": 1,
-   "seconds": 4.7,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 6,
+   "requests": 1,
    "previously_verified": true
   },
   "experian": {
@@ -2391,25 +2360,23 @@
    "previously_verified": true
   },
   "equifax": {
-   "state": "ok",
-   "returned": 1,
-   "seconds": 4.8,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 6,
+   "requests": 1,
    "previously_verified": true
   },
   "s-p-global-market-intelligence": {
-   "state": "ok",
-   "returned": 1,
-   "seconds": 10.2,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 11,
+   "requests": 1,
    "previously_verified": true
   },
   "paytm": {
    "state": "ok",
-   "returned": 10,
-   "seconds": 0.1,
+   "returned": 9,
+   "seconds": 0.6,
    "type": "lever",
    "requests": 1,
    "previously_verified": true
@@ -2417,7 +2384,7 @@
   "razorpay": {
    "state": "ok",
    "returned": 0,
-   "seconds": 0.1,
+   "seconds": 0.3,
    "type": "greenhouse",
    "requests": 1,
    "previously_verified": true
@@ -2425,7 +2392,7 @@
   "cred": {
    "state": "ok",
    "returned": 1,
-   "seconds": 0.7,
+   "seconds": 3.3,
    "type": "lever",
    "requests": 1,
    "previously_verified": true
@@ -2433,7 +2400,7 @@
   "credit-saison-india": {
    "state": "ok",
    "returned": 17,
-   "seconds": 15.0,
+   "seconds": 13.7,
    "type": "workday",
    "requests": 18,
    "previously_verified": true
@@ -2441,7 +2408,7 @@
   "lendingkart": {
    "state": "ok",
    "returned": 0,
-   "seconds": 1.9,
+   "seconds": 2.0,
    "type": "smartrecruiters",
    "requests": 3,
    "previously_verified": true
@@ -2449,41 +2416,37 @@
   "fi-money": {
    "state": "ok",
    "returned": 0,
-   "seconds": 0.0,
+   "seconds": 0.6,
    "type": "lever",
    "requests": 1,
    "previously_verified": true
   },
   "blackrock": {
-   "state": "ok",
-   "returned": 10,
-   "seconds": 13.9,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 19,
+   "requests": 1,
    "previously_verified": true
   },
   "fidelity-investments": {
-   "state": "ok",
-   "returned": 2,
-   "seconds": 9.2,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 7,
+   "requests": 1,
    "previously_verified": true
   },
   "state-street": {
-   "state": "ok",
-   "returned": 13,
-   "seconds": 19.4,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 22,
+   "requests": 1,
    "previously_verified": true
   },
   "northern-trust": {
-   "state": "ok",
-   "returned": 10,
-   "seconds": 11.5,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 16,
+   "requests": 1,
    "previously_verified": true
   }
  },
@@ -2554,6 +2517,17 @@
    "linkedin_queries": 110,
    "ats_ok": 39,
    "observations": 1518
+  },
+  {
+   "started": "2026-11-16T11:53:11Z",
+   "duration_seconds": 2630,
+   "trigger": "schedule",
+   "qualified_primary": 13,
+   "qualified_secondary": 28,
+   "linkedin_ok": 106,
+   "linkedin_queries": 110,
+   "ats_ok": 10,
+   "observations": 1137
   }
  ]
 }
