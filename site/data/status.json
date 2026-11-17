@@ -1,22 +1,22 @@
 {
  "schema": 1,
  "state": "complete",
- "started": "2026-11-17T10:57:03Z",
- "finished": "2026-11-17T11:42:07Z",
- "duration_seconds": 2704,
- "trigger": "manual",
- "run_id": "44069476747",
- "run_url": "https://github.com/sup-gaurav/credit-risk-job-search/actions/runs/44069476747",
+ "started": "2026-11-17T12:15:32Z",
+ "finished": "2026-11-17T12:28:50Z",
+ "duration_seconds": 798,
+ "trigger": "schedule",
+ "run_id": "44081368903",
+ "run_url": "https://github.com/sup-gaurav/credit-risk-job-search/actions/runs/44081368903",
  "secondary_window_used": false,
  "phases": [
   {
    "id": 1,
    "name": "LinkedIn company scans",
-   "state": "partial",
-   "started": "2026-11-17T10:57:03Z",
-   "seconds": 1554.0,
+   "state": "ok",
+   "started": "2026-11-17T12:15:32Z",
+   "seconds": 372.6,
    "queries": 94,
-   "completed": 92,
+   "completed": 94,
    "window_hours": 30,
    "company_filter": 92,
    "keyword_fallback": 2
@@ -24,18 +24,18 @@
   {
    "id": 2,
    "name": "LinkedIn skill searches",
-   "state": "partial",
-   "started": "2026-11-17T11:22:57Z",
-   "seconds": 846.5,
+   "state": "ok",
+   "started": "2026-11-17T12:21:45Z",
+   "seconds": 379.0,
    "queries": 16,
-   "completed": 5,
+   "completed": 16,
    "window_hours": 30
   },
   {
    "id": 3,
    "name": "Naukri.com",
    "state": "manual",
-   "started": "2026-11-17T11:41:21Z",
+   "started": "2026-11-17T12:28:35Z",
    "seconds": 0.4,
    "source_state": "interaction_required",
    "http": 406,
@@ -45,20 +45,20 @@
    "id": 4,
    "name": "Career-portal (ATS) checks",
    "state": "partial",
-   "started": "2026-11-17T11:41:22Z",
-   "seconds": 45.6,
+   "started": "2026-11-17T12:28:35Z",
+   "seconds": 14.9,
    "portals": 39,
-   "responded": 8
+   "responded": 10
   },
   {
    "id": 5,
    "name": "Deduplication, enrichment and ranking",
    "state": "ok",
-   "started": "2026-11-17T11:42:07Z",
+   "started": "2026-11-17T12:28:50Z",
    "seconds": 0.1,
-   "unique_roles": 214,
+   "unique_roles": 262,
    "descriptions": {
-    "read": 34,
+    "read": 14,
     "failed": 0,
     "unread": 0
    }
@@ -67,7 +67,7 @@
    "id": 6,
    "name": "Scoring, top-10 digest and publication",
    "state": "ok",
-   "started": "2026-11-17T11:42:07Z",
+   "started": "2026-11-17T12:28:50Z",
    "seconds": 0.0
   }
  ],
@@ -79,37 +79,37 @@
   },
   "linkedin": {
    "details": {
-    "read": 34,
+    "read": 14,
     "failed": 0,
     "unread": 0
    },
    "queries": 110,
-   "ok": 97,
-   "capped": 7,
-   "throttle_events": 56,
+   "ok": 110,
+   "capped": 17,
+   "throttle_events": 5,
    "aborted": false,
-   "requests": 305,
-   "state": "partial"
+   "requests": 280,
+   "state": "ok"
   },
   "ats": {
    "configured": 39,
-   "ok": 8,
+   "ok": 10,
    "state": "partial"
   }
  },
  "funnel": {
-  "irrelevant_titles": 254,
-  "qualified_primary_before_supplement": 37,
-  "observations": 674,
-  "roles_in_archive": 809,
-  "published": 165,
-  "dropped_low_relevance": 644,
-  "qualified_total": 120,
-  "qualified_primary": 44,
-  "qualified_secondary": 49,
+  "irrelevant_titles": 764,
+  "qualified_primary_before_supplement": 38,
+  "observations": 1553,
+  "roles_in_archive": 840,
+  "published": 168,
+  "dropped_low_relevance": 672,
+  "qualified_total": 123,
+  "qualified_primary": 46,
+  "qualified_secondary": 50,
   "tier1_primary": 0,
   "tier2_primary": 18,
-  "tier3_primary": 26
+  "tier3_primary": 28
  },
  "queries": [
   {
@@ -153,7 +153,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 1,
+   "returned": 2,
    "capped": false
   },
   {
@@ -195,7 +195,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 4,
+   "returned": 6,
    "capped": false
   },
   {
@@ -215,8 +215,10 @@
    "employer_id": "bank-of-america",
    "set": null,
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 2,
+   "returned": 4,
+   "capped": false
   },
   {
    "id": "C06",
@@ -274,8 +276,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 1,
    "capped": false
   },
   {
@@ -316,7 +318,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 4,
+   "returned": 5,
    "capped": false
   },
   {
@@ -356,7 +358,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 5,
+   "returned": 7,
    "capped": false
   },
   {
@@ -394,8 +396,10 @@
    "employer_id": "mufg",
    "set": null,
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 2,
+   "returned": 1,
+   "capped": false
   },
   {
    "id": "C15",
@@ -434,7 +438,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 4,
+   "returned": 6,
    "capped": false
   },
   {
@@ -658,8 +662,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 1,
    "capped": false
   },
   {
@@ -1031,7 +1035,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 2,
+   "returned": 8,
    "capped": false
   },
   {
@@ -1089,7 +1093,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 3,
-   "returned": 15,
+   "returned": 18,
    "capped": false
   },
   {
@@ -1967,8 +1971,10 @@
    "employer_id": null,
    "set": "Core credit risk",
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 7,
+   "returned": 55,
+   "capped": false
   },
   {
    "id": "S02b",
@@ -1981,7 +1987,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 37,
+   "returned": 38,
    "capped": false
   },
   {
@@ -1993,8 +1999,10 @@
    "employer_id": null,
    "set": "Core credit risk",
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 8,
+   "returned": 72,
+   "capped": true
   },
   {
    "id": "S04",
@@ -2005,8 +2013,10 @@
    "employer_id": null,
    "set": "Core credit risk",
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
   },
   {
    "id": "S05",
@@ -2031,8 +2041,10 @@
    "employer_id": null,
    "set": "Technical skills",
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
   },
   {
    "id": "S07",
@@ -2071,8 +2083,10 @@
    "employer_id": null,
    "set": "Technical skills",
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
   },
   {
    "id": "S10",
@@ -2083,8 +2097,10 @@
    "employer_id": null,
    "set": "Technical skills",
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
   },
   {
    "id": "S11",
@@ -2095,8 +2111,10 @@
    "employer_id": null,
    "set": "Technical skills",
    "window_hours": 30,
-   "state": "skipped_budget",
-   "returned": 0
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
   },
   {
    "id": "S12",
@@ -2107,8 +2125,10 @@
    "employer_id": null,
    "set": "Technical skills",
    "window_hours": 30,
-   "state": "skipped_budget",
-   "returned": 0
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
   },
   {
    "id": "S13",
@@ -2119,8 +2139,10 @@
    "employer_id": null,
    "set": "Functional areas",
    "window_hours": 30,
-   "state": "skipped_budget",
-   "returned": 0
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
   },
   {
    "id": "S14",
@@ -2131,8 +2153,10 @@
    "employer_id": null,
    "set": "Functional areas",
    "window_hours": 30,
-   "state": "skipped_budget",
-   "returned": 0
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
   },
   {
    "id": "S15",
@@ -2143,15 +2167,17 @@
    "employer_id": null,
    "set": "Functional areas",
    "window_hours": 30,
-   "state": "skipped_budget",
-   "returned": 0
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
   }
  ],
  "ats": {
   "jpmorgan-chase": {
    "state": "ok",
    "returned": 24,
-   "seconds": 3.0,
+   "seconds": 3.9,
    "type": "oracle",
    "requests": 5,
    "previously_verified": true
@@ -2237,7 +2263,7 @@
    "state": "error",
    "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 4,
+   "requests": 1,
    "previously_verified": true
   },
   "royal-bank-of-canada": {
@@ -2272,7 +2298,7 @@
    "state": "error",
    "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 2,
+   "requests": 1,
    "previously_verified": true
   },
   "national-australia-bank": {
@@ -2284,8 +2310,8 @@
   },
   "tata-capital": {
    "state": "ok",
-   "returned": 27,
-   "seconds": 3.9,
+   "returned": 25,
+   "seconds": 3.1,
    "type": "oracle",
    "requests": 5,
    "previously_verified": true
@@ -2293,7 +2319,7 @@
   "kpmg": {
    "state": "ok",
    "returned": 2,
-   "seconds": 3.9,
+   "seconds": 4.8,
    "type": "oracle",
    "requests": 5,
    "previously_verified": true
@@ -2302,7 +2328,7 @@
    "state": "error",
    "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 2,
+   "requests": 1,
    "previously_verified": true
   },
   "oliver-wyman": {
@@ -2316,7 +2342,7 @@
    "state": "error",
    "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 5,
+   "requests": 3,
    "previously_verified": true
   },
   "fractal-analytics": {
@@ -2327,17 +2353,16 @@
    "previously_verified": true
   },
   "transunion-cibil": {
-   "state": "ok",
-   "returned": 1,
-   "seconds": 4.0,
+   "state": "error",
+   "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 6,
+   "requests": 5,
    "previously_verified": true
   },
   "experian": {
    "state": "ok",
    "returned": 4,
-   "seconds": 2.3,
+   "seconds": 2.0,
    "type": "smartrecruiters",
    "requests": 3,
    "previously_verified": true
@@ -2353,15 +2378,15 @@
    "state": "error",
    "error": "Throttled: HTTP 429",
    "type": "workday",
-   "requests": 1,
+   "requests": 3,
    "previously_verified": true
   },
   "paytm": {
-   "state": "http_504",
-   "returned": 0,
-   "seconds": 38.2,
+   "state": "ok",
+   "returned": 9,
+   "seconds": 0.1,
    "type": "lever",
-   "requests": 3,
+   "requests": 1,
    "previously_verified": true
   },
   "razorpay": {
@@ -2373,17 +2398,17 @@
    "previously_verified": true
   },
   "cred": {
-   "state": "http_504",
-   "returned": 0,
-   "seconds": 37.7,
+   "state": "ok",
+   "returned": 1,
+   "seconds": 0.0,
    "type": "lever",
-   "requests": 3,
+   "requests": 1,
    "previously_verified": true
   },
   "credit-saison-india": {
    "state": "ok",
    "returned": 17,
-   "seconds": 14.5,
+   "seconds": 13.7,
    "type": "workday",
    "requests": 18,
    "previously_verified": true
@@ -2391,17 +2416,17 @@
   "lendingkart": {
    "state": "ok",
    "returned": 0,
-   "seconds": 1.8,
+   "seconds": 1.6,
    "type": "smartrecruiters",
    "requests": 3,
    "previously_verified": true
   },
   "fi-money": {
-   "state": "http_500",
+   "state": "ok",
    "returned": 0,
-   "seconds": 42.6,
+   "seconds": 0.0,
    "type": "lever",
-   "requests": 3,
+   "requests": 1,
    "previously_verified": true
   },
   "blackrock": {
@@ -2544,6 +2569,17 @@
    "linkedin_queries": 110,
    "ats_ok": 8,
    "observations": 674
+  },
+  {
+   "started": "2026-11-17T12:15:32Z",
+   "duration_seconds": 798,
+   "trigger": "schedule",
+   "qualified_primary": 46,
+   "qualified_secondary": 50,
+   "linkedin_ok": 110,
+   "linkedin_queries": 110,
+   "ats_ok": 10,
+   "observations": 1553
   }
  ]
 }
