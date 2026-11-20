@@ -236,7 +236,7 @@ class PipelineTests(unittest.TestCase):
     def tearDown(self):
         (linkedin.search, linkedin.fetch_detail, ats.scan_employer, naukri.canary, pipeline.now_utc, linkedin.resolve_company_ids) = self.orig
 
-    def run_scan(self, cards_by_query, ats_rows=None, argv=("--max-details", "20")):
+    def run_scan(self, cards_by_query, ats_rows=None, argv=("--max-details", "20"), warm_cache=True):
         def fake_search(http, keywords, location, seconds, max_pages, budget, company_ids=None):
             haystack = keywords + " | " + " ".join(company_ids or [])
             for needle, cards in cards_by_query.items():
@@ -262,6 +262,10 @@ class PipelineTests(unittest.TestCase):
                         if e["id"] in {"barclays", "deutsche-bank", "genpact"}}
 
         def fixture_load(path, default=None):
+            if path == pipeline.ARCHIVE and warm_cache and not path.exists():
+                return {"learned": {e["id"]: {"ids_rule": pipeline.IDS_RULE, "ids_at": common.iso(common.now_utc()),
+                                     "linkedin_ids": [] if e["query"] == "UBS" else [{"id": "id:" + e["query"], "name": e["name"]}]}
+                                    for e in ACTIVE_EMPLOYERS["employers"]}}
             if path.name == "gcc_listing_sources.json":
                 return []
             if path.name == "gcc_employers.json":
@@ -322,6 +326,44 @@ class PipelineTests(unittest.TestCase):
         self.assertNotIn("Barclays", barclays["keywords"])  # the employer is constrained by id, not by keyword
         self.assertTrue(status["secondary_window_used"])
 
+    def test_cold_cache_searches_before_throttled_id_refresh(self):
+        order = []
+        real_prepare = pipeline.Scan.run_linkedin
+
+        def search(scan, *args):
+            order.append("search")
+            return real_prepare(scan, *args)
+
+        real_main = pipeline.main
+
+        def main():
+            def blocked(*args):
+                order.append("lookup")
+                raise linkedin.Throttled("HTTP 429")
+            linkedin.resolve_company_ids = blocked
+            real_main()
+
+        with patch.object(pipeline.Scan, "run_linkedin", search), patch.object(pipeline, "main", main):
+            _, status = self.run_scan({}, warm_cache=False)
+        phase = status["phases"][0]
+        self.assertEqual(order, ["search", "search", "search", "lookup"])
+        self.assertEqual(phase["attempted"], phase["queries"])
+        self.assertEqual(phase["completed"], phase["queries"])
+        self.assertEqual(phase["keyword_fallback"], phase["queries"])
+        self.assertEqual(status["sources"]["linkedin"]["id_refresh"], {"attempted": 1, "refreshed": 0, "stopped": "HTTP 429"})
+
+    def test_failed_search_is_attempted_but_not_completed(self):
+        real_main = pipeline.main
+
+        def main():
+            linkedin.search = lambda *args: ([], {"state": "http_503", "pages": 1, "returned": 0})
+            real_main()
+
+        with patch.object(pipeline, "main", main):
+            _, status = self.run_scan({}, argv=("--max-queries", "2", "--no-secondary"))
+        phase = status["phases"][0]
+        self.assertEqual((phase["attempted"], phase["completed"], phase["outcomes"]), (2, 0, {"http_503": 2}))
+
     def test_generic_grade_title_is_classified_from_description(self):
         generic = self.card("55", "3562971-Manager", "EXL", "Gurugram, Haryana, India", "4 hours ago")
         offtopic = self.card("56", "Receptionist", "EXL", "Gurugram, Haryana, India", "4 hours ago")
@@ -358,11 +400,13 @@ class PipelineTests(unittest.TestCase):
         avp = self.card("81", "AVP - Credit Risk Modelling", "Barclays", "Noida, Uttar Pradesh, India", "3 hours ago")
         _, before = self.run_scan({"id:Barclays": [avp]})
         self.assertGreater(before["funnel"]["observations"], 0)
+        before["sources"]["linkedin"].update(requests=195, aborted=True)
+        common.save_json(pipeline.DATA / "status.json", before)
         sys.argv = ["pipeline", "--rescore"]
         pipeline.main()
         after = json.loads((Path(os.environ["CRJS_DATA_DIR"]) / "status.json").read_text())
         self.assertEqual(after["funnel"]["observations"], before["funnel"]["observations"])
-        self.assertEqual(after["sources"]["linkedin"]["details"], before["sources"]["linkedin"]["details"])
+        self.assertEqual(after["sources"]["linkedin"], before["sources"]["linkedin"])
         self.assertEqual(len(after["queries"]), len(before["queries"]))
 
     def test_recent_title_only_role_is_read_on_the_next_scan(self):

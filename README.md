@@ -44,6 +44,22 @@ After each scheduled scan the workflow opens a GitHub issue with the top 10 and 
 
 ## GCC portal pilot (partial expansion)
 
+### Reading LinkedIn company scan coverage
+
+`queries` is the number planned; `company filter` and `keyword fallback` describe
+how those queries are built, not how many succeeded. `attempted` excludes queries
+skipped for time or throttling. `completed` counts searches with an `ok` outcome,
+including successful empty results. `skipped_budget` is a coverage gap, not zero
+vacancies. The existing page caps still apply.
+
+Job searches use cached company IDs or the existing keyword fallback immediately.
+Only after job searches and description reads does the scanner use leftover
+LinkedIn time for optional ID lookups (at most five employers; stop starting
+lookups after one minute or on a lookup error). Results update the next scan's
+cache. An offline dashboard rescore preserves the original request counters.
+
+### Additional careers pages
+
 Five additional parent companies are configured separately in
 `config/gcc_listing_sources.json`. The scheduled scanner reads these sources in
 its existing ATS phase. They are not added to the scoring registry or LinkedIn

@@ -28,14 +28,16 @@ def resolve_company_ids(http: Http, names: list[str], accept) -> list[dict]:
     """
     found, seen = [], set()
     for name in names:
-        resp = http.get(TYPEAHEAD_API, params={"typeaheadType": "COMPANY", "query": name})
+        resp = http.get(TYPEAHEAD_API, params={"typeaheadType": "COMPANY", "query": name}, retries=0)
         if resp.status_code != 200:
-            continue
+            raise ConnectionError(f"company lookup: HTTP {resp.status_code}")
         try:
             hits = resp.json()
-        except ValueError:
-            continue
-        for hit in hits if isinstance(hits, list) else []:
+        except ValueError as exc:
+            raise ConnectionError("company lookup: expected JSON") from exc
+        if not isinstance(hits, list):
+            raise ConnectionError("company lookup: expected a list")
+        for hit in hits:
             cid, label = str(hit.get("id") or ""), hit.get("displayName") or ""
             if cid.isdigit() and cid not in seen and accept(label):
                 seen.add(cid)

@@ -10,6 +10,7 @@ import argparse
 import os
 import re
 import time
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from datetime import timedelta
 
@@ -73,33 +74,50 @@ class Scan:
         self.observations.append({**row, "seen_at": seen_at, "estimate": estimate, "via": via, "window": window,
                                   "assume_india": assume_india, "targeted": targeted})
 
-    def resolve_companies(self, queries, budget):
-        """Attach LinkedIn company ids so each company query is restricted to its employer."""
-        learned, terms = self.archive["learned"], self.search["linkedin"]["company_terms"]
-        employers = {e["id"]: e for e in self.employers["employers"]}
-        stale = self.started - timedelta(days=30)
-        # pages that share an employer's name but are not the employer (stadiums, fan pages, foreign branches)
-        reject = re.compile(self.search["linkedin"].get("company_name_reject") or r"(?!)", re.I)
+    def prepare_companies(self, queries):
+        """Prepare searches without HTTP; a cache miss uses the existing keyword fallback."""
         resolved = 0
         for q in queries:
-            emp = employers[q["employer_id"]]
-            entry = learned.setdefault(emp["id"], {})
-            checked = parse_iso(entry.get("ids_at")) if entry.get("ids_rule") == IDS_RULE else None
-            if (not checked or checked < stale) and not self.guard.aborted and not budget.spent:
-                names = list(dict.fromkeys([emp["query"], emp["name"]]))
-                accept = lambda label, emp=emp: (not reject.search(label or "")  # noqa: E731
-                                                 and (self.scorer.match_employer(label) or {}).get("id") == emp["id"])
-                hits = self.guard.run(lambda: linkedin.resolve_company_ids(self.li_http, names, accept), budget)
-                if hits is not None:
-                    entry["linkedin_ids"], entry["ids_at"], entry["ids_rule"] = hits, iso(self.started), IDS_RULE
-            ids = [h["id"] for h in entry.get("linkedin_ids") or []]
-            if ids:
-                q.update(company_ids=ids, keywords=linkedin.or_terms(terms), mode="company_filter",
-                         company_names=[h["name"] for h in entry["linkedin_ids"]])
+            entry = self.archive["learned"].get(q["employer_id"], {})
+            hits = entry.get("linkedin_ids") if entry.get("ids_rule") == IDS_RULE else None
+            if hits:
+                q.update(company_ids=[h["id"] for h in hits], keywords=linkedin.or_terms(self.search["linkedin"]["company_terms"]),
+                         mode="company_filter", company_names=[h["name"] for h in hits])
                 resolved += 1
             else:
                 q["mode"] = "keyword"
         return resolved
+
+    def refresh_company_ids(self, queries, budget):
+        """Best-effort cache maintenance for future scans, after all LinkedIn job reads."""
+        stats = {"attempted": 0, "refreshed": 0}
+        employers = {e["id"]: e for e in self.employers["employers"]}
+        stale = self.started - timedelta(days=30)
+        # pages that share an employer's name but are not the employer (stadiums, fan pages, foreign branches)
+        reject = re.compile(self.search["linkedin"].get("company_name_reject") or r"(?!)", re.I)
+        for q in queries:
+            if budget.spent or self.guard.events or self.guard.aborted or stats["attempted"] >= 5:
+                break
+            emp = employers[q["employer_id"]]
+            entry = self.archive["learned"].setdefault(emp["id"], {})
+            checked = parse_iso(entry.get("ids_at")) if entry.get("ids_rule") == IDS_RULE else None
+            if not checked or checked < stale:
+                names = list(dict.fromkeys([emp["query"], emp["name"]]))
+                accept = lambda label, emp=emp: (not reject.search(label or "")  # noqa: E731
+                                                 and (self.scorer.match_employer(label) or {}).get("id") == emp["id"])
+                stats["attempted"] += 1
+                try:
+                    hits = linkedin.resolve_company_ids(self.li_http, names, accept)
+                except linkedin.Throttled as exc:
+                    self.guard.events += 1
+                    stats["stopped"] = str(exc)
+                    break
+                except ConnectionError as exc:
+                    stats["stopped"] = str(exc)[:160]
+                    break
+                entry["linkedin_ids"], entry["ids_at"], entry["ids_rule"] = hits, iso(self.started), IDS_RULE
+                stats["refreshed"] += 1
+        return stats
 
     # ------------------------------------------------------------ LinkedIn
     def linkedin_queries(self):
@@ -129,7 +147,10 @@ class Scan:
                 self.queries.append(record)
                 continue
             seen_at = now_utc()
-            result = self.guard.run(lambda q=q: linkedin.search(self.li_http, q["keywords"], q["location"], seconds, q["max_pages"], budget, q.get("company_ids")), budget)
+            try:
+                result = self.guard.run(lambda q=q: linkedin.search(self.li_http, q["keywords"], q["location"], seconds, q["max_pages"], budget, q.get("company_ids")), budget)
+            except ConnectionError as exc:
+                result = [], {"state": "network_error", "error": str(exc)[:160], "returned": 0}
             if result is None:
                 record.update(state="throttled", returned=0)
             else:
@@ -139,10 +160,16 @@ class Scan:
                     estimate = posted_estimate(seen_at, linkedin.card_bounds(card), hours)
                     self.observe({**card, "platform": "linkedin"}, seen_at, estimate, q["id"], window=hours, assume_india=True,
                                  targeted=q.get("mode") == "company_filter")
-                done += 1
+                done += int(status["state"] == "ok")
             self.queries.append(record)
             print(f"   {record['id']} {record['label'][:34]:34} {hours}h -> {record.get('state')} {record.get('returned', 0)}", flush=True)
         return done
+
+    def search_counts(self, planned):
+        records = self.queries[-planned:] if planned else []
+        states = Counter(r["state"] for r in records)
+        skipped = sum(n for state, n in states.items() if state.startswith("skipped_"))
+        return {"attempted": planned - skipped, "outcomes": dict(states)}
 
     def qualified_in_window(self, hours):
         """Roles from this run that clear the threshold inside the window, after descriptions were read."""
@@ -401,11 +428,12 @@ class Scan:
         li_queries = [q for q in self.queries if q["kind"] in ("company", "skill")]
         li_ok = sum(1 for q in li_queries if q.get("state") == "ok")
         ats_ok = sum(1 for s in self.ats_status.values() if s["state"] == "ok")
-        self.sources.setdefault("linkedin", {}).update(
-            queries=len(li_queries), ok=li_ok, capped=sum(1 for q in li_queries if q.get("capped")),
-            throttle_events=self.guard.events, aborted=self.guard.aborted, requests=self.li_http.requests,
-            state="not_run" if not li_queries else "ok" if li_ok == len(li_queries) else "partial" if li_ok else "failed",
-        )
+        if finished:  # an offline rescore must preserve the original source counters
+            self.sources.setdefault("linkedin", {}).update(
+                queries=len(li_queries), ok=li_ok, capped=sum(1 for q in li_queries if q.get("capped")),
+                throttle_events=self.guard.events, aborted=self.guard.aborted, requests=self.li_http.requests,
+                state="not_run" if not li_queries else "ok" if li_ok == len(li_queries) else "partial" if li_ok else "failed",
+            )
         self.sources["ats"] = {"configured": len(self.ats_status), "ok": ats_ok,
                                "state": "not_run" if not self.ats_status else "ok" if ats_ok == len(self.ats_status) else "partial" if ats_ok else "failed"}
         run_id = os.environ.get("GITHUB_RUN_ID")
@@ -475,15 +503,16 @@ class Scan:
 
         p1 = self.phase(1, "LinkedIn company scans")
         with li_budget:
-            resolved = self.resolve_companies(company, li_budget)
+            resolved = self.prepare_companies(company)
             done = self.run_linkedin(company, primary, li_budget)
         self.close(p1, "ok" if done == len(company) else "partial" if done else "failed", queries=len(company), completed=done,
-                   window_hours=primary, company_filter=resolved, keyword_fallback=len(company) - resolved)
+                   window_hours=primary, company_filter=resolved, keyword_fallback=len(company) - resolved, **self.search_counts(len(company)))
 
         p2 = self.phase(2, "LinkedIn skill searches")
         with li_budget:
             done = self.run_linkedin(skill, primary, li_budget)
-        self.close(p2, "ok" if done == len(skill) else "partial" if done else "failed", queries=len(skill), completed=done, window_hours=primary)
+        self.close(p2, "ok" if done == len(skill) else "partial" if done else "failed", queries=len(skill), completed=done, window_hours=primary,
+                   **self.search_counts(len(skill)))
 
         self.merge()
         with detail_budget:
@@ -496,7 +525,8 @@ class Scan:
             with li_budget:
                 done = self.run_linkedin(skill + company, secondary, li_budget)
             self.close(p2b, "ok" if done == len(skill) + len(company) else "partial" if done else "failed",
-                       reason=f"only {found} roles cleared the threshold in {primary}h", queries=len(skill) + len(company), completed=done)
+                       reason=f"only {found} roles cleared the threshold in {primary}h", queries=len(skill) + len(company), completed=done,
+                       **self.search_counts(len(skill) + len(company)))
 
         p3 = self.phase(3, "Naukri.com")
         rows, nk = naukri.canary(Http(min_gap=1, max_gap=2))
@@ -517,7 +547,9 @@ class Scan:
         touched = self.merge()
         with detail_budget:
             detail = self.enrich(detail_budget)
-        self.sources["linkedin"] = {"details": detail}
+        with li_budget, Budget(min(60, li_budget.left)) as lookup_budget:
+            refresh = self.refresh_company_ids(company, lookup_budget)
+        self.sources["linkedin"] = {"details": detail, "id_refresh": refresh}
         self.close(p5, "ok" if not detail["failed"] and not detail["unread"] else "partial", unique_roles=len(touched), descriptions=detail)
 
         p6 = self.phase(6, "Scoring, top-10 digest and publication")
