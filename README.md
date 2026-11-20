@@ -26,6 +26,7 @@ Failed, capped, rate-limited or blocked sources are recorded as coverage gaps an
 - **Employers** — all 95 entries in the target universe by category and tier, with roles found in 30h and 72h, career-portal feed status, and one-click LinkedIn (past 24 hours), Naukri (posted today) and careers-page searches.
 - **Search launcher** — the 15 LinkedIn skill queries with last-scan results, Naukri advanced searches, and the weekly and monthly manual platforms (iimjobs, eFinancialCareers, Instahyre, Wellfound, Cutshort) with due reminders.
 - **Coverage** — phase timings, per-query and per-portal outcomes, and run history.
+- **Bulk tracking** — check individual rows or **Select all matching jobs**, then mark them **Applied**, **Skip**, **Saved**, or **Reset to New** together. Select all includes rows behind “Show more”, but never jobs outside the current filters. Tracking stays in this browser; it does not submit job applications.
 - **Logic** — the scoring formula, bands, keyword lists, exclusions and time-window rules, rendered from the same config the scanner used.
 
 ## Refreshing

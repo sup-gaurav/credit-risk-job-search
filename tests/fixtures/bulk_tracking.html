@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Bulk tracking browser regression</title>
+<body>
+<a id="skip-link" href="#main">Skip</a>
+<div id="scan-state"></div><button id="btn-refresh"><span></span><span>Refresh</span></button>
+<button id="btn-theme"></button><nav id="tabs"></nav><main id="main"></main>
+<dialog id="drawer"></dialog><dialog id="modal"></dialog><div id="toast"></div>
+<pre id="test-result">RUNNING</pre>
+<script>
+// Serve the repository root: python -m http.server 8765 --bind 127.0.0.1
+// Open http://127.0.0.1:8765/tests/fixtures/bulk_tracking.html in a browser.
+// All application data and GitHub calls are mocked; no scan is triggered.
+(async () => {
+  const output = document.querySelector('#test-result');
+  const backup = localStorage.getItem('crjs.marks');
+  const restore = () => backup == null ? localStorage.removeItem('crjs.marks') : localStorage.setItem('crjs.marks', backup);
+  window.addEventListener('error', e => { output.textContent = 'FAIL: ' + e.message; restore(); });
+  try {
+    const cfg = await (await fetch('../../site/data/config.json')).json();
+    const jobs = Array.from({length: 61}, (_, i) => ({
+      id: `bulk-test-${i}`, title: 'VP Credit Risk Modeling', company: i < 60 ? 'Alpha' : 'Beta',
+      location: 'Mumbai, India', city: 'Mumbai', cities: ['Mumbai'], platforms: ['linkedin'],
+      posted_at: new Date().toISOString(), posted_text: 'Just now', first_seen: new Date().toISOString(),
+      sources: [{platform: 'linkedin', url: 'https://example.com/job', via: []}],
+      score: {base: 80, cap: 100, role: 35, skills: 25, employer: 5, seniority: 10, location: 5},
+      matched: {}, excluded: null, closed: false
+    }));
+    const status = {state: 'complete', finished: new Date().toISOString(), sources: {}, funnel: {}};
+    localStorage.removeItem('crjs.marks');
+    window.fetch = async url => ({ok: true, json: async () => String(url).includes('config.json') ? cfg : String(url).includes('status.json') ? status : String(url).includes('jobs.json') ? {jobs} : {workflow_runs: []}});
+    const app = document.createElement('script'); app.src = '../../site/app.js';
+    await new Promise((resolve, reject) => { app.onload = resolve; app.onerror = reject; document.body.appendChild(app); });
+    for (let i = 0; i < 100 && !document.querySelector('#select-all-jobs'); i++) await new Promise(r => setTimeout(r, 10));
+    const $ = q => document.querySelector(q), $$ = q => [...document.querySelectorAll(q)];
+    let count = 0;
+    const assert = (value, message) => { if (!value) throw Error(message); count++; };
+    const search = async value => { $('#q').value = value; $('#q').dispatchEvent(new Event('input', {bubbles: true})); await new Promise(r => setTimeout(r, 160)); };
+    const marks = () => JSON.parse(localStorage.getItem('crjs.marks') || '{}');
+    assert($$('[data-select-job]').length === 50, 'initial display limit');
+    assert($('[data-bulk-mark="applied"]').disabled, 'bulk actions disabled without selection');
+    $('[data-select-job]').click();
+    assert(!$('#drawer').open, 'checkbox must not open drawer');
+    assert($('#select-all-jobs').indeterminate, 'partial selection indicator');
+    assert($('#selection-count').textContent.startsWith('1 of 61'), 'one selection counted');
+    $('[data-act="clear-selection"]').click();
+    assert($('[data-bulk-mark="skip"]').disabled, 'clear selection disables actions');
+    $('#select-all-jobs').click();
+    assert($('#selection-count').textContent.startsWith('61 of 61'), 'select all includes Show more rows');
+    await search('Alpha');
+    assert($('#selection-count').textContent.startsWith('60 of 60'), 'filter removes hidden selections');
+    $('[data-bulk-mark="applied"]').click();
+    assert(Object.values(marks()).filter(v => v === 'applied').length === 60, 'all selected rows marked, including unrendered rows');
+    assert(!marks()['bulk-test-60'], 'filtered-out Beta untouched');
+    assert($('#selection-count').textContent.startsWith('0 of 0'), 'hideDone removes Applied rows and clears selection');
+    $('[data-testid="toggle-hide-done"]').click();
+    assert($$('[data-select-job]').length === 50, 'marked jobs visible when hideDone disabled');
+    $('#select-all-jobs').click(); $('[data-bulk-mark="skip"]').click();
+    assert(Object.values(marks()).filter(v => v === 'skip').length === 60, 'bulk Skip persisted');
+    $('#select-all-jobs').click(); $('[data-bulk-mark="saved"]').click();
+    assert(Object.values(marks()).filter(v => v === 'saved').length === 60, 'bulk Saved persisted');
+    $('#select-all-jobs').click(); $('[data-bulk-mark=""]').click();
+    assert(Object.keys(marks()).length === 0, 'Reset to New removes tracking marks');
+    const first = $('[data-select-job]'); first.click();
+    first.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter', bubbles: true}));
+    assert(!$('#drawer').open, 'checkbox keyboard interaction must not open drawer');
+    $('[data-bulk-mark="skip"]').click();
+    assert(Object.keys(marks()).length === 1, 'individual selection only updates one job');
+    const select = $('[data-mark]'); select.value = 'saved'; select.dispatchEvent(new Event('change', {bubbles: true}));
+    assert(marks()[select.dataset.mark] === 'saved', 'existing per-job dropdown still works');
+    await search('no matching postings');
+    assert($('#select-all-jobs').disabled && $('[data-bulk-mark="applied"]').disabled, 'empty results cannot be selected');
+    output.textContent = `PASS: ${count} bulk tracking browser assertions`;
+  } catch (error) { output.textContent = 'FAIL: ' + error.stack; }
+  finally { restore(); }
+})();
+</script>
+</body>
+</html>

@@ -46,6 +46,7 @@ const S = {
   f: {window: 30, bands: new Set(), category: '', city: '', platform: '', target: false, verified: false, hideDone: true, excluded: false, q: ''},
   sort: {key: 'score', dir: -1}, limit: 50,
   marks: store.get('marks', {}), checks: store.get('checks', {}),
+  selected: new Set(),
   empF: {category: '', hiring: false},
 };
 
@@ -207,6 +208,36 @@ const freshTag = L => `<span class="tag ${L.fs.cls}" title="${esc(L.fs.why)}">${
 const srcTags = j => j.platforms.map(p => `<span class="tag">${esc(pname(p))}</span>`).join('');
 const markSel = j => `<select class="mark" data-mark="${esc(j.id)}" data-testid="select-mark-${esc(j.id)}" aria-label="Tracking status for ${esc(j.title)}">${[['', 'New'], ['saved', 'Saved'], ['applied', 'Applied'], ['skip', 'Skip']].map(([v, l]) => `<option value="${v}"${(S.marks[j.id] || '') === v ? ' selected' : ''}>${l}</option>`).join('')}</select>`;
 
+function syncSelection() {
+  const ids = new Set(filtered().map(({j}) => j.id));
+  S.selected = new Set([...S.selected].filter(id => ids.has(id)));
+  const all = $('#select-all-jobs');
+  if (all) {
+    all.checked = ids.size > 0 && S.selected.size === ids.size;
+    all.indeterminate = S.selected.size > 0 && S.selected.size < ids.size;
+    all.disabled = !ids.size;
+  }
+  const count = $('#selection-count');
+  if (count) count.textContent = `${S.selected.size} of ${ids.size} matching jobs selected`;
+  document.querySelectorAll('[data-select-job]').forEach(input => {
+    input.checked = S.selected.has(input.dataset.selectJob);
+    input.closest('tr').classList.toggle('selected', input.checked);
+  });
+  document.querySelectorAll('[data-bulk-mark],[data-act="clear-selection"]').forEach(button => { button.disabled = !S.selected.size; });
+}
+
+function bulkMark(value) {
+  if (!['', 'saved', 'applied', 'skip'].includes(value)) return;
+  // Take a snapshot before hideDone removes marked jobs from the current results.
+  const ids = filtered().map(({j}) => j.id).filter(id => S.selected.has(id));
+  if (!ids.length) return;
+  ids.forEach(id => { if (value) S.marks[id] = value; else delete S.marks[id]; });
+  store.set('marks', S.marks);
+  S.selected.clear();
+  render();
+  toast(`${ids.length} job${ids.length === 1 ? '' : 's'} marked ${value === 'skip' ? 'Skip' : value === 'applied' ? 'Applied' : value === 'saved' ? 'Saved' : 'New'}.`);
+}
+
 function viewShortlist() {
   const st = S.status, sc = S.cfg.scoring, w = sc.windows;
   if (st.state === 'never_run') {
@@ -257,8 +288,19 @@ function viewShortlist() {
     <label class="check"><input type="checkbox" data-t="hideDone" data-testid="toggle-hide-done"${f.hideDone ? ' checked' : ''}>Hide applied and skipped</label>
     <label class="check"><input type="checkbox" data-t="excluded" data-testid="toggle-excluded"${f.excluded ? ' checked' : ''}>Show filtered-out</label>
   </div>
-  ${rows.length ? `<div class="tablewrap"><table data-testid="table-roles"><thead><tr><th>${sortBtn('score', 'Score')}</th><th>Role</th><th>Location</th><th>${sortBtn('posted', 'Posted')}</th><th>${sortBtn('applicants', 'Applicants')}</th><th>Found on</th><th>Track</th><th><span class="sr">Apply</span></th></tr></thead><tbody>
+  <div class="bulk-actions" role="group" aria-label="Bulk job tracking">
+    <label class="check"><input type="checkbox" id="select-all-jobs" data-testid="select-all-jobs">Select all matching jobs</label>
+    <span id="selection-count" class="sub" role="status" aria-live="polite"></span>
+    <button class="btn sm" data-bulk-mark="applied" data-testid="bulk-applied" disabled>Mark Applied</button>
+    <button class="btn sm" data-bulk-mark="skip" data-testid="bulk-skip" disabled>Mark Skip</button>
+    <button class="btn sm" data-bulk-mark="saved" data-testid="bulk-saved" disabled>Mark Saved</button>
+    <button class="btn sm" data-bulk-mark="" data-testid="bulk-new" disabled>Reset to New</button>
+    <button class="btn sm ghost" data-act="clear-selection" disabled>Clear selection</button>
+    <span class="sub bulk-scope">Select all includes matching jobs behind “Show more”, not jobs outside your filters.</span>
+  </div>
+  ${rows.length ? `<div class="tablewrap"><table data-testid="table-roles"><thead><tr><th><span class="sr">Select jobs</span></th><th>${sortBtn('score', 'Score')}</th><th>Role</th><th>Location</th><th>${sortBtn('posted', 'Posted')}</th><th>${sortBtn('applicants', 'Applicants')}</th><th>Found on</th><th>Track</th><th><span class="sr">Apply</span></th></tr></thead><tbody>
     ${shown.map(({j, L}) => `<tr class="rowlink${L.excluded ? ' dim' : ''}" tabindex="0" data-open="${esc(j.id)}" data-testid="row-role-${esc(j.id)}">
+      <td class="job-selection"><input type="checkbox" data-select-job="${esc(j.id)}" data-testid="select-job-${esc(j.id)}" aria-label="Select ${esc(j.title)} at ${esc(j.company)}"></td>
       <td>${scoreBox(j, L)}</td>
       <td class="role"><div class="t">${esc(j.title)}</div><div class="c">${esc(j.company)}${j.tier ? ` <span class="tag">${esc(j.tier)}</span>` : ''}${L.excluded ? ` <span class="tag bad">${esc(exLabel(L.excluded))}</span>` : ''}${j.score.title_only ? ' <span class="tag" title="Description not read; skills estimated from the title">Title only</span>' : ''}</div></td>
       <td>${esc(j.city)}</td>
@@ -504,16 +546,18 @@ function render(keepFocus) {
   if (S.loadError || !S.cfg) { main.innerHTML = `<section class="view"><div class="panel empty" data-testid="error-load"><h3>Could not load the published data</h3><p>${esc(S.loadError || 'Unknown error')}</p><button class="btn primary" data-act="reload">Try again</button></div></section>`; return; }
   const focusId = keepFocus && document.activeElement?.id, pos = focusId === 'q' ? document.activeElement.selectionStart : null;
   main.innerHTML = ({shortlist: viewShortlist, employers: viewEmployers, launcher: viewLauncher, coverage: viewCoverage, logic: viewLogic}[S.tab])();
+  if (S.tab === 'shortlist') syncSelection();
   if (focusId === 'q') { const q = $('#q'); q.focus(); q.setSelectionRange(pos, pos); }
 }
 function setTheme(t) { document.documentElement.dataset.theme = t; store.set('theme', t); $('#btn-theme').innerHTML = ico(t === 'dark' ? 'sun' : 'moon'); }
 
 document.addEventListener('click', async e => {
-  const t = e.target.closest('[data-tab],[data-act],[data-open],[data-window],[data-band],[data-sort],[data-ecat],[data-check],[data-goto],#btn-refresh,#btn-theme');
+  const t = e.target.closest('[data-tab],[data-act],[data-bulk-mark],[data-open],[data-window],[data-band],[data-sort],[data-ecat],[data-check],[data-goto],#btn-refresh,#btn-theme');
   if (!t) return;
   if (e.target.closest('a[href]') && !t.dataset.goto) return;
-  if (e.target.closest('select')) return;
+  if (e.target.closest('select,input,label')) return;
   const d = t.dataset;
+  if (d.bulkMark != null) return bulkMark(d.bulkMark);
   if (t.id === 'btn-refresh') return openRefresh();
   if (t.id === 'btn-theme') return setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
   if (d.tab) { S.tab = d.tab; render(); window.scrollTo(0, 0); return; }
@@ -527,6 +571,7 @@ document.addEventListener('click', async e => {
   switch (d.act) {
     case 'refresh': return openRefresh();
     case 'more': S.limit += 50; return render();
+    case 'clear-selection': S.selected.clear(); return syncSelection();
     case 'clear': S.f = {window: 0, bands: new Set(), category: '', city: '', platform: '', target: false, verified: false, hideDone: false, excluded: false, q: ''}; return render();
     case 'csv': return csv();
     case 'close-drawer': return $('#drawer').close();
@@ -539,13 +584,15 @@ document.addEventListener('click', async e => {
 });
 document.addEventListener('change', e => {
   const t = e.target, d = t.dataset;
-  if (d.f) { S.f[d.f] = t.value; S.limit = 50; render(); }
+  if (t.id === 'select-all-jobs') { S.selected = t.checked ? new Set(filtered().map(({j}) => j.id)) : new Set(); syncSelection(); }
+  else if (d.selectJob != null) { t.checked ? S.selected.add(d.selectJob) : S.selected.delete(d.selectJob); syncSelection(); }
+  else if (d.f) { S.f[d.f] = t.value; S.limit = 50; render(); }
   else if (d.t) { S.f[d.t] = t.checked; S.limit = 50; render(); }
   else if (d.et) { S.empF[d.et] = t.checked; render(); }
   else if (d.mark) { if (t.value) S.marks[d.mark] = t.value; else delete S.marks[d.mark]; store.set('marks', S.marks); const inDrawer = !!t.closest('#drawer'); render(); if (inDrawer) openDrawer(d.mark); }
 });
 document.addEventListener('input', e => { if (e.target.id === 'q') { S.f.q = e.target.value; S.limit = 50; clearTimeout(S._q); S._q = setTimeout(() => render(true), 120); } });
-document.addEventListener('keydown', e => { const r = e.target.closest?.('tr[data-open]'); if (r && e.key === 'Enter') openDrawer(r.dataset.open); });
+document.addEventListener('keydown', e => { const r = e.target.closest?.('tr[data-open]'); if (r && e.target === r && e.key === 'Enter') openDrawer(r.dataset.open); });
 for (const id of ['drawer', 'modal']) $('#' + id).addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.close(); });
 $('#skip-link').addEventListener('click', e => { e.preventDefault(); $('#main').focus(); });
 
