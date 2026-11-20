@@ -1,6 +1,6 @@
 # Credit Risk Job Search System v1.0
 
-A free, self-refreshing dashboard for senior credit risk modeling roles in India. A GitHub Actions workflow runs the search once a day and on demand, scores every role, and publishes a static dashboard on GitHub Pages. No paid API, server or AI model is involved in a refresh.
+A free, self-refreshing dashboard for senior credit risk modeling roles in India. A GitHub Actions workflow runs the search every four hours and on demand, scores every role, and publishes a static dashboard on GitHub Pages. No paid API, server or AI model is involved in a refresh.
 
 **Dashboard:** https://sup-gaurav.github.io/credit-risk-job-search/
 
@@ -32,7 +32,7 @@ Failed, capped, rate-limited or blocked sources are recorded as coverage gaps an
 
 | How | Steps |
 | --- | --- |
-| Automatic | Every day at 03:30 UTC (9:00 AM IST). GitHub may start scheduled runs late at busy times. |
+| Automatic | Every four hours at 00:30, 04:30, 08:30, 12:30, 16:30 and 20:30 UTC (02:00, 06:00, 10:00, 14:00, 18:00 and 22:00 IST). No open browser is required. GitHub may start scheduled runs late. |
 | Dashboard, no setup | Refresh → Open scan request → press Create on GitHub. The workflow runs only for issues opened by the repository owner with a title starting `[SCAN]`, and closes the issue with the top-10 when it finishes. |
 | Dashboard, one click | Refresh → paste a fine-grained personal access token limited to this repository with **Actions: Read and write**. It is stored only in that browser. |
 | GitHub | Actions → Credit risk job scan → Run workflow. |
@@ -41,7 +41,33 @@ A scan takes roughly 15 to 40 minutes. The dashboard shows "Scan running" and re
 
 After each scheduled scan the workflow opens a GitHub issue with the top 10 and direct apply links, which GitHub emails to the repository owner. Set the repository variable `DIGEST_ISSUE` to `off` to stop it.
 
-## Scoring
+## GCC portal pilot (partial expansion)
+
+Five additional parent companies are configured separately in
+`config/gcc_listing_sources.json`. The scheduled scanner reads these sources in
+its existing ATS phase. They are not added to the scoring registry or LinkedIn
+queries; India, freshness, deduplication, score, ranking and digest rules remain
+unchanged. The requested 200-addition expansion is **not complete**: the pilot has
+three capped sources, so expansion is paused. See `audit/gcc_employers.md` for
+public evidence and `audit/gcc_pilot.json` for live coverage counts.
+
+Re-run only portal discovery and the recommendation path with temporary state:
+
+```sh
+python -m scanner.pilot --output audit/gcc_pilot.json
+```
+
+The pilot does not call LinkedIn or Naukri, and does not overwrite dashboard or
+archive files. Its India counts are observations from the specified index, not
+a guarantee of total vacancies. A missing date stays unknown; first seen and
+page update timestamps are never substituted for job publication dates by the
+new adapters. Capped, blocked, unsupported and failed sources are coverage gaps.
+
+The four-hour schedule takes effect only after the workflow is published on the
+repository's default branch and Actions is enabled. No commit or push is done
+by this local task.
+
+## Scoring formula
 
 ```
 FINAL_SCORE = min(cap, role fit (0-35) + skills match (0-25) + employer tier (0-15)

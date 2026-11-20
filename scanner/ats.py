@@ -215,6 +215,9 @@ def posted_from_row(row: dict, seen: datetime):
 
 def scan_employer(http: Http, emp: dict, terms: list[str], settings: dict, budget: Budget):
     cfg = emp.get("ats") or {}
+    if cfg.get("type") == "public_listings":
+        from .public_listings import scan
+        return scan(http, emp, settings, budget)
     adapter = ADAPTERS.get(cfg.get("type"))
     if not adapter:
         return [], {"state": "no_adapter"}

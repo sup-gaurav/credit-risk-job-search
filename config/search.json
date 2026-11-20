@@ -5,8 +5,8 @@
     "company_name_reject": "stadium|plaza|foundation|chapter|lambda|hospital|changers|personal loan|\\bcares\\b|credit cards|\\batm\\b|charitable|university|small businesses|incubator|simpli|wi-?fi|insurance broker|first commonwealth|west state street|bahamas|indonesia|viet ?nam|polska|italia|brasil|france|philippines|sri lanka|canada|\\busa\\b|mobility|acuity, inc|ayco|\\bpage\\b|fort ?,",
     "max_pages_skill": 8,
     "skill_queries": [
-      {"id": "S01", "set": "Core credit risk", "label": "Credit Risk + AVP", "keywords": "\"credit risk\" AND AVP"},
-      {"id": "S02", "set": "Core credit risk", "label": "Credit Risk + Director", "keywords": "\"credit risk\" AND Director", "locations": ["Mumbai, Maharashtra, India", "Bengaluru, Karnataka, India"]},
+      {"id": "S01", "set": "Core credit risk", "label": "Credit Risk + AVP", "keywords": "\"credit risk\" AND AVP", "locations": ["Dubai, United Arab Emirates", "Riyadh, Saudi Arabia", "Doha, Qatar", "Mumbai, Maharashtra, India", "Bengaluru, Karnataka, India"]},
+      {"id": "S02", "set": "Core credit risk", "label": "Credit Risk + Director", "keywords": "\"credit risk\" AND Director", "locations": ["Dubai, United Arab Emirates", "Riyadh, Saudi Arabia", "Doha, Qatar", "Mumbai, Maharashtra, India", "Bengaluru, Karnataka, India"]},
       {"id": "S03", "set": "Core credit risk", "label": "Credit Risk Modeling + VP", "keywords": "(\"credit risk modeling\" OR \"credit risk modelling\") AND (VP OR \"Vice President\")"},
       {"id": "S04", "set": "Core credit risk", "label": "Risk Analytics + VP / AVP / Director", "keywords": "\"risk analytics\" AND (VP OR AVP OR Director)"},
       {"id": "S05", "set": "Core credit risk", "label": "Model Development + Credit", "keywords": "\"model development\" AND credit"},
@@ -49,5 +49,5 @@
     {"id": "cutshort", "name": "Cutshort", "cadence": "Monthly", "cadence_days": 30, "why": "Risk analytics and data science in finance", "params": "Credit risk analytics", "links": [
       {"label": "Credit risk", "url": "https://cutshort.io/jobs/credit-risk-jobs"}]}
   ],
-  "schedule": {"cron_utc": "30 3 * * *", "label": "Daily 9:00 AM IST", "hour_ist": 9, "minute_ist": 0}
+  "schedule": {"cron_utc": "30 */4 * * *", "label": "Every 4 hours", "hour_ist": null, "minute_ist": 30}
 }

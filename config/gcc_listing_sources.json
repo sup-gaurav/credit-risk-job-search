@@ -1,0 +1,7 @@
+[
+  {"id":"lloyds-banking-group","name":"Lloyds Banking Group","careers_url":"https://www.lloydstechnologycentre.com/","ats":{"type":"public_listings","format":"workday_sitemap","url":"https://lbg.wd3.myworkdayjobs.com/Lloyds_Technology_Centre/siteMap.xml"}},
+  {"id":"sun-life-financial","name":"Sun Life Financial","careers_url":"https://www.sunlife.com/slgs/en/careers/","ats":{"type":"public_listings","format":"workday_sitemap","url":"https://sunlife.wd3.myworkdayjobs.com/Experienced-Jobs/siteMap.xml"}},
+  {"id":"synchrony-financial","name":"Synchrony Financial","careers_url":"https://www.synchronycareers.com/","ats":{"type":"public_listings","format":"featured_cards","url":"https://www.synchronycareers.com/About-Us-India"}},
+  {"id":"ameriprise-financial","name":"Ameriprise Financial","careers_url":"https://www.ameriprise.com/careers/india-jobs","ats":{"type":"public_listings","format":"workday_sitemap","url":"https://ameriprise.wd5.myworkdayjobs.com/Ameriprise/siteMap.xml"}},
+  {"id":"voya-financial","name":"Voya Financial","careers_url":"https://www.voyaindia.com/career/","ats":{"type":"public_listings","format":"voya_india","url":"https://www.voyaindia.com/wp-admin/admin-ajax.php"}}
+]

@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -17,7 +18,10 @@ from scanner import ats, common, linkedin, naukri, pipeline  # noqa: E402
 from scanner.scoring import Scorer  # noqa: E402
 
 FIX = ROOT / "tests" / "fixtures"
-SCORER = Scorer(json.loads((ROOT / "config/scoring.json").read_text()), json.loads((ROOT / "config/employers.json").read_text()))
+SCORING = common.load_json(common.CONFIG / "scoring.json")
+LEGACY_EMPLOYERS = common.load_json(common.CONFIG / "employers.json")
+ACTIVE_EMPLOYERS = common.load_json(common.CONFIG / "gcc_employers.json") or LEGACY_EMPLOYERS
+SCORER = Scorer(SCORING, ACTIVE_EMPLOYERS)
 T0 = datetime(2026, 11, 15, 7, 30, tzinfo=timezone.utc)
 
 RICH = ("Develop IFRS 9 ECL credit risk models covering PD, LGD and EAD for retail and wholesale credit portfolios. Basel IRB model "
@@ -133,15 +137,17 @@ class ScoringTests(unittest.TestCase):
         self.assertEqual(top["band"], "Tier 3")
 
     def test_employer_aliases(self):
+        # These assertions describe the legacy registry; the GCC registry has different aliases and IDs.
+        legacy = Scorer(SCORING, LEGACY_EMPLOYERS)
         cases = {"JPMorganChase": "jpmorgan-chase", "Citi": "citi", "Citigroup": "citi", "KPMG India": "kpmg", "EY": "ey",
                  "PwC Acceleration Centers in India": "pwc", "Bajaj Finance Limited": "bajaj-finserv", "SMFG India Credit": "fullerton-india",
                  "S&P Global": "s-p-global-market-intelligence", "Moody's": "moody-s-analytics", "Accenture in India": "accenture",
                  "TD Securities": "td-bank", "Kotak Mahindra Bank": "kotak-mahindra-bank"}
         for name, expected in cases.items():
-            hit = SCORER.match_employer(name)
+            hit = legacy.match_employer(name)
             self.assertEqual(hit and hit["id"], expected, name)
         for name in ("Citizens Bank", "Jupiter Wagons", "Credila", "Bain Capital", "ICICI Lombard", "HDFC Life", "Bajaj Auto"):
-            self.assertIsNone(SCORER.match_employer(name), name)
+            self.assertIsNone(legacy.match_employer(name), name)
 
     def test_freshness_points_decay(self):
         self.assertGreater(SCORER.freshness(5, 10), SCORER.freshness(40, 10))
@@ -212,6 +218,14 @@ class PipelineTests(unittest.TestCase):
     """End-to-end with every network call replaced."""
 
     def setUp(self):
+        # Isolate writes even when another test module imported scanner before this module.
+        from scanner import digest
+        self.path_patch = patch.multiple(pipeline, DATA=Path(_tmp) / "data", ARCHIVE=Path(_tmp) / "state" / "archive.json")
+        self.digest_patch = patch.object(digest, "DATA", Path(_tmp) / "data")
+        self.path_patch.start()
+        self.digest_patch.start()
+        self.addCleanup(self.path_patch.stop)
+        self.addCleanup(self.digest_patch.stop)
         self.orig = (linkedin.search, linkedin.fetch_detail, ats.scan_employer, naukri.canary, pipeline.now_utc, linkedin.resolve_company_ids)
         for name in ("data", "state"):
             folder = Path(_tmp) / name
@@ -243,8 +257,21 @@ class PipelineTests(unittest.TestCase):
         linkedin.resolve_company_ids = lambda http, names, accept: [] if names[0] == "UBS" else [{"id": "id:" + names[0], "name": names[0]}]
         naukri.canary = lambda http: ([], {"state": "interaction_required"})
         sys.argv = ["pipeline", *argv]
-        import argparse  # noqa: F401
-        pipeline.main()
+        # Mocked portal scenarios need explicit portal targets, not the production source catalog.
+        test_portals = {e["id"]: e["ats"] for e in LEGACY_EMPLOYERS["employers"]
+                        if e["id"] in {"barclays", "deutsche-bank", "genpact"}}
+
+        def fixture_load(path, default=None):
+            if path.name == "gcc_listing_sources.json":
+                return []
+            if path.name == "gcc_employers.json":
+                return {**ACTIVE_EMPLOYERS, "employers": [
+                    {**e, "ats": test_portals.get(e["id"])} for e in ACTIVE_EMPLOYERS["employers"]
+                ]}
+            return common.load_json(path, default)
+
+        with patch.object(pipeline, "load_json", side_effect=fixture_load):
+            pipeline.main()
         data = Path(os.environ["CRJS_DATA_DIR"])
         return json.loads((data / "jobs.json").read_text())["jobs"], json.loads((data / "status.json").read_text())
 
@@ -352,6 +379,17 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(len(jobs), 1)
         self.assertTrue(jobs[0]["ats_only"])
         self.assertEqual(jobs[0]["precision"], "day")
+
+    def test_newly_seen_old_or_undated_ats_jobs_are_not_fresh(self):
+        rows = [{"company": "Genpact", "title": f"Vice President Credit Risk Modeling {i}",
+                 "location": "Gurugram", "url": f"https://genpact.example/{i}", "job_id": f"OLD{i}",
+                 "platform": "workday", "description": RICH, **stamp}
+                for i, stamp in enumerate(({"posted_iso": "2020-01-01T00:00:00Z"}, {}))]
+        _, status = self.run_scan({}, ats_rows={"genpact": rows})
+        self.assertEqual(status["funnel"]["qualified_primary"], 0)
+        self.assertEqual(status["funnel"]["qualified_secondary"], 0)
+        digest = json.loads((Path(os.environ["CRJS_DATA_DIR"]) / "digest.json").read_text())
+        self.assertEqual(digest["ids"], [])
 
 
 if __name__ == "__main__":

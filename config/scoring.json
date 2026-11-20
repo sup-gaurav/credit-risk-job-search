@@ -313,7 +313,10 @@
     "Mumbai": "mumbai|navi mumbai|thane|bombay|powai|bkc",
     "Bengaluru": "bengaluru|bangalore",
     "Pune": "\\bpune\\b",
-    "Delhi NCR": "gurugram|gurgaon|delhi|noida|\\bncr\\b|faridabad|ghaziabad"
+    "Delhi NCR": "gurugram|gurgaon|delhi|noida|\\bncr\\b|faridabad|ghaziabad",
+    "Dubai": "\\bdubai\\b|united arab emirates|\\buae\\b",
+    "Riyadh": "\\briyadh\\b|saudi arabia",
+    "Doha": "\\bdoha\\b|\\bqatar\\b"
    }
   },
   "secondary": {
@@ -321,7 +324,12 @@
    "cities": {
     "Hyderabad": "hyderabad|secunderabad",
     "Chennai": "chennai|madras",
-    "Kolkata": "kolkata|calcutta"
+    "Kolkata": "kolkata|calcutta",
+    "Abu Dhabi": "abu dhabi",
+    "Jeddah": "\\bjeddah\\b",
+    "Muscat": "\\bmuscat\\b|oman",
+    "Manama": "\\bmanama\\b|bahrain",
+    "Kuwait City": "kuwait city|kuwait"
    }
   },
   "remote": {

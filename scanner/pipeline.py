@@ -27,7 +27,7 @@ IDS_RULE = 2  # bump to re-resolve LinkedIn company ids after the matching rule 
 class Scan:
     def __init__(self, args):
         self.args = args
-        self.employers = load_json(CONFIG / "employers.json")
+        self.employers = load_json(CONFIG / "gcc_employers.json") or load_json(CONFIG / "employers.json")
         self.scoring = load_json(CONFIG / "scoring.json")
         self.search = load_json(CONFIG / "search.json")
         self.scorer = Scorer(self.scoring, self.employers)
@@ -160,6 +160,8 @@ class Scan:
     # ------------------------------------------------------------ ATS
     def run_ats(self, budget):
         targets = [e for e in self.employers["employers"] if e.get("ats") and not e.get("same_as")]
+        # Discovery only: new sources must not change employer scoring or LinkedIn queries.
+        targets.extend(load_json(CONFIG / "gcc_listing_sources.json", []))
         if self.args.max_queries:
             targets = targets[: self.args.max_queries]
         settings, terms = self.search["ats"], self.search["ats"]["search_terms"]
@@ -172,7 +174,8 @@ class Scan:
 
         with ThreadPoolExecutor(max_workers=10) as pool:
             for emp, rows, status, seen_at, requests_made in pool.map(work, targets):
-                status.update(type=emp["ats"]["type"], requests=requests_made, previously_verified=bool(emp["ats"].get("verified")))
+                status.update(name=emp["name"], type=emp["ats"]["type"], requests=requests_made,
+                              previously_verified=bool(emp["ats"].get("verified")))
                 self.ats_status[emp["id"]] = status
                 key = "ats:" + emp["id"]
                 src = self.archive["sources"].setdefault(key, {})
@@ -375,6 +378,20 @@ class Scan:
 
         qualified = [j for j in out if not j["excluded"] and not j["closed"]]
         q30, q72 = [j for j in qualified if within(j, primary)], [j for j in qualified if within(j, secondary)]
+        if finished:
+            for field, roles in (("qualified_primary", q30), ("qualified_secondary", q72)):
+                for status in self.ats_status.values():
+                    if status.get("listings_read"):
+                        status[field] = 0
+                for job in roles:
+                    if not job["in_latest_scan"]:
+                        continue
+                    keys = {v[4:] for s in jobs[job["id"]]["sources"].values()
+                            if s.get("via_run") == iso(self.started) for v in s["via"] if v.startswith("ats:")}
+                    for key in keys:
+                        status = self.ats_status.get(key, {})
+                        if status.get("listings_read"):
+                            status[field] += 1
         self.funnel.update(
             observations=len(self.observations) if finished else self.funnel.get("observations", 0), roles_in_archive=len(jobs), published=len(out), dropped_low_relevance=dropped,
             qualified_total=len(qualified), qualified_primary=len(q30), qualified_secondary=len(q72),
@@ -420,7 +437,7 @@ class Scan:
         learned = self.archive.get("learned", {})
         employers = []
         for emp in self.employers["employers"]:
-            entry = {k: emp[k] for k in ("n", "id", "name", "category", "tier", "focus", "conditional", "query", "careers_url", "same_as", "note")}
+            entry = {k: emp.get(k) for k in ("n", "id", "name", "category", "tier", "focus", "conditional", "query", "careers_url", "same_as", "note")}
             entry["ats_type"] = (emp.get("ats") or {}).get("type")
             known = learned.get(emp.get("same_as") or emp["id"], {})
             entry["linkedin_slug"] = known.get("linkedin_slug")
@@ -438,7 +455,6 @@ class Scan:
             self.touched = set()
             status = load_json(DATA / "status.json")
             if args.rescore and status and status.get("state") == "complete":
-                # keep the last scan's coverage record; only scores and config change
                 self.phases, self.queries, self.ats_status = status.get("phases", []), status.get("queries", []), status.get("ats", {})
                 self.sources, self.funnel = status.get("sources", {}), status.get("funnel", {})
                 self.started = parse_iso(status.get("started")) or self.started
@@ -455,7 +471,6 @@ class Scan:
         company, skill = self.linkedin_queries()
         primary, secondary = self.windows["primary_hours"], self.windows["secondary_hours"]
         li_budget = Budget(args.linkedin_minutes * 60)
-
         detail_budget = Budget(args.detail_minutes * 60)
 
         p1 = self.phase(1, "LinkedIn company scans")
@@ -470,7 +485,6 @@ class Scan:
             done = self.run_linkedin(skill, primary, li_budget)
         self.close(p2, "ok" if done == len(skill) else "partial" if done else "failed", queries=len(skill), completed=done, window_hours=primary)
 
-        # Read descriptions before deciding on the supplement: a title alone cannot show whether a role clears the threshold.
         self.merge()
         with detail_budget:
             self.enrich(detail_budget)
@@ -523,7 +537,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--init", action="store_true", help="write site config and an empty state without scanning")
     parser.add_argument("--rescore", action="store_true", help="re-apply scoring to the archive without any network calls")
-    parser.add_argument("--max-queries", type=int, default=0, help="limit queries per phase (smoke test)")
+    parser.add_argument("--max-queries", type=int, default=0, help="limit queries per phase (smoke test")
     parser.add_argument("--max-details", type=int, default=int(os.environ.get("MAX_DETAILS", 220)))
     parser.add_argument("--no-secondary", action="store_true")
     parser.add_argument("--linkedin-minutes", type=float, default=float(os.environ.get("LINKEDIN_MINUTES", 40)))

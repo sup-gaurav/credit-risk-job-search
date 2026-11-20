@@ -146,10 +146,14 @@ async function checkRun() {
 /* ---------------------------------------------------------------- header */
 function nextRun() {
   const s = S.cfg?.search?.schedule; if (!s) return null;
-  const now = new Date(), utcMin = (s.hour_ist * 60 + s.minute_ist - 330 + 1440) % 1440;
-  const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), Math.floor(utcMin / 60), utcMin % 60));
-  if (d <= now) d.setUTCDate(d.getUTCDate() + 1);
-  return d;
+  const match = /^(\d+) (?:\*\/(\d+)|(\d+)) \* \* \*$/.exec(s.cron_utc);
+  if (!match) return null;
+  const now = new Date(), d = new Date(now);
+  d.setUTCMinutes(Number(match[1]), 0, 0);
+  for (let i = 0; i <= 24; i++, d.setUTCHours(d.getUTCHours() + 1)) {
+    if (d > now && (match[2] ? d.getUTCHours() % Number(match[2]) === 0 : d.getUTCHours() === Number(match[3]))) return d;
+  }
+  return null;
 }
 function renderScanState() {
   const el = $('#scan-state'), st = S.status, run = S.run;
@@ -385,7 +389,7 @@ function viewCoverage() {
     </div>
     <details class="fold" data-testid="fold-company-queries"><summary>LinkedIn company queries <span>${cq.length} run, ${gaps(cq)} with gaps${capN(cq) ? `, ${capN(cq)} reached the page limit` : ''}</span></summary>${qTable(cq)}</details>
     <details class="fold" data-testid="fold-skill-queries"><summary>LinkedIn skill queries <span>${sq.length} run, ${gaps(sq)} with gaps${capN(sq) ? `, ${capN(sq)} reached the page limit` : ''}</span></summary>${qTable(sq)}</details>
-    <details class="fold" data-testid="fold-portals"><summary>Career portal feeds <span>${at.ok ?? 0} of ${at.configured ?? 0} answered</span></summary><div class="tablewrap"><table><thead><tr><th>Employer</th><th>System</th><th>State</th><th class="num">Relevant India roles</th><th>Detail</th></tr></thead><tbody>${Object.entries(st.ats || {}).map(([id, a]) => `<tr><td><b>${esc(emp(id)?.name || id)}</b></td><td>${esc(pname(a.type))}</td><td>${stateTag(a.state)}</td><td class="num">${a.returned ?? '—'}</td><td class="sub">${esc(a.error || '')}</td></tr>`).join('')}</tbody></table></div></details>
+    <details class="fold" data-testid="fold-portals"><summary>Career portal feeds <span>${at.ok ?? 0} of ${at.configured ?? 0} scanned without reported gaps</span></summary><div class="tablewrap"><table><thead><tr><th>Employer</th><th>System</th><th>State</th><th class="num">Relevant India roles read</th><th>Detail</th></tr></thead><tbody>${Object.entries(st.ats || {}).map(([id, a]) => `<tr><td><b>${esc(a.name || emp(id)?.name || id)}</b></td><td>${esc(pname(a.type))}</td><td>${stateTag(a.state)}</td><td class="num">${a.listings_read === false ? '—' : a.returned ?? '—'}</td><td class="sub">${esc([a.error, a.coverage_limit, a.india_observed != null ? `${a.india_observed} India locations observed in index` : '', a.qualified_primary != null ? `${a.qualified_primary} passed in ${S.cfg.scoring.windows.primary_hours}h` : ''].filter(Boolean).join(' · '))}</td></tr>`).join('')}</tbody></table></div></details>
   </section>`;
 }
 
@@ -400,7 +404,7 @@ function viewLogic() {
   return `<section class="view"><div class="grid2">
   <div class="doc">
     <h2 class="h2">How the search runs</h2>
-    <p>One scan runs every day at <b>${esc(se.schedule.label)}</b> on GitHub Actions, and on demand from the Refresh button. It follows the six phases of the master prompt and publishes this page when it finishes.</p>
+    <p>Automatic scan: <b>${esc(se.schedule.label)}</b> on GitHub Actions. Each successful scan publishes updated results. Use Refresh to request an additional scan.</p>
     <ol>
       <li><b>LinkedIn company scans.</b> One query per employer, restricted to that employer with LinkedIn’s company filter, for any of ${se.linkedin.company_terms.map(t => `“${esc(t)}”`).join(', ')}. Location India, most recent first, up to ${se.linkedin.max_pages_company} pages. An employer LinkedIn cannot identify falls back to a keyword match and is flagged under Coverage.</li>
       <li><b>LinkedIn skill searches.</b> The 15 aggregated queries in three sets, up to ${se.linkedin.max_pages_skill} pages each.</li>

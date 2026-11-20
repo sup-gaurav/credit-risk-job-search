@@ -10,7 +10,7 @@ from . import linkedin
 from .common import CONFIG, Budget, Http, Throttled, load_json
 from .scoring import Scorer
 
-scorer = Scorer(load_json(CONFIG / "scoring.json"), load_json(CONFIG / "employers.json"))
+scorer = Scorer(load_json(CONFIG / "scoring.json"), load_json(CONFIG / "gcc_employers.json") or load_json(CONFIG / "employers.json"))
 http = Http(min_gap=1.8, max_gap=3.0)
 OR_TERMS = '"credit risk" OR "risk analytics" OR "risk modeling" OR "IFRS 9" OR "Basel" OR "model risk" OR "model validation"'
 

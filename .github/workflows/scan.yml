@@ -1,12 +1,12 @@
 name: Credit risk job scan
 
 # Three ways in, one scan:
-#   schedule           every day at 03:30 UTC = 09:00 IST
+#   schedule           every 4 hours at 00:30, 04:30, 08:30, 12:30, 16:30 and 20:30 UTC
 #   workflow_dispatch  "Run workflow" on GitHub, or the dashboard Refresh button with a saved token
 #   issues             the dashboard's "Open scan request" link; only the repository owner's request runs
 on:
   schedule:
-    - cron: "30 3 * * *"
+    - cron: "30 */4 * * *"
   workflow_dispatch:
   issues:
     types: [opened]
