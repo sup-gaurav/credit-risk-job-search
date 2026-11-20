@@ -22,10 +22,40 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  scan:
+  shard1:
     if: >-
       github.event_name != 'issues' ||
       (github.event.issue.user.login == github.repository_owner && startsWith(github.event.issue.title, '[SCAN]'))
+    uses: ./.github/workflows/linkedin-shard.yml
+    with:
+      slice: '1'
+      bounds: '0 50 0 6'
+  shard2:
+    needs: shard1
+    uses: ./.github/workflows/linkedin-shard.yml
+    with:
+      slice: '2'
+      bounds: '50 100 6 12'
+      prior_guard: ${{ needs.shard1.outputs.guard }}
+  shard3:
+    needs: shard2
+    uses: ./.github/workflows/linkedin-shard.yml
+    with:
+      slice: '3'
+      bounds: '100 150 12 18'
+      prior_guard: ${{ needs.shard2.outputs.guard }}
+  shard4:
+    needs: shard3
+    uses: ./.github/workflows/linkedin-shard.yml
+    with:
+      slice: '4'
+      bounds: '150 200 18 23'
+      prior_guard: ${{ needs.shard3.outputs.guard }}
+  scan:
+    needs: [shard1, shard2, shard3, shard4]
+    if: >-
+      always() && !cancelled() && (github.event_name != 'issues' ||
+      (github.event.issue.user.login == github.repository_owner && startsWith(github.event.issue.title, '[SCAN]')))
     runs-on: ubuntu-latest
     timeout-minutes: ${{ github.event_name == 'workflow_dispatch' && 165 || 85 }}
     environment:
@@ -54,11 +84,17 @@ jobs:
         run: |
           gh issue comment "$ISSUE" --repo "$GITHUB_REPOSITORY" --body "Scan started. Progress: $RUN_URL"
 
-      - name: Scan (phases 1-6)
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: linkedin-*
+          path: linkedin-shards
+          merge-multiple: true
+
+      - name: Aggregate primary searches and finish scan
         env:
           LINKEDIN_MINUTES: ${{ github.event_name == 'workflow_dispatch' && '120' || '40' }}
           SCAN_TRIGGER: ${{ github.event_name == 'schedule' && 'schedule' || github.event_name == 'issues' && 'dashboard request' || 'manual' }}
-        run: python -m scanner.pipeline
+        run: python -m scanner.pipeline --linkedin-shards-in 'linkedin-shards/*.json'
 
       - name: Commit results
         run: |

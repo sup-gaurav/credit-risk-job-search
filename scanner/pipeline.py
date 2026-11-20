@@ -7,12 +7,15 @@
 from __future__ import annotations
 
 import argparse
+import glob
+import json
 import os
 import re
 import time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
-from datetime import timedelta
+from datetime import datetime, timedelta
+from pathlib import Path
 
 from . import ats, linkedin, naukri
 from .common import (CONFIG, DATA, STATE, Budget, Http, age_hours, iso, load_json, norm_company, norm_title,
@@ -133,6 +136,8 @@ class Scan:
             for index, location in enumerate(q.get("locations") or ["India"]):
                 skill.append({"id": q["id"] + (chr(97 + index) if q.get("locations") else ""), "kind": "skill", "label": q["label"],
                               "set": q["set"], "keywords": q["keywords"], "location": location, "max_pages": li["max_pages_skill"]})
+        company = company[self.args.employer_start:self.args.employer_end]
+        skill = skill[self.args.skill_start:self.args.skill_end]
         if self.args.max_queries:
             company, skill = company[: self.args.max_queries], skill[: max(1, self.args.max_queries // 3)]
         return company, skill
@@ -477,6 +482,43 @@ class Scan:
                 "scoring": self.scoring, "search": self.search}
 
     # ------------------------------------------------------------ run
+    def write_shard(self, path):
+        guard = {k: getattr(self.guard, k) for k in ("aborted", "cooled", "strikes", "events")}
+        payload = {"schema": 1, "guard": guard, "started": iso(self.started), "requests": self.li_http.requests,
+                   "queries": self.queries, "observations": self.observations}
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload, default=datetime.isoformat), encoding="utf-8")
+
+    def read_shards(self, pattern):
+        directory = Path(pattern)
+        paths = directory.glob('*.json') if directory.is_dir() else map(Path, glob.glob(pattern))
+        outcomes, seen = {}, set()
+        for path in sorted(paths):
+            shard = json.loads(path.read_text(encoding="utf-8"))
+            if shard.get("schema") != 1:
+                raise ValueError(f"Unsupported LinkedIn shard: {path}")
+            fresh = [q for q in shard["queries"] if q["id"] not in outcomes]
+            if not fresh:
+                continue
+            self.li_http.requests += shard["requests"]
+            guard = shard["guard"]
+            self.guard.aborted |= guard["aborted"]
+            self.guard.cooled |= guard["cooled"]
+            self.guard.events = max(self.guard.events, guard["events"])
+            self.guard.strikes = guard["strikes"]
+            outcomes.update((q["id"], q) for q in fresh)
+            for row in shard["observations"]:
+                key = (row["via"], row["job_id"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                row["seen_at"] = parse_iso(row["seen_at"])
+                if row["estimate"]:
+                    *dates, precision = row["estimate"]
+                    row["estimate"] = (*map(parse_iso, dates), precision)
+                self.observations.append(row)
+        return outcomes
+
     def run(self):
         args = self.args
         if args.init or args.rescore:
@@ -501,18 +543,35 @@ class Scan:
         li_budget = Budget(args.linkedin_minutes * 60)
         detail_budget = Budget(args.detail_minutes * 60)
 
+        outcomes = self.read_shards(args.linkedin_shards_in) if args.linkedin_shards_in else None
+        if args.linkedin_shard_out and os.environ.get("LINKEDIN_PRIOR_GUARD"):
+            prior = json.loads(os.environ["LINKEDIN_PRIOR_GUARD"])
+            for key in ("aborted", "cooled", "strikes", "events"):
+                setattr(self.guard, key, prior[key])
+
+        def primary_search(queries):
+            if outcomes is None:
+                return self.run_linkedin(queries, primary, li_budget)
+            for q in queries:
+                self.queries.append(outcomes.get(q["id"], {**q, "window_hours": primary, "state": "skipped_missing_shard", "returned": 0}))
+            return sum(outcomes.get(q["id"], {}).get("state") == "ok" for q in queries)
+
         p1 = self.phase(1, "LinkedIn company scans")
         with li_budget:
             resolved = self.prepare_companies(company)
-            done = self.run_linkedin(company, primary, li_budget)
+            done = primary_search(company)
         self.close(p1, "ok" if done == len(company) else "partial" if done else "failed", queries=len(company), completed=done,
                    window_hours=primary, company_filter=resolved, keyword_fallback=len(company) - resolved, **self.search_counts(len(company)))
 
         p2 = self.phase(2, "LinkedIn skill searches")
         with li_budget:
-            done = self.run_linkedin(skill, primary, li_budget)
+            done = primary_search(skill)
         self.close(p2, "ok" if done == len(skill) else "partial" if done else "failed", queries=len(skill), completed=done, window_hours=primary,
                    **self.search_counts(len(skill)))
+
+        if args.linkedin_shard_out:
+            self.write_shard(args.linkedin_shard_out)
+            return
 
         self.merge()
         with detail_budget:
@@ -575,7 +634,20 @@ def main():
     parser.add_argument("--linkedin-minutes", type=float, default=float(os.environ.get("LINKEDIN_MINUTES", 40)))
     parser.add_argument("--detail-minutes", type=float, default=float(os.environ.get("DETAIL_MINUTES", 15)))
     parser.add_argument("--ats-minutes", type=float, default=float(os.environ.get("ATS_MINUTES", 8)))
-    Scan(parser.parse_args()).run()
+    for kind in ("employer", "skill"):
+        parser.add_argument(f"--{kind}-start", type=int, default=0, help="inclusive index")
+        parser.add_argument(f"--{kind}-end", type=int, default=None, help="exclusive index")
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument("--linkedin-shard-out", type=Path)
+    modes.add_argument("--linkedin-shards-in", metavar="GLOB_OR_DIR")
+    args = parser.parse_args()
+    for kind in ("employer", "skill"):
+        start, end = getattr(args, f"{kind}_start"), getattr(args, f"{kind}_end")
+        if start < 0 or (end is not None and end < start):
+            parser.error(f"{kind} range must satisfy 0 <= start <= end")
+    if (args.linkedin_shard_out or args.linkedin_shards_in) and (args.init or args.rescore):
+        parser.error("shard modes cannot be combined with --init or --rescore")
+    Scan(args).run()
 
 
 if __name__ == "__main__":

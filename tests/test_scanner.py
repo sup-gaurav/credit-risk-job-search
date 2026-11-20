@@ -364,6 +364,36 @@ class PipelineTests(unittest.TestCase):
         phase = status["phases"][0]
         self.assertEqual((phase["attempted"], phase["completed"], phase["outcomes"]), (2, 0, {"http_503": 2}))
 
+    def test_invalid_shard_ranges(self):
+        for kind in ("employer", "skill"):
+            for args in ([f"--{kind}-start", "-1"], [f"--{kind}-start", "2", f"--{kind}-end", "1"]):
+                with self.subTest(args=args), patch.object(sys, "argv", ["pipeline", *args]), self.assertRaises(SystemExit) as err:
+                    pipeline.main()
+                self.assertEqual(err.exception.code, 2)
+
+    def test_primary_shard_roundtrip(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "shard-1.json"
+            card = self.card("1", "VP Credit Risk Modeling", "Barclays", "Mumbai, India", "2 hours ago")
+            with patch.object(sys, "argv", ["pipeline", "--employer-start", "1", "--employer-end", "2", "--skill-end", "1",
+                                            "--linkedin-shard-out", str(path)]), patch.object(linkedin, "search", return_value=(
+                    [card], {"state": "ok", "returned": 1})), patch.object(pipeline.Scan, "publish", side_effect=AssertionError), \
+                    patch.object(naukri, "canary", side_effect=AssertionError):
+                pipeline.main()
+            data = json.loads(path.read_text())
+            self.assertEqual(len(data["queries"]), 2)
+            self.assertEqual(data["queries"][0]["id"], "C02")
+            self.assertEqual(len(data["observations"]), 2)
+            self.assertFalse(pipeline.ARCHIVE.exists())
+            (Path(tmp) / "duplicate.json").write_bytes(path.read_bytes())
+            with patch.object(pipeline.Scan, "run_linkedin", side_effect=AssertionError):
+                jobs, status = self.run_scan({}, argv=("--linkedin-shards-in", tmp, "--no-secondary"))
+            self.assertEqual(len(jobs), 1)
+            self.assertEqual(status["funnel"]["observations"], 2)
+            self.assertEqual(status["phases"][0]["completed"], 1)
+            self.assertGreater(status["phases"][0]["outcomes"]["skipped_missing_shard"], 0)
+            self.assertEqual(set(jobs[0]["sources"][0]["via"]), {q["id"] for q in data["queries"]})
+
     def test_generic_grade_title_is_classified_from_description(self):
         generic = self.card("55", "3562971-Manager", "EXL", "Gurugram, Haryana, India", "4 hours ago")
         offtopic = self.card("56", "Receptionist", "EXL", "Gurugram, Haryana, India", "4 hours ago")
