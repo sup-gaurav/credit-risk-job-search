@@ -1,50 +1,54 @@
 {
  "schema": 1,
  "state": "complete",
- "started": "2026-11-22T07:53:42Z",
- "finished": "2026-11-22T08:08:49Z",
- "duration_seconds": 907,
+ "started": "2026-11-22T17:59:50Z",
+ "finished": "2026-11-22T18:13:57Z",
+ "duration_seconds": 847,
  "trigger": "schedule",
- "run_id": "44997159073",
- "run_url": "https://github.com/sup-gaurav/credit-risk-job-search/actions/runs/44997159073",
+ "run_id": "45044287755",
+ "run_url": "https://github.com/sup-gaurav/credit-risk-job-search/actions/runs/45044287755",
  "secondary_window_used": false,
  "phases": [
   {
    "id": 1,
    "name": "LinkedIn company scans",
-   "state": "ok",
-   "started": "2026-11-22T07:53:42Z",
+   "state": "partial",
+   "started": "2026-11-22T17:59:50Z",
    "seconds": 0.0,
    "queries": 200,
-   "completed": 200,
+   "completed": 187,
    "window_hours": 30,
    "company_filter": 130,
    "keyword_fallback": 70,
    "attempted": 200,
    "outcomes": {
-    "ok": 200
+    "ok": 187,
+    "throttled": 13
    }
   },
   {
    "id": 2,
    "name": "LinkedIn skill searches",
-   "state": "ok",
-   "started": "2026-11-22T07:53:42Z",
+   "state": "partial",
+   "started": "2026-11-22T17:59:50Z",
    "seconds": 0.0,
    "queries": 23,
-   "completed": 23,
+   "completed": 17,
    "window_hours": 30,
-   "attempted": 23,
+   "attempted": 22,
    "outcomes": {
-    "ok": 23
+    "ok": 17,
+    "throttled": 4,
+    "budget_exhausted": 1,
+    "skipped_budget": 1
    }
   },
   {
    "id": 3,
    "name": "Naukri.com",
    "state": "manual",
-   "started": "2026-11-22T08:08:45Z",
-   "seconds": 0.5,
+   "started": "2026-11-22T18:13:21Z",
+   "seconds": 0.4,
    "source_state": "interaction_required",
    "http": 406,
    "note": "Naukri requires an interactive check for automated search; use the launcher links"
@@ -53,8 +57,8 @@
    "id": 4,
    "name": "Career-portal (ATS) checks",
    "state": "partial",
-   "started": "2026-11-22T08:08:45Z",
-   "seconds": 3.7,
+   "started": "2026-11-22T18:13:21Z",
+   "seconds": 4.2,
    "portals": 5,
    "responded": 1
   },
@@ -62,20 +66,20 @@
    "id": 5,
    "name": "Deduplication, enrichment and ranking",
    "state": "partial",
-   "started": "2026-11-22T08:08:49Z",
-   "seconds": 0.5,
-   "unique_roles": 140,
+   "started": "2026-11-22T18:13:25Z",
+   "seconds": 31.6,
+   "unique_roles": 147,
    "descriptions": {
-    "read": 186,
-    "failed": 3,
-    "unread": 37
+    "read": 66,
+    "failed": 4,
+    "unread": 0
    }
   },
   {
    "id": 6,
    "name": "Scoring, top-10 digest and publication",
    "state": "ok",
-   "started": "2026-11-22T08:08:49Z",
+   "started": "2026-11-22T18:13:57Z",
    "seconds": 0.0
   }
  ],
@@ -87,21 +91,21 @@
   },
   "linkedin": {
    "details": {
-    "read": 186,
-    "failed": 3,
-    "unread": 37
+    "read": 66,
+    "failed": 4,
+    "unread": 0
    },
    "id_refresh": {
     "attempted": 0,
     "refreshed": 0
    },
    "queries": 223,
-   "ok": 223,
-   "capped": 81,
-   "throttle_events": 45,
+   "ok": 204,
+   "capped": 63,
+   "throttle_events": 124,
    "aborted": false,
-   "requests": 905,
-   "state": "ok"
+   "requests": 821,
+   "state": "partial"
   },
   "ats": {
    "configured": 5,
@@ -110,18 +114,18 @@
   }
  },
  "funnel": {
-  "irrelevant_titles": 2054,
-  "qualified_primary_before_supplement": 20,
-  "observations": 4597,
-  "roles_in_archive": 1514,
-  "published": 313,
-  "dropped_low_relevance": 1201,
-  "qualified_total": 217,
-  "qualified_primary": 21,
-  "qualified_secondary": 65,
+  "irrelevant_titles": 1568,
+  "qualified_primary_before_supplement": 22,
+  "observations": 3562,
+  "roles_in_archive": 1558,
+  "published": 319,
+  "dropped_low_relevance": 1239,
+  "qualified_total": 221,
+  "qualified_primary": 22,
+  "qualified_secondary": 55,
   "tier1_primary": 0,
-  "tier2_primary": 5,
-  "tier3_primary": 16
+  "tier2_primary": 4,
+  "tier3_primary": 18
  },
  "queries": [
   {
@@ -209,7 +213,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 3,
+   "returned": 2,
    "capped": false
   },
   {
@@ -247,8 +251,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 2,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -387,8 +391,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 2,
    "capped": false
   },
   {
@@ -796,7 +800,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
+   "returned": 49,
    "capped": true
   },
   {
@@ -1243,7 +1247,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 5,
+   "returned": 7,
    "capped": false
   },
   {
@@ -1261,8 +1265,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 4,
-   "returned": 30,
+   "pages": 5,
+   "returned": 36,
    "capped": false
   },
   {
@@ -1301,7 +1305,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 1,
+   "returned": 6,
    "capped": false
   },
   {
@@ -1358,8 +1362,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 3,
    "capped": false
   },
   {
@@ -1481,8 +1485,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 1,
    "capped": false
   },
   {
@@ -1620,8 +1624,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 2,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -1714,8 +1718,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 1,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -1771,7 +1775,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 1,
+   "returned": 2,
    "capped": false
   },
   {
@@ -2410,10 +2414,8 @@
    "employer_id": "marsh-mclennan",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C120",
@@ -2445,10 +2447,8 @@
    "employer_id": "wtw",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 1,
-   "returned": 0,
-   "capped": false
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C122",
@@ -2722,8 +2722,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 4,
-   "returned": 30,
+   "pages": 5,
+   "returned": 33,
    "capped": false
   },
   {
@@ -2795,10 +2795,8 @@
    "employer_id": "london-stock-exchange",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C141",
@@ -2947,10 +2945,8 @@
    "employer_id": "palantir",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C150",
@@ -2992,10 +2988,8 @@
    "employer_id": "google-finance-gcc",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C153",
@@ -3144,7 +3138,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
+   "returned": 43,
    "capped": true
   },
   {
@@ -3232,10 +3226,8 @@
    "employer_id": "best-buy-india",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C169",
@@ -3292,10 +3284,8 @@
    "employer_id": "siemens-finance-gcc",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C173",
@@ -3382,10 +3372,8 @@
    "employer_id": "coca-cola-finance-gcc",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C179",
@@ -3442,10 +3430,8 @@
    "employer_id": "novartis-finance-gcc",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C183",
@@ -3457,10 +3443,8 @@
    "employer_id": "gsk-finance-gcc",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C184",
@@ -3558,10 +3542,8 @@
    "employer_id": "tcs",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C190",
@@ -3573,10 +3555,8 @@
    "employer_id": "infosys",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C191",
@@ -3648,10 +3628,8 @@
    "employer_id": "persistent",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C196",
@@ -3742,7 +3720,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 1,
+   "returned": 2,
    "capped": false
   },
   {
@@ -3770,7 +3748,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 1,
+   "returned": 3,
    "capped": false
   },
   {
@@ -3784,7 +3762,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 4,
-   "returned": 26,
+   "returned": 29,
    "capped": false
   },
   {
@@ -3797,8 +3775,8 @@
    "set": "Core credit risk",
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 8,
+   "pages": 3,
+   "returned": 14,
    "capped": false
   },
   {
@@ -3812,7 +3790,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 1,
+   "returned": 3,
    "capped": false
   },
   {
@@ -3826,7 +3804,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 1,
+   "returned": 2,
    "capped": false
   },
   {
@@ -3840,7 +3818,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 1,
+   "returned": 4,
    "capped": false
   },
   {
@@ -3854,7 +3832,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 3,
-   "returned": 16,
+   "returned": 18,
    "capped": false
   },
   {
@@ -3867,8 +3845,8 @@
    "set": "Core credit risk",
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 7,
+   "pages": 3,
+   "returned": 13,
    "capped": false
   },
   {
@@ -3882,7 +3860,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 4,
-   "returned": 30,
+   "returned": 21,
    "capped": false
   },
   {
@@ -3908,10 +3886,8 @@
    "employer_id": null,
    "set": "Core credit risk",
    "window_hours": 30,
-   "state": "ok",
-   "pages": 8,
-   "returned": 80,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "S06",
@@ -3922,10 +3898,8 @@
    "employer_id": null,
    "set": "Technical skills",
    "window_hours": 30,
-   "state": "ok",
-   "pages": 8,
-   "returned": 80,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "S07",
@@ -3950,10 +3924,8 @@
    "employer_id": null,
    "set": "Technical skills",
    "window_hours": 30,
-   "state": "ok",
-   "pages": 8,
-   "returned": 80,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "S09",
@@ -4006,10 +3978,8 @@
    "employer_id": null,
    "set": "Technical skills",
    "window_hours": 30,
-   "state": "ok",
-   "pages": 8,
-   "returned": 80,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "S13",
@@ -4034,10 +4004,10 @@
    "employer_id": null,
    "set": "Functional areas",
    "window_hours": 30,
-   "state": "ok",
-   "pages": 8,
-   "returned": 80,
-   "capped": true
+   "state": "budget_exhausted",
+   "pages": 2,
+   "returned": 20,
+   "capped": false
   },
   {
    "id": "S15",
@@ -4048,10 +4018,8 @@
    "employer_id": null,
    "set": "Functional areas",
    "window_hours": 30,
-   "state": "ok",
-   "pages": 8,
-   "returned": 80,
-   "capped": true
+   "state": "skipped_budget",
+   "returned": 0
   }
  ],
  "ats": {
@@ -4086,32 +4054,27 @@
    "india_observed": 8,
    "pages": 1,
    "indexed": 10,
-   "candidates": 3,
+   "candidates": 4,
    "coverage_limit": "featured postings only",
-   "returned": 3,
+   "returned": 4,
    "name": "Synchrony Financial",
    "type": "public_listings",
-   "requests": 5,
+   "requests": 6,
    "previously_verified": false,
    "qualified_primary": 0,
    "qualified_secondary": 0
   },
   "ameriprise-financial": {
-   "state": "capped",
+   "state": "blocked",
    "scope": "workday_sitemap",
-   "listings_read": true,
-   "india_observed": 25,
-   "pages": 1,
-   "indexed": 100,
-   "candidates": 2,
-   "coverage_limit": "sitemap may stop at 100 jobs",
-   "returned": 2,
+   "listings_read": false,
+   "india_observed": null,
+   "error": "HTTP 429",
+   "returned": 0,
    "name": "Ameriprise Financial",
    "type": "public_listings",
-   "requests": 4,
-   "previously_verified": false,
-   "qualified_primary": 0,
-   "qualified_secondary": 0
+   "requests": 1,
+   "previously_verified": false
   },
   "voya-financial": {
    "state": "ok",
@@ -4429,6 +4392,17 @@
    "linkedin_queries": 223,
    "ats_ok": 1,
    "observations": 4597
+  },
+  {
+   "started": "2026-11-22T17:59:50Z",
+   "duration_seconds": 847,
+   "trigger": "schedule",
+   "qualified_primary": 22,
+   "qualified_secondary": 55,
+   "linkedin_ok": 204,
+   "linkedin_queries": 223,
+   "ats_ok": 1,
+   "observations": 3562
   }
  ]
 }
