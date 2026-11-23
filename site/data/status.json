@@ -1,53 +1,69 @@
 {
  "schema": 1,
  "state": "complete",
- "started": "2026-11-22T17:59:50Z",
- "finished": "2026-11-22T18:13:57Z",
- "duration_seconds": 847,
+ "started": "2026-11-23T02:35:53Z",
+ "finished": "2026-11-23T03:21:09Z",
+ "duration_seconds": 2716,
  "trigger": "schedule",
- "run_id": "45044287755",
- "run_url": "https://github.com/sup-gaurav/credit-risk-job-search/actions/runs/45044287755",
- "secondary_window_used": false,
+ "run_id": "45092046460",
+ "run_url": "https://github.com/sup-gaurav/credit-risk-job-search/actions/runs/45092046460",
+ "secondary_window_used": true,
  "phases": [
   {
    "id": 1,
    "name": "LinkedIn company scans",
    "state": "partial",
-   "started": "2026-11-22T17:59:50Z",
+   "started": "2026-11-23T02:35:53Z",
    "seconds": 0.0,
    "queries": 200,
-   "completed": 187,
+   "completed": 185,
    "window_hours": 30,
    "company_filter": 130,
    "keyword_fallback": 70,
    "attempted": 200,
    "outcomes": {
-    "ok": 187,
-    "throttled": 13
+    "ok": 185,
+    "throttled": 15
    }
   },
   {
    "id": 2,
    "name": "LinkedIn skill searches",
    "state": "partial",
-   "started": "2026-11-22T17:59:50Z",
+   "started": "2026-11-23T02:35:53Z",
    "seconds": 0.0,
    "queries": 23,
-   "completed": 17,
+   "completed": 16,
    "window_hours": 30,
    "attempted": 22,
    "outcomes": {
-    "ok": 17,
-    "throttled": 4,
+    "ok": 16,
+    "throttled": 5,
     "budget_exhausted": 1,
     "skipped_budget": 1
+   }
+  },
+  {
+   "id": "2b",
+   "name": "Secondary window (72h) volume supplement",
+   "state": "partial",
+   "started": "2026-11-23T02:36:32Z",
+   "seconds": 2401.0,
+   "reason": "only 9 roles cleared the threshold in 30h",
+   "queries": 223,
+   "completed": 71,
+   "attempted": 78,
+   "outcomes": {
+    "ok": 71,
+    "throttled": 7,
+    "skipped_budget": 145
    }
   },
   {
    "id": 3,
    "name": "Naukri.com",
    "state": "manual",
-   "started": "2026-11-22T18:13:21Z",
+   "started": "2026-11-23T03:16:33Z",
    "seconds": 0.4,
    "source_state": "interaction_required",
    "http": 406,
@@ -57,8 +73,8 @@
    "id": 4,
    "name": "Career-portal (ATS) checks",
    "state": "partial",
-   "started": "2026-11-22T18:13:21Z",
-   "seconds": 4.2,
+   "started": "2026-11-23T03:16:33Z",
+   "seconds": 4.4,
    "portals": 5,
    "responded": 1
   },
@@ -66,20 +82,20 @@
    "id": 5,
    "name": "Deduplication, enrichment and ranking",
    "state": "partial",
-   "started": "2026-11-22T18:13:25Z",
-   "seconds": 31.6,
-   "unique_roles": 147,
+   "started": "2026-11-23T03:16:38Z",
+   "seconds": 271.4,
+   "unique_roles": 257,
    "descriptions": {
-    "read": 66,
-    "failed": 4,
-    "unread": 0
+    "read": 24,
+    "failed": 1,
+    "unread": 1
    }
   },
   {
    "id": 6,
    "name": "Scoring, top-10 digest and publication",
    "state": "ok",
-   "started": "2026-11-22T18:13:57Z",
+   "started": "2026-11-23T03:21:09Z",
    "seconds": 0.0
   }
  ],
@@ -91,20 +107,20 @@
   },
   "linkedin": {
    "details": {
-    "read": 66,
-    "failed": 4,
-    "unread": 0
+    "read": 24,
+    "failed": 1,
+    "unread": 1
    },
    "id_refresh": {
     "attempted": 0,
     "refreshed": 0
    },
-   "queries": 223,
-   "ok": 204,
-   "capped": 63,
-   "throttle_events": 124,
+   "queries": 446,
+   "ok": 272,
+   "capped": 68,
+   "throttle_events": 175,
    "aborted": false,
-   "requests": 821,
+   "requests": 1039,
    "state": "partial"
   },
   "ats": {
@@ -114,18 +130,18 @@
   }
  },
  "funnel": {
-  "irrelevant_titles": 1568,
-  "qualified_primary_before_supplement": 22,
-  "observations": 3562,
-  "roles_in_archive": 1558,
-  "published": 319,
-  "dropped_low_relevance": 1239,
-  "qualified_total": 221,
-  "qualified_primary": 22,
+  "irrelevant_titles": 2526,
+  "qualified_primary_before_supplement": 9,
+  "observations": 4517,
+  "roles_in_archive": 1591,
+  "published": 321,
+  "dropped_low_relevance": 1270,
+  "qualified_total": 222,
+  "qualified_primary": 9,
   "qualified_secondary": 55,
   "tier1_primary": 0,
-  "tier2_primary": 4,
-  "tier3_primary": 18
+  "tier2_primary": 1,
+  "tier3_primary": 8
  },
  "queries": [
   {
@@ -147,7 +163,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 6,
+   "returned": 2,
    "capped": false
   },
   {
@@ -314,8 +330,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 1,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -374,7 +390,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
+   "returned": 46,
    "capped": true
   },
   {
@@ -413,8 +429,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 1,
-   "returned": 0,
+   "pages": 2,
+   "returned": 1,
    "capped": false
   },
   {
@@ -435,8 +451,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 1,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -574,8 +590,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 2,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -799,9 +815,9 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 5,
-   "returned": 49,
-   "capped": true
+   "pages": 4,
+   "returned": 24,
+   "capped": false
   },
   {
    "id": "C35",
@@ -951,10 +967,8 @@
    "employer_id": "commercial-bank-qatar",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C43",
@@ -986,7 +1000,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
+   "returned": 43,
    "capped": true
   },
   {
@@ -1038,9 +1052,9 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "pages": 4,
+   "returned": 24,
+   "capped": false
   },
   {
    "id": "C48",
@@ -1071,10 +1085,8 @@
    "employer_id": "saudi-british-bank",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C50",
@@ -1247,7 +1259,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 7,
+   "returned": 3,
    "capped": false
   },
   {
@@ -1265,8 +1277,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 5,
-   "returned": 36,
+   "pages": 3,
+   "returned": 17,
    "capped": false
   },
   {
@@ -1305,7 +1317,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 6,
+   "returned": 5,
    "capped": false
   },
   {
@@ -1640,8 +1652,8 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
-   "capped": true
+   "returned": 34,
+   "capped": false
   },
   {
    "id": "C79",
@@ -1775,7 +1787,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 2,
+   "returned": 1,
    "capped": false
   },
   {
@@ -1790,7 +1802,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
+   "returned": 47,
    "capped": true
   },
   {
@@ -1848,8 +1860,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 1,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -2048,7 +2060,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
+   "returned": 43,
    "capped": true
   },
   {
@@ -2103,8 +2115,8 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 1,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -2414,8 +2426,10 @@
    "employer_id": "marsh-mclennan",
    "set": null,
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 5,
+   "returned": 40,
+   "capped": false
   },
   {
    "id": "C120",
@@ -2429,8 +2443,8 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
-   "capped": true
+   "returned": 36,
+   "capped": false
   },
   {
    "id": "C121",
@@ -2447,8 +2461,10 @@
    "employer_id": "wtw",
    "set": null,
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
   },
   {
    "id": "C122",
@@ -2555,7 +2571,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
+   "returned": 48,
    "capped": true
   },
   {
@@ -2721,10 +2737,8 @@
    "employer_id": "swiss-re",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 33,
-   "capped": false
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C137",
@@ -2849,10 +2863,8 @@
    "employer_id": "ices",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 1,
-   "returned": 0,
-   "capped": false
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C144",
@@ -2932,7 +2944,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
+   "returned": 44,
    "capped": true
   },
   {
@@ -3001,10 +3013,8 @@
    "employer_id": "microsoft-finance-gcc",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C154",
@@ -3121,10 +3131,8 @@
    "employer_id": "salesforce-finance-gcc",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C162",
@@ -3137,9 +3145,9 @@
    "set": null,
    "window_hours": 30,
    "state": "ok",
-   "pages": 5,
-   "returned": 43,
-   "capped": true
+   "pages": 4,
+   "returned": 22,
+   "capped": false
   },
   {
    "id": "C163",
@@ -3153,7 +3161,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
+   "returned": 44,
    "capped": true
   },
   {
@@ -3226,8 +3234,10 @@
    "employer_id": "best-buy-india",
    "set": null,
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 5,
+   "returned": 50,
+   "capped": true
   },
   {
    "id": "C169",
@@ -3254,10 +3264,8 @@
    "employer_id": "shell-india-finance",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C171",
@@ -3417,8 +3425,8 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
-   "capped": true
+   "returned": 32,
+   "capped": false
   },
   {
    "id": "C182",
@@ -3430,8 +3438,10 @@
    "employer_id": "novartis-finance-gcc",
    "set": null,
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 5,
+   "returned": 34,
+   "capped": false
   },
   {
    "id": "C183",
@@ -3443,8 +3453,10 @@
    "employer_id": "gsk-finance-gcc",
    "set": null,
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 5,
+   "returned": 48,
+   "capped": true
   },
   {
    "id": "C184",
@@ -3456,10 +3468,8 @@
    "employer_id": "sanofi-finance-gcc",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C185",
@@ -3473,7 +3483,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 5,
-   "returned": 50,
+   "returned": 49,
    "capped": true
   },
   {
@@ -3542,8 +3552,10 @@
    "employer_id": "tcs",
    "set": null,
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 5,
+   "returned": 50,
+   "capped": true
   },
   {
    "id": "C190",
@@ -3555,8 +3567,10 @@
    "employer_id": "infosys",
    "set": null,
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 5,
+   "returned": 50,
+   "capped": true
   },
   {
    "id": "C191",
@@ -3598,10 +3612,8 @@
    "employer_id": "tech-mahindra",
    "set": null,
    "window_hours": 30,
-   "state": "ok",
-   "pages": 5,
-   "returned": 50,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "C194",
@@ -3720,7 +3732,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 2,
+   "returned": 4,
    "capped": false
   },
   {
@@ -3733,8 +3745,8 @@
    "set": "Core credit risk",
    "window_hours": 30,
    "state": "ok",
-   "pages": 2,
-   "returned": 1,
+   "pages": 1,
+   "returned": 0,
    "capped": false
   },
   {
@@ -3761,8 +3773,8 @@
    "set": "Core credit risk",
    "window_hours": 30,
    "state": "ok",
-   "pages": 4,
-   "returned": 29,
+   "pages": 3,
+   "returned": 13,
    "capped": false
   },
   {
@@ -3775,8 +3787,8 @@
    "set": "Core credit risk",
    "window_hours": 30,
    "state": "ok",
-   "pages": 3,
-   "returned": 14,
+   "pages": 2,
+   "returned": 10,
    "capped": false
   },
   {
@@ -3790,7 +3802,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 3,
+   "returned": 4,
    "capped": false
   },
   {
@@ -3804,7 +3816,7 @@
    "window_hours": 30,
    "state": "ok",
    "pages": 2,
-   "returned": 2,
+   "returned": 1,
    "capped": false
   },
   {
@@ -3831,8 +3843,8 @@
    "set": "Core credit risk",
    "window_hours": 30,
    "state": "ok",
-   "pages": 3,
-   "returned": 18,
+   "pages": 2,
+   "returned": 8,
    "capped": false
   },
   {
@@ -3845,8 +3857,8 @@
    "set": "Core credit risk",
    "window_hours": 30,
    "state": "ok",
-   "pages": 3,
-   "returned": 13,
+   "pages": 2,
+   "returned": 9,
    "capped": false
   },
   {
@@ -3858,10 +3870,8 @@
    "employer_id": null,
    "set": "Core credit risk",
    "window_hours": 30,
-   "state": "ok",
-   "pages": 4,
-   "returned": 21,
-   "capped": false
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "S04",
@@ -3886,8 +3896,10 @@
    "employer_id": null,
    "set": "Core credit risk",
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 8,
+   "returned": 74,
+   "capped": true
   },
   {
    "id": "S06",
@@ -3910,10 +3922,8 @@
    "employer_id": null,
    "set": "Technical skills",
    "window_hours": 30,
-   "state": "ok",
-   "pages": 8,
-   "returned": 80,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "S08",
@@ -3924,8 +3934,10 @@
    "employer_id": null,
    "set": "Technical skills",
    "window_hours": 30,
-   "state": "throttled",
-   "returned": 0
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
   },
   {
    "id": "S09",
@@ -3990,10 +4002,8 @@
    "employer_id": null,
    "set": "Functional areas",
    "window_hours": 30,
-   "state": "ok",
-   "pages": 8,
-   "returned": 80,
-   "capped": true
+   "state": "throttled",
+   "returned": 0
   },
   {
    "id": "S14",
@@ -4005,8 +4015,8 @@
    "set": "Functional areas",
    "window_hours": 30,
    "state": "budget_exhausted",
-   "pages": 2,
-   "returned": 20,
+   "pages": 4,
+   "returned": 40,
    "capped": false
   },
   {
@@ -4018,6 +4028,3631 @@
    "employer_id": null,
    "set": "Functional areas",
    "window_hours": 30,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "S01a",
+   "kind": "skill",
+   "label": "Credit Risk + AVP",
+   "keywords": "\"credit risk\" AND AVP",
+   "location": "Dubai, United Arab Emirates",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 4,
+   "returned": 23,
+   "capped": false
+  },
+  {
+   "id": "S01b",
+   "kind": "skill",
+   "label": "Credit Risk + AVP",
+   "keywords": "\"credit risk\" AND AVP",
+   "location": "Riyadh, Saudi Arabia",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 8,
+   "capped": false
+  },
+  {
+   "id": "S01c",
+   "kind": "skill",
+   "label": "Credit Risk + AVP",
+   "keywords": "\"credit risk\" AND AVP",
+   "location": "Doha, Qatar",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 3,
+   "returned": 12,
+   "capped": false
+  },
+  {
+   "id": "S01d",
+   "kind": "skill",
+   "label": "Credit Risk + AVP",
+   "keywords": "\"credit risk\" AND AVP",
+   "location": "Mumbai, Maharashtra, India",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "throttled",
+   "returned": 0
+  },
+  {
+   "id": "S01e",
+   "kind": "skill",
+   "label": "Credit Risk + AVP",
+   "keywords": "\"credit risk\" AND AVP",
+   "location": "Bengaluru, Karnataka, India",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 6,
+   "returned": 49,
+   "capped": false
+  },
+  {
+   "id": "S02a",
+   "kind": "skill",
+   "label": "Credit Risk + Director",
+   "keywords": "\"credit risk\" AND Director",
+   "location": "Dubai, United Arab Emirates",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 4,
+   "returned": 23,
+   "capped": false
+  },
+  {
+   "id": "S02b",
+   "kind": "skill",
+   "label": "Credit Risk + Director",
+   "keywords": "\"credit risk\" AND Director",
+   "location": "Riyadh, Saudi Arabia",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 9,
+   "capped": false
+  },
+  {
+   "id": "S02c",
+   "kind": "skill",
+   "label": "Credit Risk + Director",
+   "keywords": "\"credit risk\" AND Director",
+   "location": "Doha, Qatar",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 3,
+   "returned": 11,
+   "capped": false
+  },
+  {
+   "id": "S02d",
+   "kind": "skill",
+   "label": "Credit Risk + Director",
+   "keywords": "\"credit risk\" AND Director",
+   "location": "Mumbai, Maharashtra, India",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 7,
+   "returned": 60,
+   "capped": false
+  },
+  {
+   "id": "S02e",
+   "kind": "skill",
+   "label": "Credit Risk + Director",
+   "keywords": "\"credit risk\" AND Director",
+   "location": "Bengaluru, Karnataka, India",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 6,
+   "returned": 45,
+   "capped": false
+  },
+  {
+   "id": "S03",
+   "kind": "skill",
+   "label": "Credit Risk Modeling + VP",
+   "keywords": "(\"credit risk modeling\" OR \"credit risk modelling\") AND (VP OR \"Vice President\")",
+   "location": "India",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
+  },
+  {
+   "id": "S04",
+   "kind": "skill",
+   "label": "Risk Analytics + VP / AVP / Director",
+   "keywords": "\"risk analytics\" AND (VP OR AVP OR Director)",
+   "location": "India",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "throttled",
+   "returned": 0
+  },
+  {
+   "id": "S05",
+   "kind": "skill",
+   "label": "Model Development + Credit",
+   "keywords": "\"model development\" AND credit",
+   "location": "India",
+   "employer_id": null,
+   "set": "Core credit risk",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
+  },
+  {
+   "id": "S06",
+   "kind": "skill",
+   "label": "IFRS 9",
+   "keywords": "\"IFRS 9\" OR IFRS9",
+   "location": "India",
+   "employer_id": null,
+   "set": "Technical skills",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
+  },
+  {
+   "id": "S07",
+   "kind": "skill",
+   "label": "Basel III / Basel IV",
+   "keywords": "\"Basel III\" OR \"Basel IV\" OR \"Basel 3\" OR \"Basel 4\"",
+   "location": "India",
+   "employer_id": null,
+   "set": "Technical skills",
+   "window_hours": 72,
+   "state": "throttled",
+   "returned": 0
+  },
+  {
+   "id": "S08",
+   "kind": "skill",
+   "label": "PD LGD EAD",
+   "keywords": "PD AND LGD AND EAD",
+   "location": "India",
+   "employer_id": null,
+   "set": "Technical skills",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
+  },
+  {
+   "id": "S09",
+   "kind": "skill",
+   "label": "CECL",
+   "keywords": "CECL",
+   "location": "India",
+   "employer_id": null,
+   "set": "Technical skills",
+   "window_hours": 72,
+   "state": "throttled",
+   "returned": 0
+  },
+  {
+   "id": "S10",
+   "kind": "skill",
+   "label": "Stress Testing + Credit",
+   "keywords": "\"stress testing\" AND credit",
+   "location": "India",
+   "employer_id": null,
+   "set": "Technical skills",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
+  },
+  {
+   "id": "S11",
+   "kind": "skill",
+   "label": "CCAR",
+   "keywords": "CCAR",
+   "location": "India",
+   "employer_id": null,
+   "set": "Technical skills",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
+  },
+  {
+   "id": "S12",
+   "kind": "skill",
+   "label": "Expected Credit Loss",
+   "keywords": "\"expected credit loss\" OR ECL",
+   "location": "India",
+   "employer_id": null,
+   "set": "Technical skills",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
+  },
+  {
+   "id": "S13",
+   "kind": "skill",
+   "label": "Model Risk Management",
+   "keywords": "\"model risk management\" OR \"model risk\"",
+   "location": "India",
+   "employer_id": null,
+   "set": "Functional areas",
+   "window_hours": 72,
+   "state": "throttled",
+   "returned": 0
+  },
+  {
+   "id": "S14",
+   "kind": "skill",
+   "label": "Portfolio Risk + Credit",
+   "keywords": "\"portfolio risk\" AND credit",
+   "location": "India",
+   "employer_id": null,
+   "set": "Functional areas",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
+  },
+  {
+   "id": "S15",
+   "kind": "skill",
+   "label": "Model Validation + Credit",
+   "keywords": "\"model validation\" AND credit",
+   "location": "India",
+   "employer_id": null,
+   "set": "Functional areas",
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 8,
+   "returned": 80,
+   "capped": true
+  },
+  {
+   "id": "C01",
+   "kind": "company",
+   "label": "JPMorgan Chase",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "JPMorganChase",
+    "J.P. Morgan",
+    "J.P. Morgan Private Bank",
+    "JPMorgan Chase",
+    "Jpmorgan Service India Private Limited."
+   ],
+   "employer_id": "jpmorgan-chase",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 3,
+   "returned": 15,
+   "capped": false
+  },
+  {
+   "id": "C02",
+   "kind": "company",
+   "label": "Goldman Sachs",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Goldman Sachs",
+    "Goldman Sachs (Asia) LLC",
+    "GOLDMAN SACHS GROUP UK LIMITED",
+    "GOLDMAN SACHS INTERNATIONAL",
+    "Goldman Sachs Specialty Lending Group"
+   ],
+   "employer_id": "goldman-sachs",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 2,
+   "capped": false
+  },
+  {
+   "id": "C03",
+   "kind": "company",
+   "label": "Morgan Stanley",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Morgan Stanley",
+    "Morgan Stanley Institutional Consulting Solutions",
+    "E*TRADE from Morgan Stanley",
+    "Morgan Stanley-us",
+    "Morgan Stanley"
+   ],
+   "employer_id": "morgan-stanley",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 1,
+   "capped": false
+  },
+  {
+   "id": "C04",
+   "kind": "company",
+   "label": "Bank of America",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Bank of America",
+    "Bank of America Business",
+    "Bank of America Merrill Lynch",
+    "Bank of America Private Bank",
+    "Bank of America Merchant Services"
+   ],
+   "employer_id": "bank-of-america",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 3,
+   "returned": 13,
+   "capped": false
+  },
+  {
+   "id": "C05",
+   "kind": "company",
+   "label": "Citi",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Citi",
+    "Citi India",
+    "CITI"
+   ],
+   "employer_id": "citi",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 9,
+   "capped": false
+  },
+  {
+   "id": "C06",
+   "kind": "company",
+   "label": "Barclays",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Barclays",
+    "Barclays PLC"
+   ],
+   "employer_id": "barclays",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 8,
+   "capped": false
+  },
+  {
+   "id": "C07",
+   "kind": "company",
+   "label": "Deutsche Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Deutsche Bank",
+    "Deutsche Bank Finanzberatung",
+    "Deutsche Bank",
+    "Deutsche Bank in Nederland",
+    "Deutsche Bank Easy"
+   ],
+   "employer_id": "deutsche-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 4,
+   "capped": false
+  },
+  {
+   "id": "C08",
+   "kind": "company",
+   "label": "UBS",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "UBS",
+    "UBS"
+   ],
+   "employer_id": "ubs",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 6,
+   "capped": false
+  },
+  {
+   "id": "C09",
+   "kind": "company",
+   "label": "BNP Paribas",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "BNP Paribas",
+    "BNP Paribas CIB",
+    "BNP Paribas Cardif",
+    "BNP Paribas Fortis",
+    "BNP Paribas Asset Management"
+   ],
+   "employer_id": "bnp-paribas",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 8,
+   "capped": false
+  },
+  {
+   "id": "C10",
+   "kind": "company",
+   "label": "Crédit Agricole CIB",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Crédit Agricole CIB",
+    "CREDIT AGRICOLE CIB SERVICES PRIVATE LIMITED",
+    "CREDIT AGRICOLE CIB HOLDINGS LIMITED",
+    "Credit Agricole CIB, Spain Branch",
+    "Crédit Agricole CIB Finance (Guernsey) Limited"
+   ],
+   "employer_id": "credit-agricole",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C11",
+   "kind": "company",
+   "label": "Societe Generale",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Societe Generale",
+    "Societe Generale Global Solution Centre",
+    "Societe Generale Corporate and Investment Banking - SGCIB",
+    "Société Générale Cameroun",
+    "Societe Generale Assurances"
+   ],
+   "employer_id": "societe-generale",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 1,
+   "capped": false
+  },
+  {
+   "id": "C12",
+   "kind": "company",
+   "label": "Natixis",
+   "keywords": "\"Natixis\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "natixis",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 5,
+   "returned": 50,
+   "capped": true
+  },
+  {
+   "id": "C13",
+   "kind": "company",
+   "label": "HSBC",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "HSBC"
+   ],
+   "employer_id": "hsbc",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 3,
+   "capped": false
+  },
+  {
+   "id": "C14",
+   "kind": "company",
+   "label": "Standard Chartered",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Standard Chartered",
+    "Standard Chartered India",
+    "Standard Chartered Singapore",
+    "SC Ventures by Standard Chartered",
+    "Standard Chartered"
+   ],
+   "employer_id": "standard-chartered",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 3,
+   "capped": false
+  },
+  {
+   "id": "C15",
+   "kind": "company",
+   "label": "Wells Fargo",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Wells Fargo",
+    "Wells Fargo Advisors",
+    "Wells Fargo India Solutions Private Ltd",
+    "Wells Fargo Insurance Services",
+    "WELLS FARGO HOME MTG"
+   ],
+   "employer_id": "wells-fargo",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C16",
+   "kind": "company",
+   "label": "State Street",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "State Street",
+    "State Street Investment Management",
+    "State Street HCL Services Pvt Ltd",
+    "State Street Syntel Services",
+    "State Street Bank, Quincy, IL"
+   ],
+   "employer_id": "state-street",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 1,
+   "capped": false
+  },
+  {
+   "id": "C17",
+   "kind": "company",
+   "label": "Northern Trust",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Northern Trust",
+    "Northern Trust Asset Management",
+    "Northern Trust Asset Servicing",
+    "Northern Trust Wealth Management",
+    "Northern Trust Company Ltd"
+   ],
+   "employer_id": "northern-trust",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 1,
+   "capped": false
+  },
+  {
+   "id": "C18",
+   "kind": "company",
+   "label": "MUFG",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "MUFG",
+    "Mitsubishi UFJ Financial Group, Inc. (MUFG)"
+   ],
+   "employer_id": "mufg",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 1,
+   "capped": false
+  },
+  {
+   "id": "C19",
+   "kind": "company",
+   "label": "Sumitomo Mitsui Banking Corporation",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "SMBC Group",
+    "SMBC Global Services"
+   ],
+   "employer_id": "sumitomo-mitsui",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C20",
+   "kind": "company",
+   "label": "Mizuho",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Mizuho"
+   ],
+   "employer_id": "mizuho",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 5,
+   "capped": false
+  },
+  {
+   "id": "C21",
+   "kind": "company",
+   "label": "Nomura",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Nomura"
+   ],
+   "employer_id": "nomura",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 1,
+   "capped": false
+  },
+  {
+   "id": "C22",
+   "kind": "company",
+   "label": "DBS Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "DBS Bank",
+    "DBS Solutions",
+    "dbs",
+    "DBS Group"
+   ],
+   "employer_id": "dbs",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 2,
+   "returned": 4,
+   "capped": false
+  },
+  {
+   "id": "C23",
+   "kind": "company",
+   "label": "ANZ",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "ANZ"
+   ],
+   "employer_id": "anz",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C24",
+   "kind": "company",
+   "label": "National Australia Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "NAB"
+   ],
+   "employer_id": "nab",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C25",
+   "kind": "company",
+   "label": "Commonwealth Bank of Australia",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Commonwealth Bank",
+    "Commonwealth Bank & Trust Company"
+   ],
+   "employer_id": "commonwealth-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C26",
+   "kind": "company",
+   "label": "Westpac",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Westpac",
+    "Westpac Group",
+    "WestPac"
+   ],
+   "employer_id": "westpac",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C27",
+   "kind": "company",
+   "label": "Royal Bank of Canada",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "RBC",
+    "RBC Capital Markets"
+   ],
+   "employer_id": "royal-bank-of-canada",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C28",
+   "kind": "company",
+   "label": "TD Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "TD",
+    "TD Securities"
+   ],
+   "employer_id": "td-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C29",
+   "kind": "company",
+   "label": "Scotiabank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Scotiabank"
+   ],
+   "employer_id": "scotiabank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C30",
+   "kind": "company",
+   "label": "BMO Financial Group",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "BMO",
+    "BMO"
+   ],
+   "employer_id": "bmo",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C31",
+   "kind": "company",
+   "label": "Emirates NBD",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Emirates NBD",
+    "Emirates NBD Egypt",
+    "Emirates NBD KSA",
+    "Emirates National Bank of Dubai - Emirates Nbd",
+    "Emirates NBD PJSC"
+   ],
+   "employer_id": "emirates-nbd",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C32",
+   "kind": "company",
+   "label": "First Abu Dhabi Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "First Abu Dhabi Bank (FAB)",
+    "First Abu Dhabi Bank Misr (FABMISR)"
+   ],
+   "employer_id": "first-abu-dhabi-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C33",
+   "kind": "company",
+   "label": "Abu Dhabi Commercial Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Abu Dhabi Commercial Bank",
+    "ADCB LTD"
+   ],
+   "employer_id": "abu-dhabi-commercial-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C34",
+   "kind": "company",
+   "label": "Dubai Islamic Bank",
+   "keywords": "\"Dubai Islamic Bank\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "dubai-islamic-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 5,
+   "returned": 50,
+   "capped": true
+  },
+  {
+   "id": "C35",
+   "kind": "company",
+   "label": "Abu Dhabi Islamic Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "ADIB - Abu Dhabi Islamic Bank",
+    "Abu Dhabi Islamic Bank - Egypt",
+    "ADIB",
+    "Adib",
+    "adib"
+   ],
+   "employer_id": "abu-dhabi-islamic-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C36",
+   "kind": "company",
+   "label": "Mashreq Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Mashreq"
+   ],
+   "employer_id": "mashreq",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C37",
+   "kind": "company",
+   "label": "Commercial Bank of Dubai",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Commercial Bank of Dubai"
+   ],
+   "employer_id": "commercial-bank-of-dubai",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C38",
+   "kind": "company",
+   "label": "National Bank of Kuwait",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "National Bank of Kuwait",
+    "National Bank of Kuwait (International) PLC",
+    "National Bank of Kuwait - New York",
+    "NATIONAL BANK OF KUWAIT INTERNATION PLC",
+    "NATIONAL BANK OF KUWAIT, S.A.K.P"
+   ],
+   "employer_id": "national-bank-of-kuwait",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C39",
+   "kind": "company",
+   "label": "Boubyan Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Boubyan Bank"
+   ],
+   "employer_id": "boubyan-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C40",
+   "kind": "company",
+   "label": "Gulf Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Gulf Bank",
+    "Gulf Bank Algérie",
+    "Syria Gulf Bank",
+    "Africa and Gulf Bank",
+    "Texas Gulf Bank"
+   ],
+   "employer_id": "gulf-bank-kuwait",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C41",
+   "kind": "company",
+   "label": "Qatar National Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "QNB Group"
+   ],
+   "employer_id": "qnb",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C42",
+   "kind": "company",
+   "label": "Commercial Bank of Qatar",
+   "keywords": "\"Commercial Bank Qatar\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "commercial-bank-qatar",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 5,
+   "returned": 50,
+   "capped": true
+  },
+  {
+   "id": "C43",
+   "kind": "company",
+   "label": "Qatar Islamic Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Qatar Islamic Bank (QIB)"
+   ],
+   "employer_id": "qib",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C44",
+   "kind": "company",
+   "label": "Doha Bank",
+   "keywords": "\"Doha Bank\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "doha-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 5,
+   "returned": 50,
+   "capped": true
+  },
+  {
+   "id": "C45",
+   "kind": "company",
+   "label": "Bank Albilad",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "بنك البلاد | Bank Albilad",
+    "Bank Albilad",
+    "bank albilad enjaz"
+   ],
+   "employer_id": "bank-albilad",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C46",
+   "kind": "company",
+   "label": "Saudi National Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "The Saudi National Bank - SNB"
+   ],
+   "employer_id": "saudi-national-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C47",
+   "kind": "company",
+   "label": "Al Rajhi Bank",
+   "keywords": "\"Al Rajhi Bank\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "al-rajhi-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 5,
+   "returned": 50,
+   "capped": true
+  },
+  {
+   "id": "C48",
+   "kind": "company",
+   "label": "Riyad Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Riyad Bank",
+    "Riyad Bank London Branch"
+   ],
+   "employer_id": "riyad-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C49",
+   "kind": "company",
+   "label": "Saudi British Bank",
+   "keywords": "\"SABB\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "saudi-british-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "throttled",
+   "returned": 0
+  },
+  {
+   "id": "C50",
+   "kind": "company",
+   "label": "Arab National Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Arab National Bank"
+   ],
+   "employer_id": "arab-national-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C51",
+   "kind": "company",
+   "label": "NCB Capital",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "NCB Capital Markets",
+    "NCB Capital Markets (Barbados) Limited",
+    "NCB Capital Markets",
+    "NCB Capital Impact, Inc."
+   ],
+   "employer_id": "ncb-saudi",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C52",
+   "kind": "company",
+   "label": "Bank Muscat",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Bank Muscat",
+    "BANK MUSCAT (SAOG)"
+   ],
+   "employer_id": "bank-muscat",
+   "set": null,
+   "window_hours": 72,
+   "state": "throttled",
+   "returned": 0
+  },
+  {
+   "id": "C53",
+   "kind": "company",
+   "label": "National Bank of Oman",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "National Bank of Oman"
+   ],
+   "employer_id": "national-bank-of-oman",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C54",
+   "kind": "company",
+   "label": "Sohar International",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Sohar International",
+    "Sohar International Finance Research Chair",
+    "Aseel Sohar International",
+    "ABRAJ SOHAR INTERNATIONAL  LLC",
+    "First Sohar International SPC"
+   ],
+   "employer_id": "sohar-international",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C55",
+   "kind": "company",
+   "label": "Bank of Bahrain and Kuwait",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "BBK (Bank of Bahrain and Kuwait)",
+    "Bank of Bahrain & Kuwait",
+    "Bank Of Bahrain And Kuwait B. S. C",
+    "Bank of Bahrain & Kuwait BSC",
+    "Bank Of Bahrain And Kuwait B S C India Operations"
+   ],
+   "employer_id": "bbahrain",
+   "set": null,
+   "window_hours": 72,
+   "state": "ok",
+   "pages": 1,
+   "returned": 0,
+   "capped": false
+  },
+  {
+   "id": "C56",
+   "kind": "company",
+   "label": "National Bank of Bahrain",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "National Bank of Bahrain"
+   ],
+   "employer_id": "national-bank-bahrain",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C57",
+   "kind": "company",
+   "label": "Bahrain Islamic Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Bahrain Islamic Bank - BisB"
+   ],
+   "employer_id": "bahrain-islamic-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C58",
+   "kind": "company",
+   "label": "Deloitte",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Deloitte"
+   ],
+   "employer_id": "deloitte",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C59",
+   "kind": "company",
+   "label": "EY",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "EY",
+    "EY Technology Solutions"
+   ],
+   "employer_id": "ey",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C60",
+   "kind": "company",
+   "label": "KPMG",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "KPMG",
+    "KPMG India"
+   ],
+   "employer_id": "kpmg",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C61",
+   "kind": "company",
+   "label": "PwC",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "PwC",
+    "PwC India",
+    "PwC Acceleration Center India"
+   ],
+   "employer_id": "pwc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C62",
+   "kind": "company",
+   "label": "McKinsey & Company",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "McKinsey & Company",
+    "McKinsey New Ventures (part of McKinsey & Company)"
+   ],
+   "employer_id": "mckinsey",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C63",
+   "kind": "company",
+   "label": "Boston Consulting Group",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Boston Consulting Group (BCG)",
+    "BCG X",
+    "BCG",
+    "BCG"
+   ],
+   "employer_id": "bcg",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C64",
+   "kind": "company",
+   "label": "Bain & Company",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Bain & Company"
+   ],
+   "employer_id": "bain",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C65",
+   "kind": "company",
+   "label": "Oliver Wyman",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Oliver Wyman",
+    "Oliver Wyman Vector"
+   ],
+   "employer_id": "oliver-wyman",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C66",
+   "kind": "company",
+   "label": "Roland Berger",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Roland Berger",
+    "Roland Berger Stiftung",
+    "Roland Berger Strategy Consultants",
+    "ALEXEC Consulting | a Roland Berger company",
+    "Roland Berger Consulting D"
+   ],
+   "employer_id": "roland-berger",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C67",
+   "kind": "company",
+   "label": "Alvarez & Marsal",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Alvarez & Marsal",
+    "Alvarez & Marsal Capital",
+    "Alvarez & Marsal Consumer and Retail Group",
+    "Alvarez & Marsal Private Wealth Partners",
+    "Alvarez & Marsal | Mexico"
+   ],
+   "employer_id": "alvarez-marsal",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C68",
+   "kind": "company",
+   "label": "FTI Consulting",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "FTI Consulting",
+    "FTI Consulting",
+    "FTI Consulting",
+    "FTI Consulting Nigeria",
+    "FTI CONSULTING ACUITY LLC"
+   ],
+   "employer_id": "fticom",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C69",
+   "kind": "company",
+   "label": "Protiviti",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Protiviti"
+   ],
+   "employer_id": "protiviti",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C70",
+   "kind": "company",
+   "label": "Capco",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Capco",
+    "CAPCO",
+    "Capco-LLC"
+   ],
+   "employer_id": "capco",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C71",
+   "kind": "company",
+   "label": "Genpact",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Genpact",
+    "Genpact",
+    "Genpact LLC"
+   ],
+   "employer_id": "genpact",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C72",
+   "kind": "company",
+   "label": "EXL",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "EXL"
+   ],
+   "employer_id": "exl",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C73",
+   "kind": "company",
+   "label": "Fractal Analytics",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Fractal",
+    "FRACTAL",
+    "FRACTAL",
+    "Fractal",
+    "Fractal"
+   ],
+   "employer_id": "fractal",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C74",
+   "kind": "company",
+   "label": "Tiger Analytics",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Tiger Analytics"
+   ],
+   "employer_id": "tiger-analytics",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C75",
+   "kind": "company",
+   "label": "LatentView Analytics",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "LatentView Analytics",
+    "LatentView Analytics​",
+    "LATENTVIEW ANALYTICS UK LIMITED"
+   ],
+   "employer_id": "latentview",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C76",
+   "kind": "company",
+   "label": "CRISIL",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Crisil",
+    "Crisil Integral IQ"
+   ],
+   "employer_id": "crisil",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C77",
+   "kind": "company",
+   "label": "Moody's Analytics",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Moody's Corporation",
+    "Moody's Analytics",
+    "Moody's Ratings",
+    "Moody's Local",
+    "Moody's Analytics Knowledge Services"
+   ],
+   "employer_id": "moodys",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C78",
+   "kind": "company",
+   "label": "S&P Global",
+   "keywords": "\"S&P Global\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "sp-global",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C79",
+   "kind": "company",
+   "label": "Fitch Ratings",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Fitch Ratings",
+    "FITCH RATINGS LTD",
+    "India Ratings & Research - A Fitch Group Company",
+    "FITCH RATINGS INC. LTD"
+   ],
+   "employer_id": "fitch-ratings",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C80",
+   "kind": "company",
+   "label": "Morningstar",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Morningstar",
+    "Morningstar Corporation"
+   ],
+   "employer_id": "morningstar",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C81",
+   "kind": "company",
+   "label": "TransUnion",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "TransUnion",
+    "TransUnion CIBIL Limited",
+    "TransUnion®"
+   ],
+   "employer_id": "transunion",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C82",
+   "kind": "company",
+   "label": "Experian",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Experian",
+    "Experian India"
+   ],
+   "employer_id": "experian",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C83",
+   "kind": "company",
+   "label": "Equifax",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Equifax",
+    "Equifax India"
+   ],
+   "employer_id": "equifax",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C84",
+   "kind": "company",
+   "label": "CRIF",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "CRIF",
+    "CRIF India"
+   ],
+   "employer_id": "crif",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C85",
+   "kind": "company",
+   "label": "Mastercard",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Mastercard"
+   ],
+   "employer_id": "mastercard",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C86",
+   "kind": "company",
+   "label": "Visa",
+   "keywords": "\"Visa\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "visa",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C87",
+   "kind": "company",
+   "label": "American Express",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "American Express",
+    "American Express Business",
+    "American Express Global Business Travel",
+    "American Express Saudi Arabia",
+    "American Express Middle East"
+   ],
+   "employer_id": "amex",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C88",
+   "kind": "company",
+   "label": "Discover Financial Services",
+   "keywords": "\"Discover\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "discover",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C89",
+   "kind": "company",
+   "label": "Capital One",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Capital One",
+    "Capital One",
+    "Capital One Hall",
+    "Capital One Advisers",
+    "Capital One Center"
+   ],
+   "employer_id": "capital-one",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C90",
+   "kind": "company",
+   "label": "Stripe",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Stripe",
+    "STRIPE"
+   ],
+   "employer_id": "stripe",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C91",
+   "kind": "company",
+   "label": "PayPal",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "PayPal"
+   ],
+   "employer_id": "paypal",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C92",
+   "kind": "company",
+   "label": "Adobe Financial Services",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Adobe"
+   ],
+   "employer_id": "adobe-finance",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C93",
+   "kind": "company",
+   "label": "Block",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Block",
+    "BLOCK"
+   ],
+   "employer_id": "block",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C94",
+   "kind": "company",
+   "label": "SoFi",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "SoFi"
+   ],
+   "employer_id": "sofi",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C95",
+   "kind": "company",
+   "label": "LendingClub",
+   "keywords": "\"LendingClub\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "lendingclub",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C96",
+   "kind": "company",
+   "label": "Upstart",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Upstart",
+    "UpStart",
+    "UpStart",
+    "Upstart",
+    "Upstart"
+   ],
+   "employer_id": "upstart",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C97",
+   "kind": "company",
+   "label": "Affirm",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Affirm"
+   ],
+   "employer_id": "affirm",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C98",
+   "kind": "company",
+   "label": "Klarna",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Klarna",
+    "Klarna Ltd."
+   ],
+   "employer_id": "klarna",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C99",
+   "kind": "company",
+   "label": "Revolut",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Revolut"
+   ],
+   "employer_id": "revolut",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C100",
+   "kind": "company",
+   "label": "N26",
+   "keywords": "\"N26\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "n26",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C101",
+   "kind": "company",
+   "label": "Monzo",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Monzo",
+    "MONZO Group"
+   ],
+   "employer_id": "monzo",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C102",
+   "kind": "company",
+   "label": "Starling Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Starling Bank-",
+    "STARLING BANK LIMITED."
+   ],
+   "employer_id": "starling-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C103",
+   "kind": "company",
+   "label": "BlackRock",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "BlackRock"
+   ],
+   "employer_id": "blackrock",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C104",
+   "kind": "company",
+   "label": "Vanguard",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Vanguard",
+    "Vanguard India",
+    "Vanguard Limited",
+    "VANGUARD"
+   ],
+   "employer_id": "vanguard",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C105",
+   "kind": "company",
+   "label": "Fidelity Investments",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Fidelity Investments",
+    "Fidelity International",
+    "Fidelity Services Group"
+   ],
+   "employer_id": "fidelity",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C106",
+   "kind": "company",
+   "label": "T. Rowe Price",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "T. Rowe Price",
+    "T. Rowe Price UK",
+    "T. Rowe Price Hong Kong",
+    "T. Rowe Price Singapore",
+    "T. Rowe Price Australia"
+   ],
+   "employer_id": "troweprice",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C107",
+   "kind": "company",
+   "label": "PIMCO",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "PIMCO",
+    "PIMCO"
+   ],
+   "employer_id": "pimco",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C108",
+   "kind": "company",
+   "label": "Invesco",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Invesco",
+    "INVESCO",
+    "Invesco Group, Corp"
+   ],
+   "employer_id": "invesco",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C109",
+   "kind": "company",
+   "label": "Franklin Templeton",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Franklin Templeton",
+    "Franklin Templeton India",
+    "Franklin Templeton Investment Solutions (FTIS)",
+    "Franklin Templeton",
+    "Legg Mason (Acquired by Franklin Templeton)"
+   ],
+   "employer_id": "franklin-templeton",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C110",
+   "kind": "company",
+   "label": "Schroders",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Schroders"
+   ],
+   "employer_id": "schroders",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C111",
+   "kind": "company",
+   "label": "Allianz",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Allianz",
+    "Allianz Services",
+    "Allianz Technology"
+   ],
+   "employer_id": "allianz",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C112",
+   "kind": "company",
+   "label": "Zurich Insurance",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Zurich Insurance"
+   ],
+   "employer_id": "zurich",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C113",
+   "kind": "company",
+   "label": "AXA",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "AXA",
+    "AXA XL"
+   ],
+   "employer_id": "axa",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C114",
+   "kind": "company",
+   "label": "Prudential plc",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Prudential plc",
+    "Africa Prudential Plc"
+   ],
+   "employer_id": "prudential",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C115",
+   "kind": "company",
+   "label": "Aviva",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Aviva",
+    "Aviva",
+    "Aviva",
+    "Aviva India",
+    "AVIVA"
+   ],
+   "employer_id": "aviva",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C116",
+   "kind": "company",
+   "label": "MetLife",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "MetLife",
+    "Metlife"
+   ],
+   "employer_id": "metlife",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C117",
+   "kind": "company",
+   "label": "AIG",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "AIG",
+    "AIG",
+    "AIG"
+   ],
+   "employer_id": "aig",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C118",
+   "kind": "company",
+   "label": "Chubb",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Chubb"
+   ],
+   "employer_id": "chubb",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C119",
+   "kind": "company",
+   "label": "Marsh McLennan",
+   "keywords": "\"Marsh McLennan\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "marsh-mclennan",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C120",
+   "kind": "company",
+   "label": "Aon",
+   "keywords": "\"Aon\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "aon",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C121",
+   "kind": "company",
+   "label": "WTW",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "WTW",
+    "Wtw Corp",
+    "WTW inc."
+   ],
+   "employer_id": "wtw",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C122",
+   "kind": "company",
+   "label": "Bain Capability Network",
+   "keywords": "\"Bain Capability Network\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "bain-advantage",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C123",
+   "kind": "company",
+   "label": "BNY",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "BNY"
+   ],
+   "employer_id": "bny",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C124",
+   "kind": "company",
+   "label": "U.S. Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "U.S. Bank",
+    "U.S. Bancorp Advisors",
+    "U.S. Bank National Association"
+   ],
+   "employer_id": "us-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C125",
+   "kind": "company",
+   "label": "PNC Financial Services",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "PNC",
+    "PNC INC.",
+    "Pnc Bank P N C Bank",
+    "PNC Solutions"
+   ],
+   "employer_id": "pnc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C126",
+   "kind": "company",
+   "label": "Truist",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Truist",
+    "Truist India"
+   ],
+   "employer_id": "truist",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C127",
+   "kind": "company",
+   "label": "Regions Bank",
+   "keywords": "\"Regions Bank\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "regions-bank",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C128",
+   "kind": "company",
+   "label": "Fifth Third Bank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Fifth Third Bank",
+    "Fifth Third Securities",
+    "Fifth Third Private Bank",
+    "Fifth Third Wealth Advisors LLC",
+    "FIFTH THIRD"
+   ],
+   "employer_id": "fifth-third",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C129",
+   "kind": "company",
+   "label": "ING",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "ING"
+   ],
+   "employer_id": "ing",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C130",
+   "kind": "company",
+   "label": "Rabobank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Rabobank"
+   ],
+   "employer_id": "rabobank",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C131",
+   "kind": "company",
+   "label": "ABN AMRO",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "ABN AMRO Bank N.V.",
+    "ABN AMRO MeesPierson",
+    "ABN AMRO Clearing Bank",
+    "ABN AMRO Deutschland",
+    "ABN AMRO UK"
+   ],
+   "employer_id": "abn-amro",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C132",
+   "kind": "company",
+   "label": "BBVA",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "BBVA"
+   ],
+   "employer_id": "bbva",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C133",
+   "kind": "company",
+   "label": "Santander",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Santander"
+   ],
+   "employer_id": "santander",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C134",
+   "kind": "company",
+   "label": "CaixaBank",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "CaixaBank"
+   ],
+   "employer_id": "caixabank",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C135",
+   "kind": "company",
+   "label": "KBC Group",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "KBC Global Services",
+    "KBC Technologies Group"
+   ],
+   "employer_id": "kbc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C136",
+   "kind": "company",
+   "label": "Swiss Re",
+   "keywords": "\"Swiss Re\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "swiss-re",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C137",
+   "kind": "company",
+   "label": "Munich Re",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Munich Re",
+    "Munich Re Specialty",
+    "Munich Re Specialty - North America",
+    "Munich Re Automation Solutions",
+    "Munich Re Ventures"
+   ],
+   "employer_id": "munich-re",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C138",
+   "kind": "company",
+   "label": "Legal & General",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Legal & General",
+    "Legal & General Reinsurance",
+    "Legal & General America",
+    "Legal and General Properties",
+    "Legal & General Ireland"
+   ],
+   "employer_id": "legal-general",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C139",
+   "kind": "company",
+   "label": "SCOR",
+   "keywords": "\"SCOR\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "scor",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C140",
+   "kind": "company",
+   "label": "LSEG",
+   "keywords": "\"LSEG\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "london-stock-exchange",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C141",
+   "kind": "company",
+   "label": "Bloomberg",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Bloomberg"
+   ],
+   "employer_id": "bloomberg",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C142",
+   "kind": "company",
+   "label": "FactSet",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "FactSet"
+   ],
+   "employer_id": "factset",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C143",
+   "kind": "company",
+   "label": "ICE",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "ICE",
+    "ICE",
+    "ICE"
+   ],
+   "employer_id": "ices",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C144",
+   "kind": "company",
+   "label": "Nasdaq",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Nasdaq"
+   ],
+   "employer_id": "nasdaq",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C145",
+   "kind": "company",
+   "label": "Acadia",
+   "keywords": "\"Acadia\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "acadia",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C146",
+   "kind": "company",
+   "label": "Numerix",
+   "keywords": "\"Numerix\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "numerix",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C147",
+   "kind": "company",
+   "label": "SAS",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "SAS"
+   ],
+   "employer_id": "sas",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C148",
+   "kind": "company",
+   "label": "Teradata",
+   "keywords": "\"Teradata\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "teradata",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C149",
+   "kind": "company",
+   "label": "Palantir",
+   "keywords": "\"Palantir\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "palantir",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C150",
+   "kind": "company",
+   "label": "Databricks",
+   "keywords": "\"Databricks\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "databricks",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C151",
+   "kind": "company",
+   "label": "Amazon Finance and Risk GCC",
+   "keywords": "\"Amazon Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "amazon-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C152",
+   "kind": "company",
+   "label": "Google Finance Risk GCC",
+   "keywords": "\"Google Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "google-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C153",
+   "kind": "company",
+   "label": "Microsoft Finance GCC",
+   "keywords": "\"Microsoft Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "microsoft-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C154",
+   "kind": "company",
+   "label": "Apple Finance GCC",
+   "keywords": "\"Apple Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "apple-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C155",
+   "kind": "company",
+   "label": "Meta Finance Risk GCC",
+   "keywords": "\"Meta Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "meta-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C156",
+   "kind": "company",
+   "label": "NVIDIA Finance GCC",
+   "keywords": "\"NVIDIA Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "nvidia-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C157",
+   "kind": "company",
+   "label": "Intel Finance GCC",
+   "keywords": "\"Intel Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "intel-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C158",
+   "kind": "company",
+   "label": "IBM Finance and Risk GCC",
+   "keywords": "\"IBM Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "ibm-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C159",
+   "kind": "company",
+   "label": "Oracle Financials GCC",
+   "keywords": "\"Oracle Financials\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "oracle-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C160",
+   "kind": "company",
+   "label": "SAP Financial Services GCC",
+   "keywords": "\"SAP Financial Services\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "sap-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C161",
+   "kind": "company",
+   "label": "Salesforce Finance Risk GCC",
+   "keywords": "\"Salesforce Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "salesforce-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C162",
+   "kind": "company",
+   "label": "Uber Risk Analytics GCC",
+   "keywords": "\"Uber Risk\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "uber-risk-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C163",
+   "kind": "company",
+   "label": "Airbnb Risk Analytics GCC",
+   "keywords": "\"Airbnb Risk\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "airbnb-risk-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C164",
+   "kind": "company",
+   "label": "Booking Holdings Risk GCC",
+   "keywords": "\"Booking Risk\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "booking-risk-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C165",
+   "kind": "company",
+   "label": "Expedia Risk Analytics GCC",
+   "keywords": "\"Expedia Risk\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "expedia-risk-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C166",
+   "kind": "company",
+   "label": "Walmart Global Tech Finance Risk",
+   "keywords": "\"Walmart Risk\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "walmart-global-tech",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C167",
+   "kind": "company",
+   "label": "Target India Finance Analytics",
+   "keywords": "\"Target India\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "target-india",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C168",
+   "kind": "company",
+   "label": "Best Buy India Finance Analytics",
+   "keywords": "\"Best Buy India\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "best-buy-india",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C169",
+   "kind": "company",
+   "label": "Tesco Business Services",
+   "keywords": "\"Tesco Business Services\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "tesco-business-services",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C170",
+   "kind": "company",
+   "label": "Shell India Finance and Risk",
+   "keywords": "\"Shell Finance India\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "shell-india-finance",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C171",
+   "kind": "company",
+   "label": "BP Finance GCC",
+   "keywords": "\"BP Finance India\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "bp-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C172",
+   "kind": "company",
+   "label": "Siemens Finance GCC",
+   "keywords": "\"Siemens Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "siemens-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C173",
+   "kind": "company",
+   "label": "GE Corporate Finance GCC",
+   "keywords": "\"GE Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "ge-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C174",
+   "kind": "company",
+   "label": "Bosch Finance GCC",
+   "keywords": "\"Bosch Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "bosch-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C175",
+   "kind": "company",
+   "label": "PepsiCo Finance GCC",
+   "keywords": "\"PepsiCo Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "pepsico-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C176",
+   "kind": "company",
+   "label": "Unilever Finance GCC",
+   "keywords": "\"Unilever Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "unilever-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C177",
+   "kind": "company",
+   "label": "Nestlé Finance GCC",
+   "keywords": "\"Nestle Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "nestle-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C178",
+   "kind": "company",
+   "label": "Coca-Cola Finance GCC",
+   "keywords": "\"Coca-Cola Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "coca-cola-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C179",
+   "kind": "company",
+   "label": "P&G Finance GCC",
+   "keywords": "\"P&G Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "procter-gamble-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C180",
+   "kind": "company",
+   "label": "Pfizer Finance GCC",
+   "keywords": "\"Pfizer Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "pfizer-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C181",
+   "kind": "company",
+   "label": "Johnson & Johnson Finance GCC",
+   "keywords": "\"J&J Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "johnson-johnson-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C182",
+   "kind": "company",
+   "label": "Novartis Finance GCC",
+   "keywords": "\"Novartis Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "novartis-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C183",
+   "kind": "company",
+   "label": "GSK Finance GCC",
+   "keywords": "\"GSK Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "gsk-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C184",
+   "kind": "company",
+   "label": "Sanofi Finance GCC",
+   "keywords": "\"Sanofi Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "sanofi-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C185",
+   "kind": "company",
+   "label": "AstraZeneca Finance GCC",
+   "keywords": "\"AstraZeneca Finance\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "astrazeneca-finance-gcc",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C186",
+   "kind": "company",
+   "label": "Accenture",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Accenture",
+    "Accenture in India"
+   ],
+   "employer_id": "accenture",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C187",
+   "kind": "company",
+   "label": "Capgemini",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Capgemini",
+    "Capgemini Invent",
+    "Capgemini",
+    "Capgemini",
+    "CAPGEMINI TECHNOLOGY SERVICES INDIA LIMITED"
+   ],
+   "employer_id": "capgemini",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C188",
+   "kind": "company",
+   "label": "Cognizant",
+   "keywords": "\"Cognizant\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "cognizant",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C189",
+   "kind": "company",
+   "label": "Tata Consultancy Services",
+   "keywords": "\"TCS\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "tcs",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C190",
+   "kind": "company",
+   "label": "Infosys",
+   "keywords": "\"Infosys\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "infosys",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C191",
+   "kind": "company",
+   "label": "Wipro",
+   "keywords": "\"Wipro\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "wipro",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C192",
+   "kind": "company",
+   "label": "HCLTech",
+   "keywords": "\"HCLTech\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "hcltech",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C193",
+   "kind": "company",
+   "label": "Tech Mahindra",
+   "keywords": "\"Tech Mahindra\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "tech-mahindra",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C194",
+   "kind": "company",
+   "label": "Nagarro",
+   "keywords": "\"Nagarro\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "nagarro",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C195",
+   "kind": "company",
+   "label": "Persistent Systems",
+   "keywords": "\"Persistent Systems\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "persistent",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C196",
+   "kind": "company",
+   "label": "Publicis Sapient",
+   "keywords": "\"Publicis Sapient\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "publicis-sapient",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C197",
+   "kind": "company",
+   "label": "Thoughtworks",
+   "keywords": "\"Thoughtworks\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "thoughtworks",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C198",
+   "kind": "company",
+   "label": "ZS Associates",
+   "keywords": "\"ZS Associates\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "zs",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C199",
+   "kind": "company",
+   "label": "Acuity Knowledge Partners",
+   "keywords": "\"Acuity\" AND (\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\")",
+   "location": "India",
+   "mode": "keyword",
+   "employer_id": "acuity",
+   "set": null,
+   "window_hours": 72,
+   "state": "skipped_budget",
+   "returned": 0
+  },
+  {
+   "id": "C200",
+   "kind": "company",
+   "label": "Evalueserve",
+   "keywords": "\"credit risk\" OR \"risk analytics\" OR \"risk modeling\" OR \"risk modelling\" OR \"IFRS 9\" OR \"Basel\" OR \"model risk\" OR \"model validation\"",
+   "location": "India",
+   "mode": "company_filter",
+   "company_names": [
+    "Evalueserve"
+   ],
+   "employer_id": "evalueserve",
+   "set": null,
+   "window_hours": 72,
    "state": "skipped_budget",
    "returned": 0
   }
@@ -4067,14 +7702,20 @@
   "ameriprise-financial": {
    "state": "blocked",
    "scope": "workday_sitemap",
-   "listings_read": false,
-   "india_observed": null,
+   "listings_read": true,
+   "india_observed": 24,
+   "pages": 1,
+   "indexed": 100,
+   "candidates": 2,
+   "coverage_limit": "sitemap may stop at 100 jobs",
    "error": "HTTP 429",
    "returned": 0,
    "name": "Ameriprise Financial",
    "type": "public_listings",
-   "requests": 1,
-   "previously_verified": false
+   "requests": 3,
+   "previously_verified": false,
+   "qualified_primary": 0,
+   "qualified_secondary": 0
   },
   "voya-financial": {
    "state": "ok",
@@ -4403,6 +8044,17 @@
    "linkedin_queries": 223,
    "ats_ok": 1,
    "observations": 3562
+  },
+  {
+   "started": "2026-11-23T02:35:53Z",
+   "duration_seconds": 2716,
+   "trigger": "schedule",
+   "qualified_primary": 9,
+   "qualified_secondary": 55,
+   "linkedin_ok": 272,
+   "linkedin_queries": 446,
+   "ats_ok": 1,
+   "observations": 4517
   }
  ]
 }
