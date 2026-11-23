@@ -1,36 +1,36 @@
 # Top 10 credit risk roles
 
-Scan finished 23 Nov 2026, 08:51 IST. Window: last 72 hours. 9 roles cleared the threshold in the last 30 hours.
+Scan finished 23 Nov 2026, 22:28 IST. Window: last 30 hours. 34 roles cleared the threshold in the last 30 hours.
 
-1. **FS-RISK CONSULTING-FSRM - Credit Risk Modelling_QBB-SENIOR** · EY · Chennai
-   Score 88 (Tier 2) · 1d ago · recent · 73 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4455870765) · [Listing](https://www.linkedin.com/jobs/view/4455870765)
-2. **FS-RISK CONSULTING-FSRM - Credit Risk Modelling_QBB-SENIOR** · EY · Delhi NCR
-   Score 87 (Tier 2) · 2d ago · recent · 80 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4455869811) · [Listing](https://www.linkedin.com/jobs/view/4455869811)
-3. **FS-RISK CONSULTING-FSRM - Credit Risk Modelling_QBB-SENIOR** · EY · Pune
-   Score 87 (Tier 2) · 2d ago · recent · 96 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4455882666) · [Listing](https://www.linkedin.com/jobs/view/4455882666)
-4. **FS-RISK CONSULTING-FSRM - Credit Risk Modelling_QBB-SENIOR** · EY · Mumbai
-   Score 87 (Tier 2) · 2d ago · recent · 96 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4455874700) · [Listing](https://www.linkedin.com/jobs/view/4455874700)
-5. **Quant Analytics Counterparty Credit Risk (CCR) - Vice President** · Barclays · Mumbai
-   Score 87 (Tier 2) · 2d ago · recent · Be among the first 25 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4491343401) · [Listing](https://www.linkedin.com/jobs/view/4491343401)
-6. **FS-RISK CONSULTING-FSRM - Credit Risk Modelling_QBB-SENIOR** · EY · Hyderabad
-   Score 86 (Tier 2) · 2d ago · recent · 98 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4455882661) · [Listing](https://www.linkedin.com/jobs/view/4455882661)
-7. **Senior Manager** · Bank of America · Mumbai
-   Score 83 (Tier 2) · 17h ago · fresh, single source · 134 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4477834113) · [Listing](https://www.linkedin.com/jobs/view/4477834113)
-8. **Data Scientist - Specialist** · Equifax · Pune
-   Score 80 (Tier 2) · 2d ago · recent · 103 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4485331655) · [Listing](https://www.linkedin.com/jobs/view/4485331655)
-9. **AVP-Model Risk Management** · Mizuho · Pune
-   Score 78 (Tier 2) · 2d ago · recent · 111 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4492579737) · [Listing](https://www.linkedin.com/jobs/view/4492579737)
-10. **Senior Data Scientist, Model Risk Management** · Jobgether · Other India
-   Score 78 (Tier 2) · 2d ago · recent · Be among the first 25 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4492534699) · [Listing](https://www.linkedin.com/jobs/view/4492534699)
+1. **FS-RISK CONSULTING-FSRM - QTB- Market Risk-Front office Pricing-Counterparty credit risk-MANAGER** · EY · Bengaluru
+   Score 89 (Tier 2) · 6h ago · verified fresh · Be among the first 25 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4492605052) · [Listing](https://www.linkedin.com/jobs/view/4492605052)
+2. **FS-RISK CONSULTING-FSRM - QTB- Market Risk-Front office Pricing-Counterparty credit risk-MANAGER** · EY · Pune
+   Score 89 (Tier 2) · 6h ago · verified fresh · Be among the first 25 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4492393543) · [Listing](https://www.linkedin.com/jobs/view/4492393543)
+3. **FS-RISK CONSULTING-FSRM - QTB- Market Risk-Front office Pricing-Counterparty credit risk-MANAGER** · EY · Delhi NCR
+   Score 89 (Tier 2) · 6h ago · verified fresh · Be among the first 25 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4492603169) · [Listing](https://www.linkedin.com/jobs/view/4492603169)
+4. **FS-RISK CONSULTING-FSRM - QTB- Market Risk-Front office Pricing-Counterparty credit risk-MANAGER** · EY · Hyderabad
+   Score 88 (Tier 2) · 6h ago · verified fresh · Be among the first 25 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4492383888) · [Listing](https://www.linkedin.com/jobs/view/4492383888)
+5. **FS-RISK CONSULTING-FSRM - QTB- Market Risk-Front office Pricing-Counterparty credit risk-MANAGER** · EY · Chennai
+   Score 88 (Tier 2) · 6h ago · verified fresh · Be among the first 25 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4492393545) · [Listing](https://www.linkedin.com/jobs/view/4492393545)
+6. **FS-RISK CONSULTING-FSRM - QTB- Market Risk-Front office Pricing-Counterparty credit risk-MANAGER** · EY · Kolkata
+   Score 88 (Tier 2) · 6h ago · verified fresh · Be among the first 25 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4492604125) · [Listing](https://www.linkedin.com/jobs/view/4492604125)
+7. **FS-RISK CONSULTING-FSRM - QTB-Counterparty Credit Risk-Python-SENIOR** · EY · Bengaluru
+   Score 87 (Tier 2) · 6h ago · verified fresh · Be among the first 25 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4492387805) · [Listing](https://www.linkedin.com/jobs/view/4492387805)
+8. **FS-RISK CONSULTING-FSRM - QTB-Counterparty Credit Risk-Python-SENIOR** · EY · Pune
+   Score 87 (Tier 2) · 6h ago · verified fresh · Be among the first 25 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4492391585) · [Listing](https://www.linkedin.com/jobs/view/4492391585)
+9. **FS-RISK CONSULTING-FSRM - QTB-Counterparty Credit Risk-Python-SENIOR** · EY · Delhi NCR
+   Score 87 (Tier 2) · 6h ago · verified fresh · Be among the first 25 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4492397519) · [Listing](https://www.linkedin.com/jobs/view/4492397519)
+10. **IN-Manager _ Credit Risk Quant _ Financial Services Risk_Advisory_Mumbai** · PwC · Mumbai
+   Score 87 (Tier 2) · 6h ago · verified fresh · Be among the first 25 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4490649182) · [Listing](https://www.linkedin.com/jobs/view/4490649182)
 
-Coverage: LinkedIn 272/446 queries answered, career portals 1/5, Naukri interaction_required.
+Coverage: LinkedIn 202/223 queries answered, career portals 1/5, Naukri interaction_required.
