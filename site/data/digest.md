@@ -1,36 +1,36 @@
 # Top 10 credit risk roles
 
-Scan finished 24 Nov 2026, 22:02 IST. Window: last 30 hours. 50 roles cleared the threshold in the last 30 hours.
+Scan finished 25 Nov 2026, 07:47 IST. Window: last 30 hours. 33 roles cleared the threshold in the last 30 hours.
 
-1. **FS-RISK CONSULTING-FSRM - QTB- Market Risk-Front office Pricing-Counterparty credit risk-MANAGER** · EY · Bengaluru
-   Score 88 (Tier 2) · 30h ago · fresh, single source · Be among the first 25 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4492605052) · [Listing](https://www.linkedin.com/jobs/view/4492605052)
-2. **FS-RISK CONSULTING-FSRM - QTB- Market Risk-Front office Pricing-Counterparty credit risk-MANAGER** · EY · Pune
-   Score 88 (Tier 2) · 30h ago · fresh, single source · Be among the first 25 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4492393543) · [Listing](https://www.linkedin.com/jobs/view/4492393543)
-3. **FS-RISK CONSULTING-FSRM - QTB- Market Risk-Front office Pricing-Counterparty credit risk-MANAGER** · EY · Delhi NCR
-   Score 88 (Tier 2) · 30h ago · fresh, single source · Be among the first 25 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4492603169) · [Listing](https://www.linkedin.com/jobs/view/4492603169)
-4. **FS-RISK CONSULTING-FSRM - QTB- Market Risk-Front office Pricing-Counterparty credit risk-MANAGER** · EY · Hyderabad
-   Score 87 (Tier 2) · 30h ago · fresh, single source · Be among the first 25 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4492383888) · [Listing](https://www.linkedin.com/jobs/view/4492383888)
-5. **FS-RISK CONSULTING-FSRM - QTB- Market Risk-Front office Pricing-Counterparty credit risk-MANAGER** · EY · Chennai
-   Score 87 (Tier 2) · 30h ago · fresh, single source · Be among the first 25 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4492393545) · [Listing](https://www.linkedin.com/jobs/view/4492393545)
-6. **FS-RISK CONSULTING-FSRM - QTB- Market Risk-Front office Pricing-Counterparty credit risk-MANAGER** · EY · Kolkata
-   Score 87 (Tier 2) · 30h ago · fresh, single source · Be among the first 25 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4492604125) · [Listing](https://www.linkedin.com/jobs/view/4492604125)
-7. **FS-RISK CONSULTING-FSRM - QTB-Counterparty Credit Risk-Python-SENIOR** · EY · Bengaluru
-   Score 86 (Tier 2) · 30h ago · fresh, single source · Be among the first 25 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4492387805) · [Listing](https://www.linkedin.com/jobs/view/4492387805)
-8. **FS-RISK CONSULTING-FSRM - QTB-Counterparty Credit Risk-Python-SENIOR** · EY · Pune
-   Score 86 (Tier 2) · 30h ago · fresh, single source · Be among the first 25 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4492391585) · [Listing](https://www.linkedin.com/jobs/view/4492391585)
-9. **FS-RISK CONSULTING-FSRM - QTB-Counterparty Credit Risk-Python-SENIOR** · EY · Delhi NCR
-   Score 86 (Tier 2) · 30h ago · fresh, single source · Be among the first 25 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4492397519) · [Listing](https://www.linkedin.com/jobs/view/4492397519)
-10. **IN-Manager _ Credit Risk Quant _ Financial Services Risk_Advisory_Mumbai** · PwC · Mumbai
-   Score 86 (Tier 2) · 30h ago · fresh, single source · Be among the first 25 applicants
-   [Apply](https://www.linkedin.com/jobs/view/4490649182) · [Listing](https://www.linkedin.com/jobs/view/4490649182)
+1. **ICB Risk Data Analytics - Risk Modelling Senior Associate** · JPMorgan Chase · Bengaluru
+   Score 84 (Tier 2) · 3h ago · verified fresh
+   [Apply](https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/job/210807407) · [Listing](https://www.linkedin.com/jobs/view/4494433349)
+2. **Manager, Stress Testing** · HSBC · Bengaluru
+   Score 81 (Tier 2) · 9h ago · verified fresh
+   [Apply](https://www.linkedin.com/jobs/view/4485337582) · [Listing](https://www.linkedin.com/jobs/view/4485337582)
+3. **Head Of Credit Risk & Data Science** · FINN · Other India
+   Score 80 (Tier 2) · 10h ago · verified fresh · Be among the first 25 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4492230710) · [Listing](https://www.linkedin.com/jobs/view/4492230710)
+4. **Risk Modelling Validation & Insights Specialist** · ANZ · Bengaluru
+   Score 80 (Tier 2) · 27h ago · fresh, single source
+   [Apply](https://www.linkedin.com/jobs/view/4493941337) · [Listing](https://www.linkedin.com/jobs/view/4493941337)
+5. **Principal Data Scientist** · Optum India · Delhi NCR
+   Score 75 (Tier 2) · 15h ago · fresh, single source · Be among the first 25 applicants
+   [Apply](https://www.linkedin.com/jobs/view/4490383584) · [Listing](https://www.linkedin.com/jobs/view/4490383584)
+6. **Assistant Manager - Stress Testing** · Standard Chartered · Bengaluru
+   Score 74 (Tier 3) · 21h ago · fresh, single source
+   [Apply](https://www.linkedin.com/jobs/view/4494306721) · [Listing](https://www.linkedin.com/jobs/view/4494306721)
+7. **Risk Analyst – Data Science & Analytics** · Experian · Mumbai
+   Score 73 (Tier 3) · 17h ago · verified fresh · 111 applicants
+   [Apply](https://jobs.smartrecruiters.com/Experian/744000161283509) · [Listing](https://www.linkedin.com/jobs/view/4490367490)
+8. **Assistant Manager - Credit Risk (UAE National)** · Emirates NBD · Dubai
+   Score 72 (Tier 3) · 18h ago · fresh, single source
+   [Apply](https://www.linkedin.com/jobs/view/4492695081) · [Listing](https://www.linkedin.com/jobs/view/4492695081)
+9. **AVP - Credit Analytics - CRE** · OakNorth · Delhi NCR
+   Score 70 (Tier 3) · 10h ago · verified fresh
+   [Apply](https://www.linkedin.com/jobs/view/4494171310) · [Listing](https://www.linkedin.com/jobs/view/4494171310)
+10. **AVP - Credit Analytics - CRE** · OakNorth in India · Delhi NCR
+   Score 69 (Tier 3) · 16h ago · fresh, single source
+   [Apply](https://www.linkedin.com/jobs/view/4494325640) · [Listing](https://www.linkedin.com/jobs/view/4494325640)
 
-Coverage: LinkedIn 134/223 queries answered, career portals 1/5, Naukri interaction_required.
+Coverage: LinkedIn 149/223 queries answered, career portals 1/5, Naukri interaction_required.
